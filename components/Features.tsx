@@ -68,16 +68,16 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-32 px-6">
+    <section id="features" className="py-48 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">
+          <h2 className="text-5xl md:text-6xl font-bold mb-8 gradient-text">
             Core Features
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -85,7 +85,7 @@ export default function Features() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map((feature, index) => (
             <motion.div
               key={index}

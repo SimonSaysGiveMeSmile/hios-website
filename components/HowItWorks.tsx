@@ -51,16 +51,16 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-32 px-6">
+    <section id="how-it-works" className="py-48 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">
+          <h2 className="text-5xl md:text-6xl font-bold mb-8 gradient-text">
             How It Works
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -68,7 +68,7 @@ export default function HowItWorks() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -101,7 +101,7 @@ export default function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-20"
+          className="mt-24"
         >
           <div className="glass rounded-3xl p-12 text-center">
             <h3 className="text-3xl font-bold mb-4 gradient-text">

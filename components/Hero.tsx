@@ -4,24 +4,24 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-20">
       <div className="max-w-6xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 gradient-text">
+          <h1 className="text-6xl md:text-8xl font-bold mb-8 gradient-text">
             Talk to your phone.
             <br />
             It gets things done.
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-16 max-w-3xl mx-auto">
             A native iOS agent that runs Shortcuts, reads your screen, and completes tasks hands-free.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
             <button className="ios-button px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg shadow-xl hover:shadow-2xl">
               Join the TestFlight
             </button>
@@ -30,7 +30,7 @@ export default function Hero() {
             </button>
           </div>
 
-          <div className="flex items-center justify-center gap-12 text-center">
+          <div className="flex items-center justify-center gap-16 text-center">
             <div>
               <div className="text-4xl font-bold gradient-text">10+</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Shortcuts</div>
@@ -52,7 +52,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mt-20"
+          className="mt-24"
         >
           <div className="relative mx-auto max-w-2xl">
             <div className="glass rounded-3xl p-8 shadow-2xl">
