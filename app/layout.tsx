@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "HiOS - Your Voice-First iOS Agent",
   description: "Talk to your phone. It gets things done. A native iOS agent that runs Shortcuts, reads your screen, and completes tasks hands-free.",
   keywords: ["iOS", "agent", "voice assistant", "shortcuts", "automation", "OCR", "vision"],
+  icons: {
+    icon: '/logo.svg',
+  },
 };
 
 export default function RootLayout({
@@ -15,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

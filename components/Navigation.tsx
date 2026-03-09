@@ -26,10 +26,8 @@ export default function Navigation() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform rotate-180">
-              <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-              </svg>
+            <div className="w-10 h-10 transform rotate-180">
+              <img src="/logo.svg" alt="HiOS Logo" className="w-full h-full" />
             </div>
             <span className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>HiOS</span>
           </a>
