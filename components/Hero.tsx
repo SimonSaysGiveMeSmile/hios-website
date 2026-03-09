@@ -1,97 +1,140 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import React from 'react';
+import GlassCard from './GlassCard';
+import InteractiveButton from './InteractiveButton';
+
+function AgentTaskIllustration() {
+  return (
+    <div className="relative w-full aspect-[16/10] max-w-2xl mx-auto">
+      {/* Main task automation UI */}
+      <GlassCard className="absolute inset-0 p-6" variant="subtle">
+        <div className="h-full flex flex-col gap-4">
+          {/* Command bubble */}
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 transform rotate-180">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+              </svg>
+            </div>
+            <div className="flex-1 glass-subtle rounded-2xl p-4">
+              <p className="text-sm" style={{ color: 'var(--text-primary)' }}>"Scan this document and send it to my accountant"</p>
+            </div>
+          </div>
+
+          {/* Task checklist */}
+          <div className="flex-1 space-y-2">
+            {[
+              { label: 'Capture image', delay: '0ms' },
+              { label: 'Extract text', delay: '100ms' },
+              { label: 'Find contact', delay: '200ms' },
+              { label: 'Send email', delay: '300ms' },
+            ].map((task, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 p-3 rounded-xl glass-subtle animate-fadeInUp"
+                style={{ animationDelay: task.delay }}
+              >
+                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>{task.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Progress badge */}
+          <div className="flex items-center justify-center gap-2 p-3 rounded-xl bg-gradient-to-r from-emerald-500/20 to-green-600/20 border border-emerald-500/30">
+            <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="text-sm font-semibold text-emerald-400">Task Completed</span>
+          </div>
+        </div>
+      </GlassCard>
+
+      {/* AI reasoning bubble */}
+      <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-56 animate-float">
+        <GlassCard className="p-4" variant="strong">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
+                <span className="text-sm">✨</span>
+              </div>
+              <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>AI Reasoning</span>
+            </div>
+            <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              Document recognized → extracting text → identifying contact → composing email
+            </p>
+          </div>
+        </GlassCard>
+      </div>
+
+      {/* Speed indicator */}
+      <div className="absolute -left-4 bottom-8 animate-float" style={{ animationDelay: '1s' }}>
+        <GlassCard className="p-3" variant="strong">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <div className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>10s</div>
+              <div className="text-xs" style={{ color: 'var(--text-muted)' }}>vs 90s manual</div>
+            </div>
+          </div>
+        </GlassCard>
+      </div>
+    </div>
+  );
+}
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-20">
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-6xl md:text-8xl font-bold mb-8 gradient-text">
-            Talk to your phone.
-            <br />
-            It gets things done.
-          </h1>
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-24 overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-blue)' }} />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-purple)' }} />
 
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-16 max-w-3xl mx-auto">
-            A native iOS agent that runs Shortcuts, reads your screen, and completes tasks hands-free.
-          </p>
+      <div className="relative max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left: Text content */}
+          <div className="space-y-8 text-center lg:text-left">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
+              Talk to your phone.<br />
+              <span style={{ color: 'var(--text-secondary)' }}>It gets things done.</span>
+            </h1>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
-            <button className="ios-button px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg shadow-xl hover:shadow-2xl">
-              Join the TestFlight
-            </button>
-            <button className="ios-button px-8 py-4 rounded-2xl glass font-semibold text-lg">
-              See Supported Automations
-            </button>
-          </div>
+            <p className="text-xl max-w-md mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>
+              HiOS is a native iOS agent that runs Shortcuts, reads your screen, and completes tasks hands-free.
+            </p>
 
-          <div className="flex items-center justify-center gap-16 text-center">
-            <div>
-              <div className="text-4xl font-bold gradient-text">10+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Shortcuts</div>
-            </div>
-            <div className="w-px h-12 bg-gray-300 dark:bg-gray-700" />
-            <div>
-              <div className="text-4xl font-bold gradient-text">2-5</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Step Flows</div>
-            </div>
-            <div className="w-px h-12 bg-gray-300 dark:bg-gray-700" />
-            <div>
-              <div className="text-4xl font-bold gradient-text">100%</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Hands-Free</div>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <InteractiveButton primary>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                </svg>
+                Join TestFlight
+              </InteractiveButton>
+
+              <InteractiveButton>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                </svg>
+                See Automations
+              </InteractiveButton>
             </div>
           </div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="mt-24"
-        >
-          <div className="relative mx-auto max-w-2xl">
-            <div className="glass rounded-3xl p-8 shadow-2xl">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1 glass rounded-2xl p-4">
-                    <p className="text-left text-gray-700 dark:text-gray-300">
-                      "Scan this document and send it to my accountant"
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1 glass rounded-2xl p-4">
-                    <p className="text-left text-sm text-gray-600 dark:text-gray-400">
-                      ✓ Document scanned<br />
-                      ✓ Text extracted<br />
-                      ✓ Email sent to accountant@example.com
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Right: Visual illustration */}
+          <div className="relative">
+            <AgentTaskIllustration />
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

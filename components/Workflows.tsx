@@ -19,37 +19,37 @@ const workflows = [
 
 export default function Workflows() {
   return (
-    <section id="workflows" className="py-48 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="workflows" className="min-h-screen flex items-center justify-center py-32 px-4 sm:px-6">
+      <div className="max-w-md mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-24"
+          className="text-center mb-8"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 gradient-text">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-gray-900 dark:text-white">
             Powerful Workflows
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-sm text-gray-600 dark:text-gray-400 font-light">
             Automate your iOS experience with intelligent workflows
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-2">
           {workflows.map((workflow, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="flex items-center space-x-3 glass rounded-2xl p-5 hover:scale-105 transition-transform"
+              transition={{ duration: 0.4, delay: index * 0.03 }}
             >
-              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500" />
-              <span className="text-gray-700 dark:text-gray-300 font-medium">
-                {workflow}
-              </span>
+              <div className="glass rounded-xl p-3 hover:scale-[1.02] transition-transform">
+                <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                  {workflow}
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>

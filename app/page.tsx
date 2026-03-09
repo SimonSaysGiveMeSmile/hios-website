@@ -1,7 +1,12 @@
+'use client';
+
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import HowItWorks from "@/components/HowItWorks";
-import Workflows from "@/components/Workflows";
+import Problem from "@/components/Problem";
+import Product from "@/components/Product";
+import Demo from "@/components/Demo";
+import Capabilities from "@/components/Capabilities";
+import Services from "@/components/Services";
+import Architecture from "@/components/Architecture";
 import CTA from "@/components/CTA";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -9,12 +14,15 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-purple-50/30 via-white to-blue-50/30 dark:from-gray-900 dark:via-purple-900/20 dark:to-blue-900/20" />
+      <div className="fixed inset-0 -z-10 bg-white dark:bg-black" />
       <Navigation />
       <Hero />
-      <Features />
-      <Workflows />
-      <HowItWorks />
+      <Problem />
+      <Product />
+      <Demo />
+      <Capabilities />
+      <Services />
+      <Architecture />
       <CTA />
       <Footer />
     </main>
