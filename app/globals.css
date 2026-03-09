@@ -118,8 +118,8 @@ body::before {
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.37),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
   border: 1px solid rgba(255, 255, 255, 0.18);
+  will-change: backdrop-filter;
 }
 
 [data-theme="light"] .liquidGlass-wrapper {
@@ -697,4 +697,57 @@ body::before {
 
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.15);
+}
+
+/* Liquid Glass JS Library Styles */
+.glass-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.glass-container-circle {
+  border-radius: 50% !important;
+}
+
+.glass-container-pill {
+  border-radius: 9999px !important;
+}
+
+.glass-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35) !important;
+}
+
+.glass-button:active {
+  transform: translateY(0);
+}
+
+.glass-button-circle {
+  padding: 16px !important;
+  width: 56px;
+  height: 56px;
+}
+
+.glass-button-text {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }

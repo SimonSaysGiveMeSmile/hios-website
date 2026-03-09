@@ -10,12 +10,32 @@ interface GlassSettings {
   borderRadius: number;
 }
 
+interface WebGLGlassSettings {
+  edgeIntensity: number;
+  rimIntensity: number;
+  baseIntensity: number;
+  edgeDistance: number;
+  rimDistance: number;
+  baseDistance: number;
+  cornerBoost: number;
+  rippleEffect: number;
+  blurRadius: number;
+}
+
 interface GlassControlsProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+declare global {
+  interface Window {
+    Container: any;
+    glassControls: WebGLGlassSettings;
+  }
+}
+
 export default function GlassControlsModal({ isOpen, onClose }: GlassControlsProps) {
+  const [activeTab, setActiveTab] = useState<'css' | 'webgl'>('css');
   const [settings, setSettings] = useState<GlassSettings>({
     blur: 40,
     saturation: 100,
@@ -24,23 +44,62 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
     borderRadius: 40,
   });
 
+  const [webglSettings, setWebglSettings] = useState<WebGLGlassSettings>({
+    edgeIntensity: 0.02,
+    rimIntensity: 0.08,
+    baseIntensity: 0.01,
+    edgeDistance: 0.15,
+    rimDistance: 0.8,
+    baseDistance: 0.1,
+    cornerBoost: 0.02,
+    rippleEffect: 0.1,
+    blurRadius: 7.0,
+  });
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Apply settings to CSS custom properties
-    document.documentElement.style.setProperty('--glass-blur', `${settings.blur}px`);
-    document.documentElement.style.setProperty('--glass-saturation', `${settings.saturation}%`);
-    document.documentElement.style.setProperty('--glass-brightness', `${settings.brightness / 100}`);
-    document.documentElement.style.setProperty('--glass-tint-opacity', `${settings.tintOpacity / 100}`);
-    document.documentElement.style.setProperty('--glass-border-radius', `${settings.borderRadius}px`);
+    // Apply CSS settings with force reflow
+    const root = document.documentElement;
+    root.style.setProperty('--glass-blur', `${settings.blur}px`);
+    root.style.setProperty('--glass-saturation', `${settings.saturation}%`);
+    root.style.setProperty('--glass-brightness', `${settings.brightness / 100}`);
+    root.style.setProperty('--glass-tint-opacity', `${settings.tintOpacity / 100}`);
+    root.style.setProperty('--glass-border-radius', `${settings.borderRadius}px`);
+
+    // Force reflow and directly apply backdrop-filter to all glass elements
+    const backdropFilterValue = `blur(${settings.blur}px) saturate(${settings.saturation}%) brightness(${settings.brightness / 100})`;
+
+    document.querySelectorAll('.liquidGlass-wrapper, .glass, .glass-strong, .glass-subtle, .glass-nav').forEach((el) => {
+      const element = el as HTMLElement;
+      element.style.backdropFilter = backdropFilterValue;
+      element.style.webkitBackdropFilter = backdropFilterValue;
+
+      // Update border radius for elements that use it
+      if (element.classList.contains('liquidGlass-wrapper')) {
+        const currentBorderRadius = element.style.borderRadius;
+        if (!currentBorderRadius || currentBorderRadius === '9999px') {
+          // Don't override pill shapes
+        } else {
+          element.style.borderRadius = `${settings.borderRadius}px`;
+        }
+      }
+    });
   }, [settings]);
 
   useEffect(() => {
+    // Apply WebGL settings
+    if (typeof window !== 'undefined') {
+      window.glassControls = webglSettings;
+      updateAllGlassInstances();
+    }
+  }, [webglSettings]);
+
+  useEffect(() => {
     if (isOpen && panelRef.current) {
-      // Center the panel when it opens
       const rect = panelRef.current.getBoundingClientRect();
       setPosition({
         x: (window.innerWidth - rect.width) / 2,
@@ -48,6 +107,26 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
       });
     }
   }, [isOpen]);
+
+  const updateAllGlassInstances = () => {
+    if (typeof window === 'undefined' || !window.Container || !window.Container.instances) return;
+
+    window.Container.instances.forEach((instance: any) => {
+      if (instance.gl_refs && instance.gl_refs.gl) {
+        const gl = instance.gl_refs.gl;
+        gl.uniform1f(instance.gl_refs.edgeIntensityLoc, webglSettings.edgeIntensity);
+        gl.uniform1f(instance.gl_refs.rimIntensityLoc, webglSettings.rimIntensity);
+        gl.uniform1f(instance.gl_refs.baseIntensityLoc, webglSettings.baseIntensity);
+        gl.uniform1f(instance.gl_refs.edgeDistanceLoc, webglSettings.edgeDistance);
+        gl.uniform1f(instance.gl_refs.rimDistanceLoc, webglSettings.rimDistance);
+        gl.uniform1f(instance.gl_refs.baseDistanceLoc, webglSettings.baseDistance);
+        gl.uniform1f(instance.gl_refs.cornerBoostLoc, webglSettings.cornerBoost);
+        gl.uniform1f(instance.gl_refs.rippleEffectLoc, webglSettings.rippleEffect);
+        gl.uniform1f(instance.gl_refs.blurRadiusLoc, webglSettings.blurRadius);
+        if (instance.render) instance.render();
+      }
+    });
+  };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if ((e.target as HTMLElement).closest('.drag-handle')) {
@@ -88,146 +167,314 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
     setSettings(prev => ({ ...prev, [key]: value }));
   };
 
+  const handleWebGLChange = (key: keyof WebGLGlassSettings, value: number) => {
+    setWebglSettings(prev => ({ ...prev, [key]: value }));
+  };
+
   const resetDefaults = () => {
-    setSettings({
-      blur: 40,
-      saturation: 100,
-      brightness: 120,
-      tintOpacity: 0,
-      borderRadius: 40,
-    });
+    if (activeTab === 'css') {
+      setSettings({
+        blur: 40,
+        saturation: 100,
+        brightness: 120,
+        tintOpacity: 0,
+        borderRadius: 40,
+      });
+    } else {
+      setWebglSettings({
+        edgeIntensity: 0.02,
+        rimIntensity: 0.08,
+        baseIntensity: 0.01,
+        edgeDistance: 0.15,
+        rimDistance: 0.8,
+        baseDistance: 0.1,
+        cornerBoost: 0.02,
+        rippleEffect: 0.1,
+        blurRadius: 7.0,
+      });
+    }
   };
 
   if (!isOpen) return null;
 
   return (
-    <>
-      {/* Control Panel - Draggable Floating Window */}
-      <div
-        ref={panelRef}
-        className="fixed z-[201] w-96 max-h-[80vh] overflow-hidden glass-strong"
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-          cursor: isDragging ? 'grabbing' : 'default',
-        }}
-        onMouseDown={handleMouseDown}
-      >
-        {/* Draggable Header */}
-        <div className="drag-handle flex items-center justify-between p-6 pb-4 cursor-grab active:cursor-grabbing">
-            <h3 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>
-              Glass Controls
-            </h3>
-            <button
-              onClick={onClose}
-              className="w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center transition-colors"
-              aria-label="Close"
-            >
-              <svg className="w-5 h-5" style={{ color: 'var(--text-primary)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+    <div
+      ref={panelRef}
+      className="fixed z-[201] w-96 max-h-[85vh] overflow-hidden glass-strong"
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        cursor: isDragging ? 'grabbing' : 'default',
+      }}
+      onMouseDown={handleMouseDown}
+    >
+      {/* Draggable Header */}
+      <div className="drag-handle flex items-center justify-between p-6 pb-4 cursor-grab active:cursor-grabbing">
+        <h3 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>
+          Glass Controls
+        </h3>
+        <button
+          onClick={onClose}
+          className="w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center transition-colors"
+          aria-label="Close"
+        >
+          <svg className="w-5 h-5" style={{ color: 'var(--text-primary)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
 
-          {/* Scrollable Content */}
-          <div className="px-6 pb-6 max-h-[calc(80vh-5rem)] overflow-y-auto">
-            <div className="space-y-6">
-              {/* Blur */}
-              <div>
-                <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
-                  <span>Blur</span>
-                  <span className="font-mono">{settings.blur}px</span>
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="40"
-                  value={settings.blur}
-                  onChange={(e) => handleChange('blur', Number(e.target.value))}
-                  className="w-full glass-slider"
-                />
-              </div>
+      {/* Tab Switcher */}
+      <div className="px-6 pb-4">
+        <div className="flex gap-2 p-1 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+          <button
+            onClick={() => setActiveTab('css')}
+            className="flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all"
+            style={{
+              background: activeTab === 'css' ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
+              color: 'var(--text-primary)',
+            }}
+          >
+            CSS Glass
+          </button>
+          <button
+            onClick={() => setActiveTab('webgl')}
+            className="flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all"
+            style={{
+              background: activeTab === 'webgl' ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
+              color: 'var(--text-primary)',
+            }}
+          >
+            WebGL Glass
+          </button>
+        </div>
+      </div>
 
-              {/* Saturation */}
-              <div>
-                <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
-                  <span>Saturation</span>
-                  <span className="font-mono">{settings.saturation}%</span>
-                </label>
-                <input
-                  type="range"
-                  min="100"
-                  max="250"
-                  value={settings.saturation}
-                  onChange={(e) => handleChange('saturation', Number(e.target.value))}
-                  className="w-full glass-slider"
-                />
-              </div>
+      {/* Scrollable Content */}
+      <div className="px-6 pb-6 max-h-[calc(85vh-10rem)] overflow-y-auto">
+        {activeTab === 'css' ? (
+          <div className="space-y-6">
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Blur</span>
+                <span className="font-mono">{settings.blur}px</span>
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="40"
+                value={settings.blur}
+                onChange={(e) => handleChange('blur', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
 
-              {/* Brightness */}
-              <div>
-                <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
-                  <span>Brightness</span>
-                  <span className="font-mono">{settings.brightness}%</span>
-                </label>
-                <input
-                  type="range"
-                  min="90"
-                  max="120"
-                  value={settings.brightness}
-                  onChange={(e) => handleChange('brightness', Number(e.target.value))}
-                  className="w-full glass-slider"
-                />
-              </div>
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Saturation</span>
+                <span className="font-mono">{settings.saturation}%</span>
+              </label>
+              <input
+                type="range"
+                min="100"
+                max="250"
+                value={settings.saturation}
+                onChange={(e) => handleChange('saturation', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
 
-              {/* Tint Opacity */}
-              <div>
-                <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
-                  <span>Tint Opacity</span>
-                  <span className="font-mono">{settings.tintOpacity}%</span>
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="30"
-                  value={settings.tintOpacity}
-                  onChange={(e) => handleChange('tintOpacity', Number(e.target.value))}
-                  className="w-full glass-slider"
-                />
-              </div>
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Brightness</span>
+                <span className="font-mono">{settings.brightness}%</span>
+              </label>
+              <input
+                type="range"
+                min="90"
+                max="120"
+                value={settings.brightness}
+                onChange={(e) => handleChange('brightness', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
 
-              {/* Border Radius */}
-              <div>
-                <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
-                  <span>Border Radius</span>
-                  <span className="font-mono">{settings.borderRadius}px</span>
-                </label>
-                <input
-                  type="range"
-                  min="8"
-                  max="64"
-                  value={settings.borderRadius}
-                  onChange={(e) => handleChange('borderRadius', Number(e.target.value))}
-                  className="w-full glass-slider"
-                />
-              </div>
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Tint Opacity</span>
+                <span className="font-mono">{settings.tintOpacity}%</span>
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="30"
+                value={settings.tintOpacity}
+                onChange={(e) => handleChange('tintOpacity', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
 
-              {/* Reset Button */}
-              <button
-                onClick={resetDefaults}
-                className="w-full py-3 px-4 rounded-xl text-sm font-medium transition-all hover:scale-[1.02]"
-                style={{
-                  color: 'var(--text-primary)',
-                  background: 'rgba(255, 255, 255, 0.1)',
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'}
-                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
-              >
-                Reset to Defaults
-              </button>
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Border Radius</span>
+                <span className="font-mono">{settings.borderRadius}px</span>
+              </label>
+              <input
+                type="range"
+                min="8"
+                max="64"
+                value={settings.borderRadius}
+                onChange={(e) => handleChange('borderRadius', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
             </div>
           </div>
-        </div>
-    </>
+        ) : (
+          <div className="space-y-4">
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Edge Intensity</span>
+                <span className="font-mono">{webglSettings.edgeIntensity.toFixed(3)}</span>
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="0.1"
+                step="0.001"
+                value={webglSettings.edgeIntensity}
+                onChange={(e) => handleWebGLChange('edgeIntensity', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
+
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Rim Intensity</span>
+                <span className="font-mono">{webglSettings.rimIntensity.toFixed(3)}</span>
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="0.2"
+                step="0.001"
+                value={webglSettings.rimIntensity}
+                onChange={(e) => handleWebGLChange('rimIntensity', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
+
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Base Intensity</span>
+                <span className="font-mono">{webglSettings.baseIntensity.toFixed(3)}</span>
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="0.05"
+                step="0.001"
+                value={webglSettings.baseIntensity}
+                onChange={(e) => handleWebGLChange('baseIntensity', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
+
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Edge Distance</span>
+                <span className="font-mono">{webglSettings.edgeDistance.toFixed(2)}</span>
+              </label>
+              <input
+                type="range"
+                min="0.05"
+                max="0.5"
+                step="0.01"
+                value={webglSettings.edgeDistance}
+                onChange={(e) => handleWebGLChange('edgeDistance', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
+
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Rim Distance</span>
+                <span className="font-mono">{webglSettings.rimDistance.toFixed(2)}</span>
+              </label>
+              <input
+                type="range"
+                min="0.1"
+                max="2.0"
+                step="0.1"
+                value={webglSettings.rimDistance}
+                onChange={(e) => handleWebGLChange('rimDistance', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
+
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Blur Radius</span>
+                <span className="font-mono">{webglSettings.blurRadius.toFixed(1)}</span>
+              </label>
+              <input
+                type="range"
+                min="1"
+                max="15"
+                step="0.5"
+                value={webglSettings.blurRadius}
+                onChange={(e) => handleWebGLChange('blurRadius', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
+
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Corner Boost</span>
+                <span className="font-mono">{webglSettings.cornerBoost.toFixed(3)}</span>
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="0.1"
+                step="0.001"
+                value={webglSettings.cornerBoost}
+                onChange={(e) => handleWebGLChange('cornerBoost', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
+
+            <div>
+              <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
+                <span>Ripple Effect</span>
+                <span className="font-mono">{webglSettings.rippleEffect.toFixed(2)}</span>
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="0.5"
+                step="0.01"
+                value={webglSettings.rippleEffect}
+                onChange={(e) => handleWebGLChange('rippleEffect', Number(e.target.value))}
+                className="w-full glass-slider"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Reset Button */}
+        <button
+          onClick={resetDefaults}
+          className="w-full mt-6 py-3 px-4 rounded-xl text-sm font-medium transition-all hover:scale-[1.02]"
+          style={{
+            color: 'var(--text-primary)',
+            background: 'rgba(255, 255, 255, 0.1)',
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'}
+          onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
+        >
+          Reset to Defaults
+        </button>
+      </div>
+    </div>
   );
 }
