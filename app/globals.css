@@ -5,10 +5,10 @@
   --background: #000000;
   --foreground: #ffffff;
 
-  /* Glass component variables */
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-bg-strong: rgba(255, 255, 255, 0.12);
-  --glass-bg-subtle: rgba(255, 255, 255, 0.05);
+  /* Glass component variables - More transparent */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-strong: rgba(255, 255, 255, 0.05);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.02);
   --glass-border: rgba(255, 255, 255, 0.2);
   --glass-border-strong: rgba(255, 255, 255, 0.3);
   --glass-border-subtle: rgba(255, 255, 255, 0.15);
@@ -31,10 +31,10 @@
   --background: #ffffff;
   --foreground: #000000;
 
-  /* Glass component variables for light mode */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-bg-strong: rgba(255, 255, 255, 0.85);
-  --glass-bg-subtle: rgba(255, 255, 255, 0.5);
+  /* Glass component variables for light mode - More transparent */
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --glass-bg-strong: rgba(255, 255, 255, 0.5);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.25);
   --glass-border: rgba(0, 0, 0, 0.1);
   --glass-border-strong: rgba(0, 0, 0, 0.15);
   --glass-border-subtle: rgba(0, 0, 0, 0.08);
@@ -99,13 +99,13 @@ body::before {
 .glass {
   position: relative;
   background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
   border: none;
   border-radius: 2rem;
   box-shadow:
-    0 8px 32px rgba(31, 38, 135, 0.2),
-    inset 0 4px 20px rgba(255, 255, 255, 0.3);
+    0 8px 32px rgba(31, 38, 135, 0.15),
+    inset 0 2px 10px rgba(255, 255, 255, 0.15);
 }
 
 .glass::after {
@@ -115,42 +115,42 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 2rem;
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(0.5px);
   box-shadow:
-    inset -10px -8px 0px -11px rgba(255, 255, 255, 1),
-    inset 0px -9px 0px -8px rgba(255, 255, 255, 1);
-  opacity: 0.6;
+    inset -10px -8px 0px -11px rgba(255, 255, 255, 0.6),
+    inset 0px -9px 0px -8px rgba(255, 255, 255, 0.6);
+  opacity: 0.4;
   z-index: -1;
-  filter: blur(1px) drop-shadow(10px 4px 6px black) brightness(115%);
+  filter: blur(0.5px) drop-shadow(10px 4px 6px black) brightness(110%);
   pointer-events: none;
 }
 
 [data-theme="light"] .glass {
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 4px 20px rgba(255, 255, 255, 0.8);
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 2px 10px rgba(255, 255, 255, 0.6);
 }
 
 [data-theme="light"] .glass::after {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   box-shadow:
     inset -10px -8px 0px -11px rgba(255, 255, 255, 1),
     inset 0px -9px 0px -8px rgba(255, 255, 255, 0.8);
-  filter: blur(1px) drop-shadow(10px 4px 6px rgba(0,0,0,0.1)) brightness(105%);
+  filter: blur(0.5px) drop-shadow(10px 4px 6px rgba(0,0,0,0.08)) brightness(103%);
 }
 
 .glass-strong {
   position: relative;
   background: var(--glass-bg-strong);
-  backdrop-filter: blur(30px) saturate(200%);
-  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  backdrop-filter: blur(15px) saturate(160%);
+  -webkit-backdrop-filter: blur(15px) saturate(160%);
   border: none;
   border-radius: 2rem;
   box-shadow:
-    0 12px 48px rgba(31, 38, 135, 0.3),
-    inset 0 6px 24px rgba(255, 255, 255, 0.4);
+    0 12px 48px rgba(31, 38, 135, 0.2),
+    inset 0 3px 15px rgba(255, 255, 255, 0.2);
 }
 
 .glass-strong::after {
@@ -160,42 +160,42 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 2rem;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
   box-shadow:
-    inset -12px -10px 0px -11px rgba(255, 255, 255, 1),
-    inset 0px -12px 0px -8px rgba(255, 255, 255, 1);
-  opacity: 0.7;
+    inset -12px -10px 0px -11px rgba(255, 255, 255, 0.7),
+    inset 0px -12px 0px -8px rgba(255, 255, 255, 0.7);
+  opacity: 0.5;
   z-index: -1;
-  filter: blur(2px) drop-shadow(12px 6px 8px black) brightness(120%);
+  filter: blur(1px) drop-shadow(12px 6px 8px black) brightness(115%);
   pointer-events: none;
 }
 
 [data-theme="light"] .glass-strong {
   box-shadow:
-    0 12px 48px rgba(0, 0, 0, 0.15),
-    inset 0 6px 24px rgba(255, 255, 255, 0.9);
+    0 12px 48px rgba(0, 0, 0, 0.12),
+    inset 0 3px 15px rgba(255, 255, 255, 0.7);
 }
 
 [data-theme="light"] .glass-strong::after {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
   box-shadow:
     inset -12px -10px 0px -11px rgba(255, 255, 255, 1),
     inset 0px -12px 0px -8px rgba(255, 255, 255, 0.9);
-  filter: blur(2px) drop-shadow(12px 6px 8px rgba(0,0,0,0.08)) brightness(108%);
+  filter: blur(1px) drop-shadow(12px 6px 8px rgba(0,0,0,0.06)) brightness(106%);
 }
 
 .glass-subtle {
   position: relative;
   background: var(--glass-bg-subtle);
-  backdrop-filter: blur(15px) saturate(160%);
-  -webkit-backdrop-filter: blur(15px) saturate(160%);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   border: none;
   border-radius: 2rem;
   box-shadow:
-    0 4px 16px rgba(31, 38, 135, 0.15),
-    inset 0 2px 12px rgba(255, 255, 255, 0.2);
+    0 4px 16px rgba(31, 38, 135, 0.1),
+    inset 0 1px 8px rgba(255, 255, 255, 0.1);
 }
 
 .glass-subtle::after {
@@ -205,30 +205,30 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 2rem;
-  backdrop-filter: blur(0.5px);
+  backdrop-filter: blur(0.3px);
   box-shadow:
-    inset -8px -6px 0px -11px rgba(255, 255, 255, 0.8),
-    inset 0px -6px 0px -8px rgba(255, 255, 255, 0.8);
-  opacity: 0.5;
+    inset -8px -6px 0px -11px rgba(255, 255, 255, 0.5),
+    inset 0px -6px 0px -8px rgba(255, 255, 255, 0.5);
+  opacity: 0.3;
   z-index: -1;
-  filter: blur(0.5px) drop-shadow(8px 3px 4px black) brightness(110%);
+  filter: blur(0.3px) drop-shadow(8px 3px 4px black) brightness(108%);
   pointer-events: none;
 }
 
 [data-theme="light"] .glass-subtle {
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.08),
-    inset 0 2px 12px rgba(255, 255, 255, 0.7);
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    inset 0 1px 8px rgba(255, 255, 255, 0.5);
 }
 
 [data-theme="light"] .glass-subtle::after {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
   box-shadow:
-    inset -8px -6px 0px -11px rgba(255, 255, 255, 0.9),
-    inset 0px -6px 0px -8px rgba(255, 255, 255, 0.7);
-  filter: blur(0.5px) drop-shadow(8px 3px 4px rgba(0,0,0,0.05)) brightness(103%);
+    inset -8px -6px 0px -11px rgba(255, 255, 255, 0.8),
+    inset 0px -6px 0px -8px rgba(255, 255, 255, 0.6);
+  filter: blur(0.3px) drop-shadow(8px 3px 4px rgba(0,0,0,0.04)) brightness(102%);
 }
 
 /* Animations */
