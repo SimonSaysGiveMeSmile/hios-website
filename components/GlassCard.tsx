@@ -16,7 +16,7 @@ export default function GlassCard({ children, className = '', variant = 'default
   }[variant];
 
   return (
-    <div className={`${variantClass} rounded-[20px] ${className}`}>
+    <div className={`${variantClass} ${className}`}>
       {children}
     </div>
   );
