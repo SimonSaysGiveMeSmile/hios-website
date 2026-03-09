@@ -21,7 +21,6 @@ export default function Navigation() {
     { label: 'Product', href: '#product' },
     { label: 'Capabilities', href: '#capabilities' },
     { label: 'Architecture', href: '#architecture' },
-    { label: 'Demo', href: '#demo' },
   ];
 
   return (
