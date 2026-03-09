@@ -4,11 +4,16 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center space-y-6">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 transform rotate-180">
-              <img src="/logo.svg" alt="HiOS Logo" className="w-full h-full" />
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 transform rotate-180">
+                <img src="/logo.svg" alt="HiOS Logo" className="w-full h-full" />
+              </div>
+              <span className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>HiOS</span>
             </div>
-            <span className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>HiOS</span>
+            <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+              The agent runtime for iPhone.
+            </p>
           </div>
 
           {/* Links */}

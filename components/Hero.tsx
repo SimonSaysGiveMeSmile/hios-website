@@ -104,12 +104,12 @@ export default function Hero() {
           {/* Left: Text content */}
           <div className="space-y-8 text-center lg:text-left">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
-              Talk to your phone.<br />
-              <span style={{ color: 'var(--text-secondary)' }}>It gets things done.</span>
+              Tell your phone.<br />
+              <span style={{ color: 'var(--text-secondary)' }}>It gets it done.</span>
             </h1>
 
             <p className="text-xl max-w-md mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>
-              HiOS is a native iOS agent that runs Shortcuts, reads your screen, and completes tasks hands-free.
+              HiOS runs autonomous agents on iPhone, completing tasks across apps, shortcuts, and websites.
             </p>
 
             {/* CTA Buttons */}
@@ -125,7 +125,7 @@ export default function Hero() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                 </svg>
-                See Automations
+                View Automations
               </InteractiveButton>
             </div>
           </div>

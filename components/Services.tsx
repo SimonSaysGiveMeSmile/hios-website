@@ -19,9 +19,12 @@ export default function Services() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-            Works with the apps<br />
-            <span style={{ color: 'var(--text-muted)' }}>you already use</span>
+            Your apps.<br />
+            <span style={{ color: 'var(--text-muted)' }}>Working together.</span>
           </h2>
+          <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
+            HiOS coordinates actions across apps and websites.
+          </p>
         </div>
 
         <GlassCard className="p-12" variant="subtle">

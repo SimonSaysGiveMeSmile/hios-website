@@ -11,8 +11,8 @@ export default function Capabilities() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
         </svg>
       ),
-      title: 'Voice Control',
-      description: 'Natural language understanding',
+      title: 'Just say it',
+      description: 'HiOS understands natural language and executes the task.',
       color: 'from-blue-500 to-cyan-600',
       miniDiagram: (
         <div className="flex items-center gap-2 mt-4">
@@ -31,8 +31,8 @@ export default function Capabilities() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
         </svg>
       ),
-      title: 'Vision + OCR',
-      description: 'Screen reading and text extraction',
+      title: "See what's on screen",
+      description: 'Extract text from documents, screenshots, and photos.',
       color: 'from-purple-500 to-pink-600',
       miniDiagram: (
         <div className="mt-4 p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
@@ -50,8 +50,8 @@ export default function Capabilities() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
         </svg>
       ),
-      title: 'Browser Automation',
-      description: 'Web interaction and data extraction',
+      title: 'Works across the web',
+      description: 'HiOS navigates websites and completes tasks automatically.',
       color: 'from-orange-500 to-red-600',
       miniDiagram: (
         <div className="mt-4 flex items-center gap-2">
@@ -71,8 +71,8 @@ export default function Capabilities() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       ),
-      title: 'Context Memory',
-      description: 'Remembers your preferences',
+      title: 'Remembers what matters',
+      description: 'HiOS learns your contacts, habits, and preferences.',
       color: 'from-emerald-500 to-green-600',
       miniDiagram: (
         <div className="mt-4 flex items-center gap-2">
@@ -93,11 +93,8 @@ export default function Capabilities() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-            Core Capabilities
+            Built to get things done.
           </h2>
-          <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
-            Everything you need for autonomous task completion
-          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">

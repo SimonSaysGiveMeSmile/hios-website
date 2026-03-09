@@ -110,11 +110,11 @@ export default function Architecture() {
           {/* Right: Text */}
           <div className="space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Built on<br />
-              <span style={{ color: 'var(--text-muted)' }}>OpenClaw agents</span>
+              Powered by<br />
+              <span style={{ color: 'var(--text-muted)' }}>OpenClaw.</span>
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              HiOS is a runtime for OpenClaw agents. Voice commands flow through intent parsing, task planning, and execution—all powered by a unified tool bus connecting to iOS capabilities.
+              HiOS runs autonomous agents that plan tasks and execute them across your device.
             </p>
           </div>
         </div>

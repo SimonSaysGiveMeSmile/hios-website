@@ -111,11 +111,11 @@ export default function Problem() {
           {/* Right: Text */}
           <div className="space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Phones execute commands.<br />
-              <span style={{ color: 'var(--text-muted)' }}>They don't complete tasks.</span>
+              Phones follow commands.<br />
+              <span style={{ color: 'var(--text-muted)' }}>HiOS finishes the job.</span>
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              Every action requires manual navigation, context switching, and repetitive steps. HiOS changes that.
+              One request. HiOS handles the steps.
             </p>
           </div>
         </div>
