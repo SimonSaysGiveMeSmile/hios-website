@@ -518,7 +518,6 @@ class Button extends Container {
     // Store references
     this.gl_refs = {
       gl,
-      program,
       texture,
       textureSizeLoc,
       positionLoc,
@@ -593,11 +592,6 @@ class Button extends Container {
 
       const gl = this.gl_refs.gl
 
-      // Use the program before updating uniforms
-      if (this.gl_refs.program) {
-        gl.useProgram(this.gl_refs.program)
-      }
-
       // UPDATE TEXTURE FROM PARENT CONTAINER'S CURRENT RENDERED OUTPUT
       const containerCanvas = this.parent.canvas
       gl.bindTexture(gl.TEXTURE_2D, this.gl_refs.texture)
@@ -610,19 +604,6 @@ class Button extends Container {
       const containerPosition = this.parent.getPosition()
       gl.uniform2f(this.gl_refs.buttonPositionLoc, buttonPosition.x, buttonPosition.y)
       gl.uniform2f(this.gl_refs.containerPositionLoc, containerPosition.x, containerPosition.y)
-
-      // Update dynamic uniforms from global controls
-      if (window.glassControls) {
-        gl.uniform1f(this.gl_refs.edgeIntensityLoc, window.glassControls.edgeIntensity)
-        gl.uniform1f(this.gl_refs.rimIntensityLoc, window.glassControls.rimIntensity)
-        gl.uniform1f(this.gl_refs.baseIntensityLoc, window.glassControls.baseIntensity)
-        gl.uniform1f(this.gl_refs.edgeDistanceLoc, window.glassControls.edgeDistance)
-        gl.uniform1f(this.gl_refs.rimDistanceLoc, window.glassControls.rimDistance)
-        gl.uniform1f(this.gl_refs.baseDistanceLoc, window.glassControls.baseDistance)
-        gl.uniform1f(this.gl_refs.cornerBoostLoc, window.glassControls.cornerBoost)
-        gl.uniform1f(this.gl_refs.rippleEffectLoc, window.glassControls.rippleEffect)
-        gl.uniform1f(this.gl_refs.blurRadiusLoc, window.glassControls.blurRadius)
-      }
 
       gl.drawArrays(gl.TRIANGLES, 0, 6)
     }
@@ -638,9 +619,4 @@ class Button extends Container {
     // Store render function for external calls
     this.render = render
   }
-}
-
-// Export to window for global access
-if (typeof window !== 'undefined') {
-  window.Button = Button;
 }

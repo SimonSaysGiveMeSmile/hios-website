@@ -15,8 +15,8 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
-      <div className="max-w-6xl mx-auto">
+    <section id="services" className="section-standard relative flex items-center justify-center">
+      <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
             Works with the apps<br />
@@ -24,7 +24,7 @@ export default function Services() {
           </h2>
         </div>
 
-        <GlassCard className="p-12" variant="subtle">
+        <GlassCard className="p-12 max-w-5xl mx-auto" variant="subtle">
           <div className="grid grid-cols-4 gap-6">
             {services.map((service, index) => (
               <div

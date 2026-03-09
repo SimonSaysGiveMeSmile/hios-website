@@ -94,26 +94,26 @@ function AgentTaskIllustration() {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-24 overflow-hidden">
+    <section className="section-full relative flex items-center justify-center overflow-hidden">
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-blue)' }} />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-purple)' }} />
 
-      <div className="relative max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative max-w-7xl mx-auto w-full">
+        <div className="grid-standard">
           {/* Left: Text content */}
-          <div className="space-y-8 text-center lg:text-left">
+          <div className="section-content space-y-8">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
               Talk to your phone.<br />
               <span style={{ color: 'var(--text-secondary)' }}>It gets things done.</span>
             </h1>
 
-            <p className="text-xl max-w-md mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>
+            <p className="text-xl" style={{ color: 'var(--text-muted)' }}>
               HiOS is a native iOS agent that runs Shortcuts, reads your screen, and completes tasks hands-free.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <div className="flex flex-col sm:flex-row items-start gap-4">
               <InteractiveButton primary>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
@@ -131,7 +131,7 @@ export default function Hero() {
           </div>
 
           {/* Right: Visual illustration */}
-          <div className="relative">
+          <div className="section-illustration">
             <AgentTaskIllustration />
           </div>
         </div>
