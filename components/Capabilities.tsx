@@ -89,8 +89,8 @@ export default function Capabilities() {
   ];
 
   return (
-    <section id="capabilities" className="section-standard relative flex items-center justify-center">
-      <div className="max-w-7xl mx-auto w-full">
+    <section id="capabilities" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
             Core Capabilities
@@ -100,7 +100,7 @@ export default function Capabilities() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6">
           {capabilities.map((cap, i) => (
             <div
               key={i}

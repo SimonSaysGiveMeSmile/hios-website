@@ -6,11 +6,11 @@ import InteractiveButton from './InteractiveButton';
 
 export default function CTA() {
   return (
-    <section className="section-full relative flex items-center justify-center">
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="grid-standard">
+    <section className="relative min-h-screen flex items-center justify-center px-6 py-24">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Device mockup */}
-          <div className="section-illustration">
+          <div className="relative">
             <GlassCard className="p-8" variant="subtle">
               <div className="space-y-6">
                 {/* Command bubble */}
@@ -48,7 +48,7 @@ export default function CTA() {
           </div>
 
           {/* Right: CTA content */}
-          <div className="section-content space-y-8">
+          <div className="space-y-8 text-center lg:text-left">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
               Ready to try HiOS?
             </h2>
@@ -56,7 +56,7 @@ export default function CTA() {
               Join TestFlight and experience the future of iOS automation.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <InteractiveButton primary>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />

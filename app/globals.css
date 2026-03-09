@@ -31,13 +31,6 @@
   --glass-brightness: 1.2;
   --glass-tint-opacity: 0;
   --glass-border-radius: 40px;
-
-  /* Standard section layout */
-  --section-height: 33.33vh;
-  --section-padding-x: 8.33vw; /* 1/12 of viewport */
-  --section-padding-y: 5.55vh; /* 1/18 of viewport height */
-  --content-width: 50vw; /* 1/2 horizontal */
-  --illustration-width: 50vw; /* 1/2 horizontal */
 }
 
 /* Light mode */
@@ -851,44 +844,6 @@ body::before {
 
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.15);
-}
-
-/* Standard Section Layouts */
-.section-standard {
-  min-height: calc(var(--section-height) * 2);
-  padding: var(--section-padding-y) var(--section-padding-x);
-}
-
-.section-full {
-  min-height: 100vh;
-  padding: var(--section-padding-y) var(--section-padding-x);
-}
-
-.section-content {
-  max-width: var(--content-width);
-}
-
-.section-illustration {
-  max-width: var(--illustration-width);
-}
-
-.grid-standard {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4rem;
-  align-items: center;
-}
-
-@media (max-width: 1024px) {
-  .grid-standard {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .section-content,
-  .section-illustration {
-    max-width: 100%;
-  }
 }
 
 /* Liquid Glass JS Library Styles */

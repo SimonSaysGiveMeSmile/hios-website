@@ -70,11 +70,11 @@ export default function Architecture() {
   ];
 
   return (
-    <section id="architecture" className="section-standard relative flex items-center justify-center">
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="grid-standard">
+    <section id="architecture" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Architecture stack */}
-          <div className="section-illustration">
+          <div className="relative">
             <GlassCard className="p-8" variant="subtle">
               <div className="space-y-3">
                 {layers.map((layer, i) => (
@@ -108,7 +108,7 @@ export default function Architecture() {
           </div>
 
           {/* Right: Text */}
-          <div className="section-content space-y-6">
+          <div className="space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
               Built on<br />
               <span style={{ color: 'var(--text-muted)' }}>OpenClaw agents</span>
