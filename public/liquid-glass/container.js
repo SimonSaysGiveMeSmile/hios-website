@@ -192,6 +192,17 @@ class Container {
 
   capturePageSnapshot() {
     console.log('Capturing page snapshot...')
+
+    // Suppress html2canvas console errors about unsupported color functions
+    const originalConsoleError = console.error
+    console.error = (...args) => {
+      const message = args[0]?.toString() || ''
+      if (message.includes('Attempting to parse an unsupported color function')) {
+        return // Suppress this specific error
+      }
+      originalConsoleError.apply(console, args)
+    }
+
     html2canvas(document.body, {
       scale: 1,
       useCORS: true,
@@ -211,6 +222,9 @@ class Container {
         Container.pageSnapshot = snapshot
         Container.isCapturing = false
 
+        // Restore original console.error
+        console.error = originalConsoleError
+
         // Initialize WebGL for all waiting containers
         const waitingContainers = Container.waitingForSnapshot.slice()
         Container.waitingForSnapshot = []
@@ -225,6 +239,9 @@ class Container {
         console.error('html2canvas error:', error)
         Container.isCapturing = false
         Container.waitingForSnapshot = []
+
+        // Restore original console.error
+        console.error = originalConsoleError
       })
   }
 
