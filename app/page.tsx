@@ -10,21 +10,23 @@ import Architecture from "@/components/Architecture";
 import CTA from "@/components/CTA";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <div className="fixed inset-0 -z-10 bg-white dark:bg-black" />
-      <Navigation />
-      <Hero />
-      <Problem />
-      <Product />
-      <Demo />
-      <Capabilities />
-      <Services />
-      <Architecture />
-      <CTA />
-      <Footer />
-    </main>
+    <ThemeProvider>
+      <main className="min-h-screen">
+        <Navigation />
+        <Hero />
+        <Problem />
+        <Product />
+        <Demo />
+        <Capabilities />
+        <Services />
+        <Architecture />
+        <CTA />
+        <Footer />
+      </main>
+    </ThemeProvider>
   );
 }
