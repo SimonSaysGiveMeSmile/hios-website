@@ -30,6 +30,7 @@ export default function LiquidGlassDemo() {
 
     // Initialize global controls with defaults
     if (!window.glassControls) {
+      console.log('Initializing window.glassControls with defaults');
       window.glassControls = {
         edgeIntensity: 0.02,
         rimIntensity: 0.08,
@@ -42,6 +43,8 @@ export default function LiquidGlassDemo() {
         blurRadius: 7.0,
         tintOpacity: 0.3,
       };
+    } else {
+      console.log('window.glassControls already exists:', window.glassControls);
     }
 
     // Clear existing content

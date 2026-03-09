@@ -610,9 +610,13 @@ class Container {
       }
 
       gl.drawArrays(gl.TRIANGLES, 0, 6)
+
+      // Continue animation loop
+      requestAnimationFrame(render)
     }
 
-    render()
+    // Start the animation loop
+    requestAnimationFrame(render)
 
     const handleScroll = () => render()
     window.addEventListener('scroll', handleScroll, { passive: true })

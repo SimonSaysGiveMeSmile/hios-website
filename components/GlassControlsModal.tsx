@@ -20,7 +20,7 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
   const [activeTab, setActiveTab] = useState<'css' | 'webgl'>('css');
   const [webglInstanceCount, setWebglInstanceCount] = useState(0);
   const [settings, setSettings] = useState<GlassSettings>({
-    blur: 40,
+    blur: 3,
     saturation: 100,
     brightness: 120,
     tintOpacity: 0,
