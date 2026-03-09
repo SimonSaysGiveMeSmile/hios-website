@@ -11,9 +11,18 @@ export default function Capabilities() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
         </svg>
       ),
-      title: 'Voice Command Center',
+      title: 'Voice Control',
       description: 'Natural language understanding',
-      color: 'from-blue-500 to-cyan-600'
+      color: 'from-blue-500 to-cyan-600',
+      miniDiagram: (
+        <div className="flex items-center gap-2 mt-4">
+          <div className="flex-1 h-1 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full animate-pulse" />
+          <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+          <div className="px-3 py-1 rounded-full bg-cyan-500/20 text-xs text-cyan-400">Command</div>
+        </div>
+      )
     },
     {
       icon: (
@@ -22,19 +31,39 @@ export default function Capabilities() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
         </svg>
       ),
-      title: 'OCR + Vision',
+      title: 'Vision + OCR',
       description: 'Screen reading and text extraction',
-      color: 'from-purple-500 to-pink-600'
+      color: 'from-purple-500 to-pink-600',
+      miniDiagram: (
+        <div className="mt-4 p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
+          <div className="space-y-1">
+            <div className="h-1.5 bg-purple-500/30 rounded w-full" />
+            <div className="h-1.5 bg-purple-500/50 rounded w-3/4" />
+            <div className="h-1.5 bg-purple-500/30 rounded w-5/6" />
+          </div>
+        </div>
+      )
     },
     {
       icon: (
         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
         </svg>
       ),
-      title: 'Shortcut Automation',
-      description: 'Native iOS workflow execution',
-      color: 'from-orange-500 to-red-600'
+      title: 'Browser Automation',
+      description: 'Web interaction and data extraction',
+      color: 'from-orange-500 to-red-600',
+      miniDiagram: (
+        <div className="mt-4 flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-orange-500 animate-ping" />
+          <div className="flex-1 flex gap-1">
+            <div className="w-2 h-2 rounded-sm bg-orange-500/30" />
+            <div className="w-2 h-2 rounded-sm bg-orange-500/50" />
+            <div className="w-2 h-2 rounded-sm bg-orange-500/30" />
+          </div>
+          <span className="text-xs text-orange-400">Click</span>
+        </div>
+      )
     },
     {
       icon: (
@@ -44,7 +73,18 @@ export default function Capabilities() {
       ),
       title: 'Context Memory',
       description: 'Remembers your preferences',
-      color: 'from-emerald-500 to-green-600'
+      color: 'from-emerald-500 to-green-600',
+      miniDiagram: (
+        <div className="mt-4 flex items-center gap-2">
+          <div className="flex gap-1">
+            <div className="w-2 h-2 rounded-full bg-emerald-500" />
+            <div className="w-2 h-2 rounded-full bg-emerald-500/60" />
+            <div className="w-2 h-2 rounded-full bg-emerald-500/30" />
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-emerald-500/50 to-transparent" />
+          <span className="text-xs text-emerald-400">History</span>
+        </div>
+      )
     },
   ];
 
