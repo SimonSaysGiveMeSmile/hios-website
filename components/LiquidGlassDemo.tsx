@@ -10,6 +10,13 @@ export default function LiquidGlassDemo() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log('LiquidGlassDemo useEffect:', {
+      scriptsLoaded,
+      hasContainerRef: !!containerRef.current,
+      hasContainer: !!window.Container,
+      hasButton: !!window.Button
+    });
+
     if (scriptsLoaded && containerRef.current && window.Container && window.Button) {
       try {
         initGlassComponents();
@@ -17,6 +24,12 @@ export default function LiquidGlassDemo() {
         console.error('Failed to initialize glass components:', err);
         setError(err instanceof Error ? err.message : 'Unknown error');
       }
+    } else if (scriptsLoaded) {
+      console.warn('Scripts loaded but missing dependencies:', {
+        hasContainerRef: !!containerRef.current,
+        hasContainer: !!window.Container,
+        hasButton: !!window.Button
+      });
     }
   }, [scriptsLoaded]);
 
@@ -149,7 +162,9 @@ export default function LiquidGlassDemo() {
       <Script
         src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"
         strategy="afterInteractive"
-        onLoad={() => console.log('html2canvas loaded')}
+        onLoad={() => {
+          console.log('html2canvas loaded:', !!window.html2canvas);
+        }}
         onError={(e) => {
           console.error('Failed to load html2canvas:', e);
           setError('Failed to load html2canvas');
@@ -158,7 +173,9 @@ export default function LiquidGlassDemo() {
       <Script
         src="/liquid-glass/container.js"
         strategy="afterInteractive"
-        onLoad={() => console.log('container.js loaded')}
+        onLoad={() => {
+          console.log('container.js loaded:', !!window.Container);
+        }}
         onError={(e) => {
           console.error('Failed to load container.js:', e);
           setError('Failed to load container.js');
@@ -168,7 +185,7 @@ export default function LiquidGlassDemo() {
         src="/liquid-glass/button.js"
         strategy="afterInteractive"
         onLoad={() => {
-          console.log('button.js loaded');
+          console.log('button.js loaded:', !!window.Button);
           setScriptsLoaded(true);
         }}
         onError={(e) => {
