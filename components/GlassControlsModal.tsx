@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import type { WebGLGlassSettings } from '@/types/glass';
 
 interface GlassSettings {
   blur: number;
@@ -10,28 +11,9 @@ interface GlassSettings {
   borderRadius: number;
 }
 
-interface WebGLGlassSettings {
-  edgeIntensity: number;
-  rimIntensity: number;
-  baseIntensity: number;
-  edgeDistance: number;
-  rimDistance: number;
-  baseDistance: number;
-  cornerBoost: number;
-  rippleEffect: number;
-  blurRadius: number;
-}
-
 interface GlassControlsProps {
   isOpen: boolean;
   onClose: () => void;
-}
-
-declare global {
-  interface Window {
-    Container: any;
-    glassControls: WebGLGlassSettings;
-  }
 }
 
 export default function GlassControlsModal({ isOpen, onClose }: GlassControlsProps) {

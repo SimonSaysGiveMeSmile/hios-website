@@ -2,39 +2,31 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
-
-declare global {
-  interface Window {
-    Container: any;
-    Button: any;
-    html2canvas: any;
-    glassControls: {
-      edgeIntensity: number;
-      rimIntensity: number;
-      baseIntensity: number;
-      edgeDistance: number;
-      rimDistance: number;
-      baseDistance: number;
-      cornerBoost: number;
-      rippleEffect: number;
-      blurRadius: number;
-      tintOpacity: number;
-    };
-  }
-}
+import type { WebGLGlassSettings } from '@/types/glass';
 
 export default function LiquidGlassDemo() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scriptsLoaded, setScriptsLoaded] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (scriptsLoaded && containerRef.current && window.Container && window.Button) {
-      initGlassComponents();
+      try {
+        initGlassComponents();
+      } catch (err) {
+        console.error('Failed to initialize glass components:', err);
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      }
     }
   }, [scriptsLoaded]);
 
   const initGlassComponents = () => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {
+      console.warn('Container ref not available');
+      return;
+    }
+
+    console.log('Initializing WebGL glass components...');
 
     // Initialize global controls with defaults
     if (!window.glassControls) {
@@ -61,6 +53,8 @@ export default function LiquidGlassDemo() {
       type: 'rounded',
       tintOpacity: 0.2
     });
+
+    console.log('Container created:', mainContainer);
 
     mainContainer.element.style.padding = '32px';
     mainContainer.element.style.display = 'flex';
@@ -152,18 +146,45 @@ export default function LiquidGlassDemo() {
       <Script
         src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"
         strategy="afterInteractive"
+        onLoad={() => console.log('html2canvas loaded')}
+        onError={(e) => {
+          console.error('Failed to load html2canvas:', e);
+          setError('Failed to load html2canvas');
+        }}
       />
       <Script
         src="/liquid-glass/container.js"
         strategy="afterInteractive"
+        onLoad={() => console.log('container.js loaded')}
+        onError={(e) => {
+          console.error('Failed to load container.js:', e);
+          setError('Failed to load container.js');
+        }}
       />
       <Script
         src="/liquid-glass/button.js"
         strategy="afterInteractive"
-        onLoad={() => setScriptsLoaded(true)}
+        onLoad={() => {
+          console.log('button.js loaded');
+          setScriptsLoaded(true);
+        }}
+        onError={(e) => {
+          console.error('Failed to load button.js:', e);
+          setError('Failed to load button.js');
+        }}
       />
 
       <div className="relative flex flex-col items-center justify-center gap-8 p-8">
+        {error && (
+          <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+            Error: {error}
+          </div>
+        )}
+        {!scriptsLoaded && !error && (
+          <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm">
+            Loading WebGL components...
+          </div>
+        )}
         <div ref={containerRef} className="relative z-10" />
       </div>
     </>
