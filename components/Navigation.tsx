@@ -18,18 +18,21 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass ${
-        scrolled ? 'shadow-lg' : ''
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'glass-strong shadow-2xl' : 'glass'
       }`}
+      style={{
+        borderBottom: '1px solid var(--glass-border)',
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-6 py-5">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <a href="#" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 transform rotate-180">
               <img src="/logo.svg" alt="HiOS Logo" className="w-full h-full" />
             </div>
-            <span className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>HiOS</span>
+            <span className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>HiOS</span>
           </a>
 
           {/* Right side */}
@@ -37,8 +40,11 @@ export default function Navigation() {
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="w-10 h-10 rounded-xl glass-subtle flex items-center justify-center hover:scale-105 transition-transform"
+              className="w-11 h-11 rounded-xl glass-strong flex items-center justify-center hover:scale-105 transition-transform"
               aria-label="Toggle theme"
+              style={{
+                border: '1px solid var(--glass-border)',
+              }}
             >
               {theme === 'dark' ? (
                 <svg className="w-5 h-5" style={{ color: 'var(--text-primary)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
