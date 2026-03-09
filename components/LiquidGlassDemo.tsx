@@ -174,14 +174,37 @@ export default function LiquidGlassDemo() {
         }}
       />
 
-      <div className="relative flex flex-col items-center justify-center gap-8 p-8">
+      <div className="relative flex flex-col items-center justify-center gap-8 p-8 min-h-[600px]">
+        {/* Colorful background layers to demonstrate glassmorphism */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Gradient orbs */}
+          <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-30 blur-3xl animate-pulse" />
+          <div className="absolute top-32 right-20 w-80 h-80 rounded-full bg-gradient-to-br from-pink-500 to-orange-500 opacity-25 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-20 left-1/3 w-72 h-72 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 opacity-20 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+
+          {/* Geometric shapes */}
+          <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-yellow-400 to-red-500 opacity-20 rotate-45 blur-xl" />
+          <div className="absolute bottom-1/3 left-1/4 w-40 h-40 bg-gradient-to-br from-green-400 to-teal-500 opacity-15 rounded-2xl blur-xl" />
+
+          {/* Text layers */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl font-bold text-white opacity-5 select-none">
+            GLASS
+          </div>
+
+          {/* Grid pattern */}
+          <div className="absolute inset-0 opacity-10" style={{
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
+
         {error && (
-          <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+          <div className="relative z-20 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
             Error: {error}
           </div>
         )}
         {!scriptsLoaded && !error && (
-          <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm">
+          <div className="relative z-20 p-4 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm">
             Loading WebGL components...
           </div>
         )}
