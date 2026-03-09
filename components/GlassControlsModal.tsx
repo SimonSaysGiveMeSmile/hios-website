@@ -74,7 +74,7 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
     document.querySelectorAll('.liquidGlass-wrapper, .glass, .glass-strong, .glass-subtle, .glass-nav').forEach((el) => {
       const element = el as HTMLElement;
       element.style.backdropFilter = backdropFilterValue;
-      element.style.webkitBackdropFilter = backdropFilterValue;
+      (element.style as any).webkitBackdropFilter = backdropFilterValue;
 
       // Update border radius for elements that use it
       if (element.classList.contains('liquidGlass-wrapper')) {

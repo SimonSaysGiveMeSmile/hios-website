@@ -107,7 +107,7 @@ export default function Capabilities() {
               className="animate-fadeInUp"
               style={{ animationDelay: `${i * 100}ms` }}
             >
-              <GlassCard className="p-8 h-full" variant="subtle">
+              <GlassCard className="p-8 h-full hover:scale-[1.02] transition-transform" variant="subtle">
                 <div className="space-y-4">
                   <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${cap.color} flex items-center justify-center`}>
                     {cap.icon}
@@ -116,6 +116,7 @@ export default function Capabilities() {
                     <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{cap.title}</h3>
                     <p style={{ color: 'var(--text-muted)' }}>{cap.description}</p>
                   </div>
+                  {cap.miniDiagram}
                 </div>
               </GlassCard>
             </div>
