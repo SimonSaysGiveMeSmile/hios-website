@@ -107,49 +107,66 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
   }, [isOpen]);
 
   const updateAllGlassInstances = () => {
-    if (typeof window === 'undefined' || !window.Container || !window.Container.instances) return;
+    if (typeof window === 'undefined' || !window.Container || !window.Container.instances) {
+      console.warn('No WebGL instances found');
+      return;
+    }
 
-    console.log('Updating WebGL instances:', window.Container.instances.length);
+    console.log('Updating WebGL instances:', window.Container.instances.length, 'with settings:', webglSettings);
 
-    window.Container.instances.forEach((instance: any) => {
+    window.Container.instances.forEach((instance: any, index: number) => {
       if (instance.gl_refs && instance.gl_refs.gl) {
         const gl = instance.gl_refs.gl;
 
-        console.log('Updating instance with settings:', webglSettings);
+        // Make sure we're using the correct program
+        if (instance.gl_refs.program) {
+          gl.useProgram(instance.gl_refs.program);
+        }
+
+        console.log(`Updating instance ${index}:`, {
+          hasProgram: !!instance.gl_refs.program,
+          hasEdgeLoc: !!instance.gl_refs.edgeIntensityLoc,
+          hasRender: !!instance.render
+        });
 
         // Update all uniforms
-        if (instance.gl_refs.edgeIntensityLoc) {
+        if (instance.gl_refs.edgeIntensityLoc !== null && instance.gl_refs.edgeIntensityLoc !== undefined) {
           gl.uniform1f(instance.gl_refs.edgeIntensityLoc, webglSettings.edgeIntensity);
         }
-        if (instance.gl_refs.rimIntensityLoc) {
+        if (instance.gl_refs.rimIntensityLoc !== null && instance.gl_refs.rimIntensityLoc !== undefined) {
           gl.uniform1f(instance.gl_refs.rimIntensityLoc, webglSettings.rimIntensity);
         }
-        if (instance.gl_refs.baseIntensityLoc) {
+        if (instance.gl_refs.baseIntensityLoc !== null && instance.gl_refs.baseIntensityLoc !== undefined) {
           gl.uniform1f(instance.gl_refs.baseIntensityLoc, webglSettings.baseIntensity);
         }
-        if (instance.gl_refs.edgeDistanceLoc) {
+        if (instance.gl_refs.edgeDistanceLoc !== null && instance.gl_refs.edgeDistanceLoc !== undefined) {
           gl.uniform1f(instance.gl_refs.edgeDistanceLoc, webglSettings.edgeDistance);
         }
-        if (instance.gl_refs.rimDistanceLoc) {
+        if (instance.gl_refs.rimDistanceLoc !== null && instance.gl_refs.rimDistanceLoc !== undefined) {
           gl.uniform1f(instance.gl_refs.rimDistanceLoc, webglSettings.rimDistance);
         }
-        if (instance.gl_refs.baseDistanceLoc) {
+        if (instance.gl_refs.baseDistanceLoc !== null && instance.gl_refs.baseDistanceLoc !== undefined) {
           gl.uniform1f(instance.gl_refs.baseDistanceLoc, webglSettings.baseDistance);
         }
-        if (instance.gl_refs.cornerBoostLoc) {
+        if (instance.gl_refs.cornerBoostLoc !== null && instance.gl_refs.cornerBoostLoc !== undefined) {
           gl.uniform1f(instance.gl_refs.cornerBoostLoc, webglSettings.cornerBoost);
         }
-        if (instance.gl_refs.rippleEffectLoc) {
+        if (instance.gl_refs.rippleEffectLoc !== null && instance.gl_refs.rippleEffectLoc !== undefined) {
           gl.uniform1f(instance.gl_refs.rippleEffectLoc, webglSettings.rippleEffect);
         }
-        if (instance.gl_refs.blurRadiusLoc) {
+        if (instance.gl_refs.blurRadiusLoc !== null && instance.gl_refs.blurRadiusLoc !== undefined) {
           gl.uniform1f(instance.gl_refs.blurRadiusLoc, webglSettings.blurRadius);
         }
 
         // Force render
         if (instance.render) {
+          console.log(`Rendering instance ${index}`);
           instance.render();
+        } else {
+          console.warn(`Instance ${index} has no render function`);
         }
+      } else {
+        console.warn(`Instance ${index} missing gl_refs or gl`);
       }
     });
   };

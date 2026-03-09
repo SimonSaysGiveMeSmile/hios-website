@@ -509,6 +509,7 @@ class Container {
 
     this.gl_refs = {
       gl,
+      program,
       texture,
       textureSizeLoc,
       scrollYLoc,
