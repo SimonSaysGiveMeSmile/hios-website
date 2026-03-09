@@ -582,6 +582,12 @@ class Container {
       if (!this.gl_refs.gl) return
 
       const gl = this.gl_refs.gl
+
+      // Use the program before updating uniforms
+      if (this.gl_refs.program) {
+        gl.useProgram(this.gl_refs.program)
+      }
+
       gl.clear(gl.COLOR_BUFFER_BIT)
 
       const scrollY = window.pageYOffset || document.documentElement.scrollTop
@@ -589,6 +595,19 @@ class Container {
 
       const position = this.getPosition()
       gl.uniform2f(this.gl_refs.containerPositionLoc, position.x, position.y)
+
+      // Update dynamic uniforms from global controls
+      if (window.glassControls) {
+        gl.uniform1f(this.gl_refs.edgeIntensityLoc, window.glassControls.edgeIntensity)
+        gl.uniform1f(this.gl_refs.rimIntensityLoc, window.glassControls.rimIntensity)
+        gl.uniform1f(this.gl_refs.baseIntensityLoc, window.glassControls.baseIntensity)
+        gl.uniform1f(this.gl_refs.edgeDistanceLoc, window.glassControls.edgeDistance)
+        gl.uniform1f(this.gl_refs.rimDistanceLoc, window.glassControls.rimDistance)
+        gl.uniform1f(this.gl_refs.baseDistanceLoc, window.glassControls.baseDistance)
+        gl.uniform1f(this.gl_refs.cornerBoostLoc, window.glassControls.cornerBoost)
+        gl.uniform1f(this.gl_refs.rippleEffectLoc, window.glassControls.rippleEffect)
+        gl.uniform1f(this.gl_refs.blurRadiusLoc, window.glassControls.blurRadius)
+      }
 
       gl.drawArrays(gl.TRIANGLES, 0, 6)
     }
