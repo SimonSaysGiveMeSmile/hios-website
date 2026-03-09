@@ -36,6 +36,7 @@ declare global {
 
 export default function GlassControlsModal({ isOpen, onClose }: GlassControlsProps) {
   const [activeTab, setActiveTab] = useState<'css' | 'webgl'>('css');
+  const [webglInstanceCount, setWebglInstanceCount] = useState(0);
   const [settings, setSettings] = useState<GlassSettings>({
     blur: 40,
     saturation: 100,
@@ -60,6 +61,21 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const panelRef = useRef<HTMLDivElement>(null);
+
+  // Check WebGL instance count periodically
+  useEffect(() => {
+    const checkInstances = () => {
+      if (typeof window !== 'undefined' && window.Container && window.Container.instances) {
+        setWebglInstanceCount(window.Container.instances.length);
+      } else {
+        setWebglInstanceCount(0);
+      }
+    };
+
+    checkInstances();
+    const interval = setInterval(checkInstances, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     // Apply CSS settings with force reflow
@@ -267,15 +283,26 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
           </button>
           <button
             onClick={() => setActiveTab('webgl')}
-            className="flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all"
+            className="flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all relative"
             style={{
               background: activeTab === 'webgl' ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
               color: 'var(--text-primary)',
             }}
           >
             WebGL Glass
+            {webglInstanceCount > 0 && (
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-current" />
+            )}
           </button>
         </div>
+
+        {/* Info text */}
+        <p className="text-xs mt-3 opacity-60" style={{ color: 'var(--text-secondary)' }}>
+          {activeTab === 'css'
+            ? 'Controls backdrop-filter effects for navigation, cards, and UI elements'
+            : 'Controls WebGL shader effects in the Demo section (requires page snapshot)'
+          }
+        </p>
       </div>
 
       {/* Scrollable Content */}
@@ -359,6 +386,26 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
           </div>
         ) : (
           <div className="space-y-4">
+            {/* WebGL Status Indicator */}
+            <div className="p-4 rounded-xl mb-4" style={{
+              background: webglInstanceCount > 0 ? 'rgba(34, 197, 94, 0.1)' : 'rgba(234, 179, 8, 0.1)',
+              border: `1px solid ${webglInstanceCount > 0 ? 'rgba(34, 197, 94, 0.3)' : 'rgba(234, 179, 8, 0.3)'}`
+            }}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className={`w-2 h-2 rounded-full ${webglInstanceCount > 0 ? 'bg-green-500' : 'bg-yellow-500'}`} />
+                <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                  WebGL Status
+                </span>
+              </div>
+              <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
+                {webglInstanceCount > 0 ? (
+                  <>Active: {webglInstanceCount} instance{webglInstanceCount !== 1 ? 's' : ''} found</>
+                ) : (
+                  <>Inactive: Scroll to Demo section to activate WebGL</>
+                )}
+              </p>
+            </div>
+
             <div>
               <label className="flex justify-between text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
                 <span>Edge Intensity</span>
