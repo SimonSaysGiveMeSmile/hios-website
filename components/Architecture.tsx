@@ -5,7 +5,7 @@ import GlassCard from './GlassCard';
 
 export default function Architecture() {
   return (
-    <section className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
+    <section id="architecture" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text */}

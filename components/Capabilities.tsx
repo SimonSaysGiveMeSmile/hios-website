@@ -49,7 +49,7 @@ export default function Capabilities() {
   ];
 
   return (
-    <section className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
+    <section id="capabilities" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
