@@ -374,3 +374,8 @@ class Button extends Container {
     }
   }
 }
+
+// Export to window for global access
+if (typeof window !== 'undefined') {
+  window.Button = Button;
+}

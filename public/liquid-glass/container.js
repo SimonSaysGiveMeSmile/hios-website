@@ -629,3 +629,8 @@ class Container {
     return shader
   }
 }
+
+// Export to window for global access
+if (typeof window !== 'undefined') {
+  window.Container = Container;
+}
