@@ -62,8 +62,19 @@ export default function Product() {
     <section id="product" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Architecture stack */}
-          <div className="relative">
+          {/* Left: Text */}
+          <div className="space-y-6 order-2 lg:order-1">
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
+              Built to get<br />
+              <span style={{ color: 'var(--text-muted)' }}>things done.</span>
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              HiOS turns your request into a plan and completes it across apps, websites, and device tools.
+            </p>
+          </div>
+
+          {/* Right: Architecture stack */}
+          <div className="relative order-1 lg:order-2">
             <div className="space-y-3">
               {layers.map((layer, i) => (
                 <div
@@ -90,17 +101,6 @@ export default function Product() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Right: Text */}
-          <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Built to get<br />
-              <span style={{ color: 'var(--text-muted)' }}>things done.</span>
-            </h2>
-            <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              HiOS turns your request into a plan and completes it across apps, websites, and device tools.
-            </p>
           </div>
         </div>
       </div>

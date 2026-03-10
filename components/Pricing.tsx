@@ -6,13 +6,14 @@ import GlassCard from './GlassCard';
 export default function Pricing() {
   const plans = [
     {
-      name: 'Trial',
-      price: '$0.99',
-      period: 'trial',
+      name: 'Free',
+      price: 'Free',
+      period: '',
       features: [
         'Test HiOS',
         'Limited usage',
         'Basic features',
+        'With ads',
       ],
       color: 'from-blue-500 to-cyan-600',
     },
@@ -23,7 +24,7 @@ export default function Pricing() {
       features: [
         'Browser automation',
         'Simple workflows',
-        'Limited tasks',
+        'More tasks',
       ],
       color: 'from-purple-500 to-pink-600',
       popular: false,
@@ -37,21 +38,10 @@ export default function Pricing() {
         'Shortcuts integration',
         'OCR workflows',
         'Higher usage limits',
+        'Priority support',
       ],
       color: 'from-orange-500 to-red-600',
       popular: true,
-    },
-    {
-      name: 'Power',
-      price: '$79-99',
-      period: '/month',
-      features: [
-        'Advanced automation',
-        'Heavy usage',
-        'Priority features',
-        'Full system access',
-      ],
-      color: 'from-emerald-500 to-green-600',
     },
   ];
 
@@ -64,7 +54,7 @@ export default function Pricing() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {plans.map((plan, i) => (
             <div
               key={i}

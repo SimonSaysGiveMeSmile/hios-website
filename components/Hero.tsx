@@ -110,7 +110,7 @@ export default function Hero() {
 
             <p className="text-xl max-w-lg mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>
               Tell your phone what you want.<br />
-              HiOS handles the steps.
+              Let HiOS handle the rest.
             </p>
 
             <p className="text-base" style={{ color: 'var(--text-subtle)' }}>
