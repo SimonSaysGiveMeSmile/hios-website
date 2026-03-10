@@ -17,9 +17,9 @@ export default function Navigation() {
 
   const navItems = [
     { label: 'Overview', href: '#hero' },
-    { label: 'What It Can Do', href: '#capabilities' },
-    { label: 'Automations', href: '#product' },
-    { label: 'How It Works', href: '#architecture' },
+    { label: 'Capabilities', href: '#capabilities' },
+    { label: 'Architecture', href: '#architecture' },
+    { label: 'Pricing', href: '#pricing' },
     { label: 'Waitlist', href: '#cta' },
   ];
 

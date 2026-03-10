@@ -104,12 +104,17 @@ export default function Hero() {
           {/* Left: Text content */}
           <div className="space-y-8 text-center lg:text-left">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
-              Tell your phone.<br />
-              <span style={{ color: 'var(--text-secondary)' }}>It gets it done.</span>
+              The execution layer<br />
+              <span style={{ color: 'var(--text-secondary)' }}>for AI agents on iPhone.</span>
             </h1>
 
-            <p className="text-xl max-w-md mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>
-              HiOS runs autonomous agents on iPhone, completing tasks across apps, shortcuts, and websites.
+            <p className="text-xl max-w-lg mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>
+              Tell your phone what you want.<br />
+              Your agent gets it done.
+            </p>
+
+            <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
+              HiOS bridges AI agents and iPhone system, enabling real device automation while staying compliant with Apple's security model.
             </p>
 
             {/* CTA Buttons */}
