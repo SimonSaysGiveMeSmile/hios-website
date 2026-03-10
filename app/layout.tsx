@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Talk to your phone. It gets things done. A native iOS agent that runs Shortcuts, reads your screen, and completes tasks hands-free.",
   keywords: ["iOS", "agent", "voice assistant", "shortcuts", "automation", "OCR", "vision"],
   icons: {
-    icon: '/logo.svg',
+    icon: '/logo-black.svg',
   },
 };
 
@@ -18,12 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+        <link rel="icon" href="/logo-black.svg" type="image/svg+xml" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                const theme = localStorage.getItem('theme') || 'dark';
+                const theme = localStorage.getItem('theme') || 'light';
                 document.documentElement.setAttribute('data-theme', theme);
               } catch (e) {}
             `,

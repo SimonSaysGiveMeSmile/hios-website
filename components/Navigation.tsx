@@ -34,7 +34,7 @@ export default function Navigation() {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 transform rotate-180">
-              <img src="/logo.svg" alt="HiOS Logo" className="w-full h-full" />
+              <img src="/logo.svg" alt="HiOS Logo" className="w-full h-full logo-img" />
             </div>
             <span className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>HiOS</span>
           </a>

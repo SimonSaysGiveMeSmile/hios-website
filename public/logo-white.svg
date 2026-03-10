@@ -1,7 +1,7 @@
 <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Thin circle (shifted right and down) -->
-  <circle cx="110" cy="110" r="60" stroke="currentColor" stroke-width="3" fill="none"/>
+  <circle cx="110" cy="110" r="60" stroke="#ffffff" stroke-width="3" fill="none"/>
 
   <!-- Thick circle (shifted left and up) -->
-  <circle cx="90" cy="90" r="60" stroke="currentColor" stroke-width="12" fill="none"/>
+  <circle cx="90" cy="90" r="60" stroke="#ffffff" stroke-width="12" fill="none"/>
 </svg>

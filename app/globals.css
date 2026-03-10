@@ -507,9 +507,18 @@ body.saaS-style::before {
   --text-primary: #ffffff;
   --text-secondary: #999999;
   --text-muted: #666666;
-  --text-subtle: #333333;
 }
 
+/* Logo color based on theme */
+[data-theme="dark"] img[src*="logo"],
+[data-theme="dark"] .logo-img {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] img[src*="logo"],
+[data-theme="light"] .logo-img {
+  filter: brightness(0);
+}
 body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background: var(--color-bg);
