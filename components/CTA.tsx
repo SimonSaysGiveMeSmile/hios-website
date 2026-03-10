@@ -6,7 +6,7 @@ import InteractiveButton from './InteractiveButton';
 
 export default function CTA() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-24">
+    <section id="cta" className="relative min-h-screen flex items-center justify-center px-6 py-24">
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Device mockup */}

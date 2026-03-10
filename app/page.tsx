@@ -6,7 +6,6 @@ import Product from "@/components/Product";
 import Capabilities from "@/components/Capabilities";
 import Services from "@/components/Services";
 import Architecture from "@/components/Architecture";
-import LiquidGlassDemo from "@/components/LiquidGlassDemo";
 import CTA from "@/components/CTA";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -23,7 +22,6 @@ export default function Home() {
         <Capabilities />
         <Services />
         <Architecture />
-        <LiquidGlassDemo />
         <CTA />
         <Footer />
       </main>

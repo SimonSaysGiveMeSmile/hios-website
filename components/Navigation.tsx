@@ -2,11 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTheme } from './ThemeProvider';
-import GlassControlsModal from './GlassControlsModal';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
-  const [isControlsOpen, setIsControlsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -18,9 +16,11 @@ export default function Navigation() {
   }, []);
 
   const navItems = [
-    { label: 'Product', href: '#product' },
-    { label: 'Capabilities', href: '#capabilities' },
-    { label: 'Architecture', href: '#architecture' },
+    { label: 'Overview', href: '#hero' },
+    { label: 'What It Can Do', href: '#capabilities' },
+    { label: 'Automations', href: '#product' },
+    { label: 'How It Works', href: '#architecture' },
+    { label: 'Waitlist', href: '#cta' },
   ];
 
   return (
@@ -55,31 +55,17 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* Theme toggle and Settings */}
+          {/* Simon Badge and Theme Toggle */}
           <div className="flex items-center gap-3">
-            {/* Settings Button */}
+            {/* Simon Badge */}
             <div
-              className="rounded-xl w-11 h-11"
+              className="px-4 py-2 rounded-xl text-sm font-semibold"
               style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: '12px',
+                background: 'rgba(255, 255, 255, 0.15)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
               }}
             >
-              <button
-                onClick={() => setIsControlsOpen(true)}
-                className="w-full h-full flex items-center justify-center hover:scale-105 transition-transform"
-                aria-label="Open glass controls"
-              >
-                <svg
-                  className="w-5 h-5"
-                  style={{ color: theme === 'dark' ? '#ffffff' : '#000000' }}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                </svg>
-              </button>
+              <span style={{ color: 'var(--text-primary)' }}>Simon</span>
             </div>
 
             {/* Theme Toggle */}
@@ -121,9 +107,6 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-
-      {/* Glass Controls Modal */}
-      <GlassControlsModal isOpen={isControlsOpen} onClose={() => setIsControlsOpen(false)} />
     </nav>
   );
 }
