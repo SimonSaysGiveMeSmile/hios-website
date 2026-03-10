@@ -32,8 +32,8 @@ export default function Navigation() {
           style={{ color: 'var(--text-primary)' }}
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 transform rotate-180">
+          <a href="#" className="flex items-center justify-center gap-3 hover:opacity-80 transition-opacity">
+            <div className="w-10 h-10 flex items-center justify-center">
               <img src="/logo.svg" alt="HiOS Logo" className="w-full h-full logo-img" />
             </div>
             <span className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>HiOS</span>
