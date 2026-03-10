@@ -1,142 +1,551 @@
 @import "tailwindcss";
 
-/* Dark mode (default) */
+/* ============================================
+   DESIGN TOKEN SYSTEM - Pitch Deck Layout
+   ============================================ */
+
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  /* Base Colors */
+  --color-bg: #f4f4f4;
+  --color-card: #ffffff;
 
-  /* Glass component variables - More transparent */
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-bg-strong: rgba(255, 255, 255, 0.05);
-  --glass-bg-subtle: rgba(255, 255, 255, 0.02);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-border-strong: rgba(255, 255, 255, 0.3);
-  --glass-border-subtle: rgba(255, 255, 255, 0.15);
-  --reflection-color: rgba(255, 255, 255, 0.3);
-  --ambient-glow: rgba(255, 255, 255, 0.05);
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-shadow: rgba(0, 0, 0, 0.04);
 
-  /* Text colors */
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.5);
-  --text-subtle: rgba(255, 255, 255, 0.3);
+  --color-text: #111111;
+  --color-subtext: #666666;
 
-  /* Background glows */
-  --glow-blue: rgba(59, 130, 246, 0.25);
-  --glow-purple: rgba(168, 85, 247, 0.25);
+  /* Radius */
+  --radius-lg: 14px;
+  --radius-md: 10px;
 
-  /* Dynamic glass controls */
-  --glass-blur: 3px;
-  --glass-saturation: 100%;
-  --glass-brightness: 1.2;
-  --glass-tint-opacity: 0;
-  --glass-border-radius: 40px;
+  /* Spacing */
+  --spacing-xl: 80px;
+  --spacing-lg: 48px;
+  --spacing-md: 24px;
+  --spacing-sm: 12px;
 }
 
-/* Light mode */
-[data-theme="light"] {
-  --background: #ffffff;
-  --foreground: #000000;
-
-  /* Glass component variables for light mode - More transparent */
-  --glass-bg: rgba(255, 255, 255, 0.35);
-  --glass-bg-strong: rgba(255, 255, 255, 0.5);
-  --glass-bg-subtle: rgba(255, 255, 255, 0.25);
-  --glass-border: rgba(0, 0, 0, 0.1);
-  --glass-border-strong: rgba(0, 0, 0, 0.15);
-  --glass-border-subtle: rgba(0, 0, 0, 0.08);
-  --reflection-color: rgba(255, 255, 255, 0.5);
-  --ambient-glow: rgba(0, 0, 0, 0.03);
-
-  /* Text colors */
-  --text-primary: #000000;
-  --text-secondary: rgba(0, 0, 0, 0.7);
-  --text-muted: rgba(0, 0, 0, 0.5);
-  --text-subtle: rgba(0, 0, 0, 0.3);
-
-  /* Background glows */
-  --glow-blue: rgba(59, 130, 246, 0.15);
-  --glow-purple: rgba(168, 85, 247, 0.15);
+/* Container - Vertical Deck Layout */
+.container {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 }
 
-body {
-  background:
-    radial-gradient(ellipse at 15% 15%, var(--glow-blue) 0%, transparent 45%),
-    radial-gradient(ellipse at 85% 20%, var(--glow-purple) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 20% 80%, var(--glow-purple) 0%, transparent 45%),
-    radial-gradient(ellipse at 80% 75%, var(--glow-blue) 0%, transparent 45%),
-    var(--background);
-  color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Slide Card Component */
+.slide-card {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 48px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.02),
+    0 6px 20px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.slide-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Scroll Animation */
+.slide-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.slide-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide Grid Layout */
+.slide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Typography System */
+.slide-title {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.slide-subtitle {
+  font-size: 16px;
+  color: var(--color-subtext);
+  margin-bottom: 24px;
+}
+
+.slide-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+/* Icon List System */
+.icon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.icon-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* Workflow Diagram */
+.workflow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.workflow-node {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.workflow-line {
+  height: 2px;
+  width: 60px;
+  background: #ddd;
+  flex-shrink: 0;
+}
+
+/* Chart Styling */
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 120px;
+}
+
+.bar {
+  width: 32px;
+  background: #111;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: #111;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #ddd;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: #111;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Competitive Matrix */
+.matrix {
   position: relative;
-  transition: background 0.3s ease, color 0.3s ease;
-  min-height: 100vh;
+  width: 280px;
+  height: 220px;
+  border: 1px solid #eee;
+  border-radius: var(--radius-md);
 }
 
-html {
-  background: var(--background);
-  scroll-behavior: smooth;
+.matrix-point {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #111;
+  position: absolute;
 }
 
-body::before {
+/* Timeline Styling */
+.timeline {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline-step {
+  text-align: center;
+  width: 140px;
+}
+
+/* ============================================
+   SAAS / APPLE HYBRID DESIGN SYSTEM
+   Modern product page styling
+   ============================================ */
+
+/* --- 1. Global Layout --- */
+.section {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* Override container for SaaS style */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* --- 2. Background System --- */
+body.saaS-style {
+  background: #f6f6f7;
+}
+
+body.saaS-style::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 255, 255, 0.01) 2px,
-      rgba(255, 255, 255, 0.01) 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 255, 255, 0.01) 2px,
-      rgba(255, 255, 255, 0.01) 4px
-    );
+  background-image: radial-gradient(#eaeaea 1px, transparent 1px);
+  background-size: 20px 20px;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.5;
 }
 
-/* LIQUID GLASS STYLES - Working Glassmorphism */
+/* --- 3. Typography --- */
+.hero-title {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* --- 4. Navigation --- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: #555;
+}
+
+.nav-links a:hover {
+  color: #111;
+}
+
+/* --- 5. Gradient Text --- */
+.gradient-text {
+  background: linear-gradient(90deg, #ff6ec4, #7873f5, #4facfe, #43e97b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- 6. Device Showcase --- */
+.device-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.device {
+  width: 180px;
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.device:hover {
+  transform: translateY(-6px);
+}
+
+/* --- 7. Feature Cards --- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.feature-card {
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+}
+
+.card-blue { background: #3b82f6; }
+.card-orange { background: #f97316; }
+.card-green { background: #10b981; }
+.card-gray { background: #374151; }
+
+/* --- 8. Demo Cards --- */
+.demo-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid #eee;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.demo-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* --- 9. Pricing --- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.pricing-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid #eee;
+}
+
+.price {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+/* --- 10. Animations --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 11. Responsive --- */
+@media (max-width: 900px) {
+  .device-row {
+    flex-wrap: wrap;
+  }
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 36px;
+  }
+  .device {
+    width: 140px;
+  }
+  .section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+/* ============================================
+   LIQUID GLASS DESIGN SYSTEM
+   ============================================ */
+:root {
+  /* Core Colors */
+  --color-bg: #ffffff;
+  --color-card: #ffffff;
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-shadow: rgba(0, 0, 0, 0.04);
+  --color-text: #111111;
+  --color-subtext: #666666;
+
+  /* Glass Effects - Subtle for light mode */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-blur: 12px;
+  --glass-saturation: 100%;
+  --glass-brightness: 1.05;
+
+  /* Spacing */
+  --spacing-xl: 80px;
+  --spacing-lg: 48px;
+  --spacing-md: 24px;
+  --spacing-sm: 12px;
+
+  /* Radius */
+  --radius-lg: 14px;
+  --radius-md: 10px;
+
+  /* Text colors */
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --text-subtle: #cccccc;
+
+  /* Dynamic glass controls */
+  --glass-tint-opacity: 0;
+  --glass-border-radius: 14px;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --color-bg: #000000;
+  --color-card: #111111;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-text: #ffffff;
+  --color-subtext: #999999;
+
+  /* Glass Effects - Subtle for dark mode */
+  --glass-bg: rgba(0, 0, 0, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
+  --glass-brightness: 1.1;
+
+  --text-primary: #ffffff;
+  --text-secondary: #999999;
+  --text-muted: #666666;
+  --text-subtle: #333333;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+html {
+  background: var(--color-bg);
+  scroll-behavior: smooth;
+}
+
+/* Remove colorful background grid */
+body::before {
+  display: none;
+}
+
+/* MINIMAL LIQUID GLASS STYLES */
 .liquidGlass-wrapper {
   position: relative;
   display: flex;
   font-weight: 600;
   overflow: visible;
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(var(--glass-blur, 40px)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
-  -webkit-backdrop-filter: blur(var(--glass-blur, 40px)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.37),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+    0 1px 2px var(--color-shadow),
+    0 6px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-border-radius);
   will-change: backdrop-filter;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Edge refraction - bright gradient border shimmer for liquidGlass */
+.liquidGlass-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Subtle edge highlight - minimal */
 .liquidGlass-wrapper::before {
   content: '';
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  padding: 2px;
+  padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.15) 15%,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.05) 15%,
     transparent 35%,
     transparent 65%,
-    rgba(255, 255, 255, 0.15) 85%,
-    rgba(255, 255, 255, 0.45) 100%
+    rgba(255, 255, 255, 0.05) 85%,
+    rgba(255, 255, 255, 0.15) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -145,7 +554,7 @@ body::before {
   z-index: -1;
 }
 
-/* Inner highlight for curvature illusion */
+/* Inner subtle highlight */
 .liquidGlass-wrapper::after {
   content: '';
   position: absolute;
@@ -154,47 +563,49 @@ body::before {
   background:
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.15) 0%,
-      transparent 35%,
-      transparent 75%,
-      rgba(255, 255, 255, 0.08) 100%
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 30%,
+      transparent 80%,
+      rgba(255, 255, 255, 0.04) 100%
     );
   pointer-events: none;
   z-index: 0;
-  filter: url(#glass-distortion);
 }
 
-[data-theme="light"] .liquidGlass-wrapper {
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(var(--glass-blur, 40px)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
-  -webkit-backdrop-filter: blur(var(--glass-blur, 40px)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
+/* Dark mode adjustments */
+[data-theme="dark"] .liquidGlass-wrapper {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-[data-theme="light"] .liquidGlass-wrapper::before {
-  padding: 1.5px;
+[data-theme="dark"] .liquidGlass-wrapper:hover {
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .liquidGlass-wrapper::before {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.4) 15%,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.03) 15%,
     transparent 35%,
     transparent 65%,
-    rgba(255, 255, 255, 0.4) 85%,
-    rgba(255, 255, 255, 0.95) 100%
+    rgba(255, 255, 255, 0.03) 85%,
+    rgba(255, 255, 255, 0.12) 100%
   );
 }
 
-[data-theme="light"] .liquidGlass-wrapper::after {
+[data-theme="dark"] .liquidGlass-wrapper::after {
   background:
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.06) 0%,
       transparent 30%,
       transparent 80%,
-      rgba(255, 255, 255, 0.25) 100%
+      rgba(255, 255, 255, 0.03) 100%
     );
 }
 
