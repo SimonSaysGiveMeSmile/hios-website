@@ -111,11 +111,11 @@ export default function Problem() {
           {/* Right: Text */}
           <div className="space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Less tapping.<br />
-              <span style={{ color: 'var(--text-muted)' }}>More done.</span>
+              Phones follow commands.<br />
+              <span style={{ color: 'var(--text-muted)' }}>But you still do the work.</span>
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              One request. HiOS handles the steps.
+              Most assistants answer questions. HiOS completes tasks.
             </p>
           </div>
         </div>
