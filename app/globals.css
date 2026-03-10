@@ -24,6 +24,32 @@
   --spacing-lg: 48px;
   --spacing-md: 24px;
   --spacing-sm: 12px;
+
+  /* Glass Controls - These can be adjusted via the control panel */
+  --glass-blur: 3px;
+  --glass-saturation: 100%;
+  --glass-brightness: 1;
+  --glass-bg-opacity: 0.04;
+  --glass-border-opacity: 0.06;
+  --glass-border-radius: 40px;
+
+  /* Glass component variables */
+  --glass-bg: rgba(255, 255, 255, var(--glass-bg-opacity));
+  --glass-bg-strong: rgba(255, 255, 255, 0.06);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, var(--glass-border-opacity));
+  --glass-border-strong: rgba(255, 255, 255, 0.1);
+  --glass-border-subtle: rgba(255, 255, 255, 0.04);
+
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-subtle: rgba(255, 255, 255, 0.3);
+
+  /* Background glows */
+  --glow-blue: rgba(59, 130, 246, 0.25);
+  --glow-purple: rgba(168, 85, 247, 0.25);
 }
 
 /* Container - Vertical Deck Layout */
