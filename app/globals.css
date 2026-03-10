@@ -705,8 +705,8 @@ body::before {
 /* Variant classes for GlassCard */
 .glass-card-strong {
   background: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(calc(var(--glass-blur, 40px) * 1.2)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
-  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 40px) * 1.2)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
+  backdrop-filter: blur(calc(var(--glass-blur, 3px) * 1.2)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 3px) * 1.2)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
 }
 
 .glass-card-strong::before {
@@ -751,8 +751,8 @@ body::before {
 
 .glass-card-subtle {
   background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(calc(var(--glass-blur, 40px) * 0.8)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
-  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 40px) * 0.8)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
+  backdrop-filter: blur(calc(var(--glass-blur, 3px) * 0.8)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 3px) * 0.8)) saturate(var(--glass-saturation, 100%)) brightness(var(--glass-brightness, 1.2)) !important;
 }
 
 .glass-card-subtle::before {
