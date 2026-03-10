@@ -26,7 +26,7 @@
   --spacing-sm: 12px;
 
   /* Glass Controls - These can be adjusted via the control panel */
-  --glass-blur: 12px;
+  --glass-blur: 3px;
   --glass-saturation: 120%;
   --glass-brightness: 1;
   --glass-bg-opacity: 0.06;
@@ -464,7 +464,7 @@ body.saaS-style::before {
   /* Glass Effects - Subtle for light mode */
   --glass-bg: rgba(255, 255, 255, 0.8);
   --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-blur: 12px;
+  --glass-blur: 3px;
   --glass-saturation: 100%;
   --glass-brightness: 1.05;
 
@@ -501,7 +501,7 @@ body.saaS-style::before {
   /* Glass Effects - Subtle for dark mode */
   --glass-bg: rgba(0, 0, 0, 0.6);
   --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-blur: 12px;
+  --glass-blur: 3px;
   --glass-brightness: 1.1;
 
   --text-primary: #ffffff;
