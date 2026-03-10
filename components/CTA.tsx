@@ -53,7 +53,8 @@ export default function CTA() {
               Meet your new<br />iPhone assistant.
             </h2>
             <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
-              Join TestFlight and experience autonomous tasks on iOS.
+              HiOS turns simple requests into completed tasks.<br />
+              Experience the future of iPhone automation.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">

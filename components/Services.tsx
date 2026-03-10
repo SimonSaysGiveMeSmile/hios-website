@@ -23,7 +23,7 @@ export default function Services() {
             <span style={{ color: 'var(--text-muted)' }}>Working together.</span>
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
-            HiOS coordinates actions across apps and websites.
+            HiOS connects actions across the services you already use.
           </p>
         </div>
 

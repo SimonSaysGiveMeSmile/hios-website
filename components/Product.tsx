@@ -95,11 +95,11 @@ export default function Product() {
           {/* Right: Text */}
           <div className="space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              An agent runtime<br />
-              <span style={{ color: 'var(--text-muted)' }}>for iPhone.</span>
+              Built to get<br />
+              <span style={{ color: 'var(--text-muted)' }}>things done.</span>
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              HiOS turns voice commands into autonomous workflows across apps, shortcuts, and the web.
+              HiOS turns your request into a plan and completes it across apps, websites, and device tools.
             </p>
           </div>
         </div>

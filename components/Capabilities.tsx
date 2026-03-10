@@ -51,7 +51,7 @@ export default function Capabilities() {
         </svg>
       ),
       title: 'Works across the web',
-      description: 'HiOS navigates websites and completes tasks automatically.',
+      description: 'Navigate websites and complete tasks automatically.',
       color: 'from-orange-500 to-red-600',
       miniDiagram: (
         <div className="mt-4 flex items-center gap-2">
@@ -72,7 +72,7 @@ export default function Capabilities() {
         </svg>
       ),
       title: 'Remembers what matters',
-      description: 'HiOS learns your contacts, habits, and preferences.',
+      description: 'Learns your contacts, habits, and preferences.',
       color: 'from-emerald-500 to-green-600',
       miniDiagram: (
         <div className="mt-4 flex items-center gap-2">
@@ -93,8 +93,11 @@ export default function Capabilities() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-            Built to get things done.
+            Just say it.
           </h2>
+          <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
+            HiOS handles everyday tasks across your device.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
