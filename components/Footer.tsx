@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="relative border-t py-12 px-6" style={{ borderColor: 'var(--glass-border-subtle)' }}>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="flex flex-col items-center space-y-6">
           {/* Logo */}
           <div className="flex flex-col items-center gap-2">

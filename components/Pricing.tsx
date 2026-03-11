@@ -47,7 +47,7 @@ export default function Pricing() {
 
   return (
     <section id="pricing" className="relative min-h-screen flex items-center justify-center px-6 py-24">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
             Automation for everyone.

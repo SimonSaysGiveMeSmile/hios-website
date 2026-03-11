@@ -1,8 +1,101 @@
 'use client';
 
-import React from 'react';
-import GlassCard from './GlassCard';
+import React, { useState } from 'react';
 import InteractiveButton from './InteractiveButton';
+
+// Phone showcase group - can be swapped for different demos
+function PhoneShowcase() {
+  const [activeDemo, setActiveDemo] = useState(0);
+
+  const demos = [
+    {
+      id: 'uber-airport',
+      command: '"Book me an Uber to the airport"',
+      tasks: [
+        { label: 'Ride selected', done: true },
+        { label: 'Pickup confirmed', done: true },
+        { label: 'Driver assigned', done: true },
+      ],
+      status: 'On the way',
+    },
+  ];
+
+  const currentDemo = demos[activeDemo];
+
+  return (
+    <div className="relative h-full flex flex-col">
+      {/* Phone Container - maintains 9:19.5 aspect ratio from PNG */}
+      <div className="relative w-full" style={{ aspectRatio: '9 / 19.5' }}>
+        {/* Screen content - fills available height */}
+        <div
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            top: '5.8%',
+            left: '6.5%',
+            width: '87%',
+            height: '88.5%',
+            borderRadius: '2.5rem',
+            background: 'linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)',
+          }}
+        >
+          <div className="h-full p-5 pt-12 flex flex-col justify-between">
+            {/* Command bubble */}
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 transform rotate-180">
+                <img src="/logo.svg" alt="HiOS" className="w-full h-full" />
+              </div>
+              <div className="flex-1 glass-subtle rounded-2xl p-4">
+                <p className="text-sm" style={{ color: 'var(--text-primary)' }}>{currentDemo.command}</p>
+              </div>
+            </div>
+
+            {/* Task checklist - grows to fill space */}
+            <div className="flex-1 flex flex-col justify-center py-4">
+              <div className="space-y-3">
+                {currentDemo.tasks.map((task, i) => (
+                  <div key={i} className="flex items-center gap-3 text-sm" style={{ color: 'var(--text-secondary)' }}>
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center ${task.done ? 'bg-emerald-500' : 'bg-gray-600'}`}>
+                      {task.done && (
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    {task.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Status badge */}
+            <div className="mt-auto p-3 rounded-xl bg-emerald-500/20 text-center">
+              <span className="text-sm font-semibold text-emerald-400">{currentDemo.status}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* PNG Phone Frame Overlay */}
+        <img
+          src="/ip16-gold-front.png"
+          alt="iPhone Frame"
+          className="absolute inset-0 w-full h-full pointer-events-none"
+        />
+      </div>
+
+      {/* Demo indicator dots */}
+      <div className="flex justify-center gap-2 mt-4">
+        {demos.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveDemo(i)}
+            className={`w-2 h-2 rounded-full transition-all ${i === activeDemo ? 'bg-emerald-400 w-4' : 'bg-gray-600'}`}
+            aria-label={`View demo ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function CTA() {
   return (
@@ -10,47 +103,14 @@ export default function CTA() {
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Device mockup */}
-          <div className="relative">
-            <GlassCard className="p-8" variant="subtle">
-              <div className="space-y-6">
-                {/* Command bubble */}
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 transform rotate-180">
-                    <img src="/logo.svg" alt="HiOS" className="w-full h-full" />
-                  </div>
-                  <div className="flex-1 glass-subtle rounded-2xl p-4">
-                    <p className="text-sm" style={{ color: 'var(--text-primary)' }}>"Book me an Uber to the airport"</p>
-                  </div>
-                </div>
-
-                {/* Checklist */}
-                <div className="space-y-2">
-                  {[
-                    'Ride selected',
-                    'Pickup confirmed',
-                    'Driver assigned',
-                  ].map((task, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-3 p-3 rounded-xl glass-subtle"
-                    >
-                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>{task}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </GlassCard>
+          <div className="relative w-full max-w-xs mx-auto order-2 lg:order-1">
+            <PhoneShowcase />
           </div>
 
           {/* Right: CTA content */}
-          <div className="space-y-8 text-center lg:text-left">
+          <div className="space-y-8 text-center lg:text-left order-1 lg:order-2">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Meet your new<br />iPhone assistant.
+              Meet your new<br />iPhone.
             </h2>
             <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
               HiOS turns simple requests into completed tasks.<br />

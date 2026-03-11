@@ -6,10 +6,24 @@ import GlassCard from './GlassCard';
 export default function Problem() {
   return (
     <section className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Comparison diagram */}
-          <div className="relative">
+          <div className="relative order-1 lg:order-1">
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
+              Phones follow commands.<br />
+              <span style={{ color: 'var(--text-muted)' }}>But you still do the work.</span>
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              Other AI agents chat. HiOS does the work for you.
+            </p>
+            <p className="text-base" style={{ color: 'var(--text-muted)' }}>
+              A truly agent-native runtime on your phone—not cloud code running remotely.
+            </p>
+          </div>
+
+          {/* Right: Text */}
+          <div className="space-y-6 order-2 lg:order-2">
             <GlassCard className="p-8" variant="subtle">
               <div className="grid grid-cols-2 gap-8">
                 {/* Current UX */}
@@ -106,17 +120,6 @@ export default function Problem() {
                 </div>
               </div>
             </GlassCard>
-          </div>
-
-          {/* Right: Text */}
-          <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Phones follow commands.<br />
-              <span style={{ color: 'var(--text-muted)' }}>But you still do the work.</span>
-            </h2>
-            <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              Most assistants answer questions. HiOS completes tasks.
-            </p>
           </div>
         </div>
       </div>

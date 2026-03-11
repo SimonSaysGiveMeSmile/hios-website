@@ -1,92 +1,98 @@
 'use client';
 
-import React from 'react';
-import GlassCard from './GlassCard';
+import React, { useState } from 'react';
 import InteractiveButton from './InteractiveButton';
 
-function AgentTaskIllustration() {
+// Phone showcase group - can be swapped for different demos
+function PhoneShowcase() {
+  const [activeDemo, setActiveDemo] = useState(0);
+
+  const demos = [
+    {
+      id: 'scan-accountant',
+      command: '"Scan and send to accountant"',
+      tasks: [
+        { label: 'Capture', done: true },
+        { label: 'Extract', done: true },
+        { label: 'Find contact', done: true },
+        { label: 'Send', done: true },
+      ],
+      status: 'Task Completed',
+    },
+  ];
+
+  const currentDemo = demos[activeDemo];
+
   return (
-    <div className="relative w-full aspect-[16/10] max-w-2xl mx-auto">
-      {/* Main task automation UI */}
-      <GlassCard className="absolute inset-0 p-6" variant="subtle">
-        <div className="h-full flex flex-col gap-4">
-          {/* Command bubble */}
-          <div className="flex items-start gap-3">
-            <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 transform rotate-180">
-              <img src="/logo.svg" alt="HiOS" className="w-full h-full" />
-            </div>
-            <div className="flex-1 glass-subtle rounded-2xl p-4">
-              <p className="text-sm" style={{ color: 'var(--text-primary)' }}>"Scan this document and send it to my accountant"</p>
-            </div>
-          </div>
-
-          {/* Task checklist */}
-          <div className="flex-1 space-y-2">
-            {[
-              { label: 'Capture image', delay: '0ms' },
-              { label: 'Extract text', delay: '100ms' },
-              { label: 'Find contact', delay: '200ms' },
-              { label: 'Send email', delay: '300ms' },
-            ].map((task, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 p-3 rounded-xl glass-subtle animate-fadeInUp"
-                style={{ animationDelay: task.delay }}
-              >
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>{task.label}</span>
+    <div className="relative h-full flex flex-col">
+      {/* Phone Container - maintains 9:19.5 aspect ratio from PNG */}
+      <div className="relative w-full" style={{ aspectRatio: '9 / 19.5' }}>
+        {/* Screen content - fills available height */}
+        <div
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            top: '5.8%',
+            left: '6.5%',
+            width: '87%',
+            height: '88.5%',
+            borderRadius: '2.5rem',
+            background: 'linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)',
+          }}
+        >
+          <div className="h-full p-4 pt-10 flex flex-col justify-between">
+            {/* Command bubble */}
+            <div className="flex items-start gap-2">
+              <div className="w-8 h-8 flex-shrink-0">
+                <img src="/logo.svg" alt="HiOS" className="w-full h-full" />
               </div>
-            ))}
-          </div>
+              <div className="flex-1 glass-subtle rounded-2xl p-3">
+                <p className="text-xs" style={{ color: 'var(--text-primary)' }}>{currentDemo.command}</p>
+              </div>
+            </div>
 
-          {/* Progress badge */}
-          <div className="flex items-center justify-center gap-2 p-3 rounded-xl bg-gradient-to-r from-emerald-500/20 to-green-600/20 border border-emerald-500/30">
-            <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="text-sm font-semibold text-emerald-400">Task Completed</span>
+            {/* Task checklist - grows to fill space */}
+            <div className="flex-1 flex flex-col justify-center py-4">
+              <div className="space-y-3">
+                {currentDemo.tasks.map((task, i) => (
+                  <div key={i} className="flex items-center gap-3 text-sm" style={{ color: 'var(--text-secondary)' }}>
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center ${task.done ? 'bg-emerald-500' : 'bg-gray-600'}`}>
+                      {task.done && (
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    {task.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Status badge */}
+            <div className="mt-auto p-3 rounded-xl bg-emerald-500/20 text-center">
+              <span className="text-sm font-semibold text-emerald-400">{currentDemo.status}</span>
+            </div>
           </div>
         </div>
-      </GlassCard>
 
-      {/* AI reasoning bubble */}
-      <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-56 animate-float">
-        <GlassCard className="p-4" variant="strong">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>AI Reasoning</span>
-            </div>
-            <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              Document recognized → extracting text → identifying contact → composing email
-            </p>
-          </div>
-        </GlassCard>
+        {/* PNG Phone Frame Overlay */}
+        <img
+          src="/ip16-gold-front.png"
+          alt="iPhone Frame"
+          className="absolute inset-0 w-full h-full pointer-events-none"
+        />
       </div>
 
-      {/* Speed indicator */}
-      <div className="absolute -left-4 bottom-8 animate-float" style={{ animationDelay: '1s' }}>
-        <GlassCard className="p-3" variant="strong">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div>
-              <div className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>10s</div>
-              <div className="text-xs" style={{ color: 'var(--text-muted)' }}>vs 90s manual</div>
-            </div>
-          </div>
-        </GlassCard>
+      {/* Demo indicator dots */}
+      <div className="flex justify-center gap-2 mt-4">
+        {demos.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveDemo(i)}
+            className={`w-2 h-2 rounded-full transition-all ${i === activeDemo ? 'bg-emerald-400 w-4' : 'bg-gray-600'}`}
+            aria-label={`View demo ${i + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
@@ -99,8 +105,8 @@ export default function Hero() {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-blue)' }} />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-purple)' }} />
 
-      <div className="relative max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left: Text content */}
           <div className="space-y-8 text-center lg:text-left">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
@@ -111,10 +117,6 @@ export default function Hero() {
             <p className="text-xl max-w-lg mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>
               Tell your phone what you want.<br />
               Let HiOS handle the rest.
-            </p>
-
-            <p className="text-base" style={{ color: 'var(--text-subtle)' }}>
-              HiOS turns simple requests into completed tasks across apps, shortcuts, and the web.
             </p>
 
             {/* CTA Buttons */}
@@ -136,8 +138,10 @@ export default function Hero() {
           </div>
 
           {/* Right: Visual illustration */}
-          <div className="relative">
-            <AgentTaskIllustration />
+          <div className="relative w-full max-w-xs mx-auto">
+            <div className="transform scale-80 origin-top">
+              <PhoneShowcase />
+            </div>
           </div>
         </div>
       </div>

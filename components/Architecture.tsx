@@ -71,44 +71,10 @@ export default function Architecture() {
 
   return (
     <section id="architecture" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Architecture stack */}
-          <div className="relative">
-            <GlassCard className="p-8" variant="subtle">
-              <div className="space-y-3">
-                {layers.map((layer, i) => (
-                  <div key={i} className="relative">
-                    <div className={`p-4 rounded-xl glass-subtle hover:scale-[1.02] transition-transform cursor-pointer`}>
-                      <div className="flex items-center gap-4">
-                        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${layer.color} flex items-center justify-center flex-shrink-0`}>
-                          {layer.icon}
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
-                            {layer.title}
-                          </h3>
-                          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                            {layer.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    {i < layers.length - 1 && (
-                      <div className="flex justify-center py-1">
-                        <svg className="w-5 h-5 text-emerald-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </GlassCard>
-          </div>
-
-          {/* Right: Text */}
-          <div className="space-y-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="space-y-12">
+          {/* Text */}
+          <div className="space-y-6 text-center lg:text-left">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
               Powered by<br />
               <span style={{ color: 'var(--text-muted)' }}>OpenClaw.</span>
@@ -116,6 +82,39 @@ export default function Architecture() {
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               HiOS runs autonomous agents that plan tasks and execute them across your device.
             </p>
+          </div>
+
+          {/* Architecture stack - horizontal layout (below text) */}
+          <div className="relative">
+            <GlassCard className="p-6" variant="subtle">
+              {/* Horizontal flex layout */}
+              <div className="flex items-center gap-2 flex-wrap justify-center">
+                {layers.map((layer, i) => (
+                  <React.Fragment key={i}>
+                    <div className="flex-shrink-0 p-3 rounded-xl glass-subtle hover:scale-[1.02] transition-transform cursor-pointer">
+                      <div className="flex flex-col items-center gap-2 min-w-[80px]">
+                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${layer.color} flex items-center justify-center flex-shrink-0`}>
+                          {layer.icon}
+                        </div>
+                        <div className="text-center">
+                          <h3 className="text-xs font-semibold mb-0.5" style={{ color: 'var(--text-primary)' }}>
+                            {layer.title}
+                          </h3>
+                          <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
+                            {layer.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    {i < layers.length - 1 && (
+                      <svg className="w-4 h-4 text-emerald-400 flex-shrink-0 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </GlassCard>
           </div>
         </div>
       </div>

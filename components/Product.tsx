@@ -60,7 +60,7 @@ export default function Product() {
 
   return (
     <section id="product" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text */}
           <div className="space-y-6 order-2 lg:order-1">

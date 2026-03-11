@@ -1,9 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import GlassCard from './GlassCard';
 
 export default function Capabilities() {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+
   const capabilities = [
     {
       icon: (
@@ -11,18 +13,10 @@ export default function Capabilities() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
         </svg>
       ),
-      title: 'Just say it',
+      title: 'Just say the words',
       description: 'HiOS understands natural language and executes the task.',
+      details: 'Voice commands, natural language processing, smart intent detection.',
       color: 'from-blue-500 to-cyan-600',
-      miniDiagram: (
-        <div className="flex items-center gap-2 mt-4">
-          <div className="flex-1 h-1 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full animate-pulse" />
-          <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-          <div className="px-3 py-1 rounded-full bg-cyan-500/20 text-xs text-cyan-400">Command</div>
-        </div>
-      )
     },
     {
       icon: (
@@ -33,16 +27,8 @@ export default function Capabilities() {
       ),
       title: "See what's on screen",
       description: 'Extract text from documents, screenshots, and photos.',
+      details: 'OCR, screenshot analysis, document parsing, visual recognition.',
       color: 'from-purple-500 to-pink-600',
-      miniDiagram: (
-        <div className="mt-4 p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
-          <div className="space-y-1">
-            <div className="h-1.5 bg-purple-500/30 rounded w-full" />
-            <div className="h-1.5 bg-purple-500/50 rounded w-3/4" />
-            <div className="h-1.5 bg-purple-500/30 rounded w-5/6" />
-          </div>
-        </div>
-      )
     },
     {
       icon: (
@@ -52,18 +38,8 @@ export default function Capabilities() {
       ),
       title: 'Works across the web',
       description: 'Navigate websites and complete tasks automatically.',
+      details: 'Browser automation, form filling, web scraping, API integration.',
       color: 'from-orange-500 to-red-600',
-      miniDiagram: (
-        <div className="mt-4 flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-orange-500 animate-ping" />
-          <div className="flex-1 flex gap-1">
-            <div className="w-2 h-2 rounded-sm bg-orange-500/30" />
-            <div className="w-2 h-2 rounded-sm bg-orange-500/50" />
-            <div className="w-2 h-2 rounded-sm bg-orange-500/30" />
-          </div>
-          <span className="text-xs text-orange-400">Click</span>
-        </div>
-      )
     },
     {
       icon: (
@@ -73,52 +49,67 @@ export default function Capabilities() {
       ),
       title: 'Remembers what matters',
       description: 'Learns your contacts, habits, and preferences.',
+      details: 'Contact memory, preference learning, context awareness.',
       color: 'from-emerald-500 to-green-600',
-      miniDiagram: (
-        <div className="mt-4 flex items-center gap-2">
-          <div className="flex gap-1">
-            <div className="w-2 h-2 rounded-full bg-emerald-500" />
-            <div className="w-2 h-2 rounded-full bg-emerald-500/60" />
-            <div className="w-2 h-2 rounded-full bg-emerald-500/30" />
-          </div>
-          <div className="flex-1 h-px bg-gradient-to-r from-emerald-500/50 to-transparent" />
-          <span className="text-xs text-emerald-400">History</span>
-        </div>
-      )
     },
   ];
 
   return (
     <section id="capabilities" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-            Just say it.
+            Just say the words.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
             HiOS handles everyday tasks across your device.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {capabilities.map((cap, i) => (
             <div
               key={i}
               className="animate-fadeInUp"
               style={{ animationDelay: `${i * 100}ms` }}
             >
-              <GlassCard className="p-8 h-full hover:scale-[1.02] transition-transform" variant="subtle">
+              <div
+                className="p-6 h-full hover:scale-[1.02] transition-transform cursor-pointer glass-subtle rounded-2xl"
+                onClick={() => setExpandedIndex(expandedIndex === i ? null : i)}
+              >
                 <div className="space-y-4">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${cap.color} flex items-center justify-center`}>
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${cap.color} flex items-center justify-center`}>
                     {cap.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{cap.title}</h3>
+                    <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{cap.title}</h3>
                     <p style={{ color: 'var(--text-muted)' }}>{cap.description}</p>
                   </div>
-                  {cap.miniDiagram}
+
+                  {/* Dropdown indicator */}
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-xs" style={{ color: 'var(--text-subtle)' }}>
+                      {expandedIndex === i ? 'Less' : 'More'}
+                    </span>
+                    <svg
+                      className={`w-4 h-4 transition-transform ${expandedIndex === i ? 'rotate-180' : ''}`}
+                      style={{ color: 'var(--text-subtle)' }}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+
+                  {/* Expanded details */}
+                  {expandedIndex === i && (
+                    <div className="pt-3 mt-3 border-t border-white/10">
+                      <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{cap.details}</p>
+                    </div>
+                  )}
                 </div>
-              </GlassCard>
+              </div>
             </div>
           ))}
         </div>
