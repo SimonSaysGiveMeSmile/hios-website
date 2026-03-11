@@ -100,13 +100,13 @@ function PhoneShowcase() {
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-24 overflow-hidden">
+    <section id="hero" className="relative h-screen flex items-center justify-center px-6 overflow-hidden" style={{ paddingTop: '80px' }}>
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-blue)' }} />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-purple)' }} />
 
       <div className="relative max-w-5xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left: Text content */}
           <div className="space-y-8 text-center lg:text-left">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
@@ -138,10 +138,8 @@ export default function Hero() {
           </div>
 
           {/* Right: Visual illustration */}
-          <div className="relative w-full max-w-xs mx-auto">
-            <div className="transform scale-80 origin-top">
-              <PhoneShowcase />
-            </div>
+          <div className="relative w-full max-w-xs mx-auto mt-8">
+            <PhoneShowcase />
           </div>
         </div>
       </div>
