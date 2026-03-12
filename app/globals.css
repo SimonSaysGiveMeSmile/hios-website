@@ -1282,6 +1282,16 @@ body::before {
     );
 }
 
+/* Hero text shift - desktop only */
+.hero-text-shift {
+  margin-left: 0;
+}
+@media (min-width: 1024px) {
+  .hero-text-shift {
+    margin-left: 50px;
+  }
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {

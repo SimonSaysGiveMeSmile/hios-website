@@ -104,7 +104,7 @@ export default function Hero() {
       <div className="relative max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-4 lg:gap-6 items-center">
           {/* Left: Text content */}
-          <div className="space-y-8 text-center lg:text-left lg:ml-[50px]">
+          <div className="space-y-8 text-center lg:text-left hero-text-shift">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
               Your iPhone.<br />
               <span style={{ color: 'var(--text-secondary)' }}>Now it gets things done.</span>

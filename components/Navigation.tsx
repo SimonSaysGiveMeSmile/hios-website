@@ -31,8 +31,8 @@ export default function Navigation() {
         <div className="flex items-center justify-between w-full"
           style={{ color: 'var(--text-primary)' }}
         >
-          {/* Logo */}
-          <a href="#" className="flex items-center justify-center gap-3 hover:opacity-80 transition-opacity">
+          {/* Logo - Links to main page */}
+          <a href="/" className="flex items-center justify-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 flex items-center justify-center">
               <img src="/logo.svg" alt="HiOS Logo" className="w-full h-full logo-img" />
             </div>
