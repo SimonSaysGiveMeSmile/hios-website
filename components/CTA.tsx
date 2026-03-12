@@ -106,11 +106,11 @@ function PhoneShowcase() {
 
 export default function CTA() {
   return (
-    <section id="cta" className="relative min-h-screen flex items-center justify-center px-6 py-24">
+    <section id="cta" className="relative min-h-screen flex items-center justify-center px-4 md:px-6 py-16 md:py-24">
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Device mockup */}
-          <div className="relative w-full max-w-xs mx-auto order-2 lg:order-1">
+          <div className="relative w-full max-w-xs mx-auto mt-8 md:mt-0 order-2 lg:order-1">
             <PhoneShowcase />
           </div>
 

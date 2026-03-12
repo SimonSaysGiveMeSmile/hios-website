@@ -90,24 +90,13 @@ function PhoneShowcase() {
         />
       </div>
 
-      {/* Demo indicator dots */}
-      <div className="flex justify-center gap-2 mt-4">
-        {demos.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveDemo(i)}
-            className={`w-2 h-2 rounded-full transition-all ${i === activeDemo ? 'bg-emerald-400 w-4' : 'bg-gray-600'}`}
-            aria-label={`View demo ${i + 1}`}
-          />
-        ))}
-      </div>
     </div>
   );
 }
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center px-6 overflow-hidden" style={{ paddingTop: '80px' }}>
+    <section id="hero" className="relative h-screen flex items-center justify-center px-4 md:px-6 overflow-hidden" style={{ paddingTop: '80px', paddingBottom: '2rem' }}>
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-blue)' }} />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-purple)' }} />
@@ -145,7 +134,7 @@ export default function Hero() {
           </div>
 
           {/* Right: Visual illustration */}
-          <div className="relative w-full max-w-xs mx-auto mt-8">
+          <div className="relative w-full max-w-xs mx-auto mt-8 md:mt-0">
             <PhoneShowcase />
           </div>
         </div>
