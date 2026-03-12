@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, JSX } from 'react';
 import InteractiveButton from './InteractiveButton';
 
 // Reusable iOS-style icons
@@ -294,7 +294,7 @@ const useCases = [
 
 // Icon renderer helper
 const renderIcon = (iconName: string) => {
-  const iconMap: Record<string, () => JSX.Element> = {
+  const iconMap: Record<string, () => React.JSX.Element> = {
     phone: Icons.phone,
     message: Icons.message,
     calendar: Icons.calendar,
@@ -344,112 +344,143 @@ function PhoneShowcase() {
     return () => clearInterval(interval);
   }, []);
 
-  const useCase = useCases[currentUseCase];
+  const currentUse = useCases[currentUseCase];
+  const nextUse = useCases[(currentUseCase + 1) % useCases.length];
+
+  // Render a single screen content
+  const renderScreen = (useCaseData: typeof useCases[0], isExiting: boolean) => {
+    // When transitioning: exiting screen slides left, entering screen slides in from right
+    let transform = 'translateX(0)';
+    if (isTransitioning) {
+      if (isExiting) {
+        transform = 'translateX(-100%)'; // Current screen exits to left
+      } else {
+        transform = 'translateX(100%)'; // New screen starts from right
+      }
+    }
+
+    return (
+    <div
+      className="absolute inset-0"
+      style={{
+        borderRadius: '2rem',
+        background: isDark ? '#000000' : '#F2F2F7',
+        transform: transform,
+        transition: 'transform 1s ease-in-out',
+        zIndex: isExiting ? 1 : 2,
+        overflow: 'hidden',
+      }}
+    >
+      {/* Status bar area */}
+      <div className="flex items-center justify-between px-4 pt-3 pb-2" style={{ background: isDark ? '#000000' : '#F2F2F7' }}>
+        <span className="text-xs font-semibold" style={{ color: isDark ? '#FFFFFF' : '#000000' }}>9:41</span>
+        <div className="flex items-center gap-1">
+          <div className="w-4 h-2.5 rounded-sm" style={{ background: isDark ? '#FFFFFF' : '#000000', opacity: 0.3 }} />
+        </div>
+      </div>
+
+      {/* App Header */}
+      <div className="px-4 py-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: '#007AFF' }}>
+              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+              </svg>
+            </div>
+            <span className="text-sm font-semibold" style={{ color: isDark ? '#FFFFFF' : '#000000' }}>{useCaseData.appName}</span>
+          </div>
+          <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: isDark ? '#1C1C1E' : '#E5E5EA' }}>
+            <div className="w-3 h-3 rounded-full" style={{ background: isDark ? '#FFFFFF' : '#000000', opacity: 0.2 }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Search Bar */}
+      <div className="px-4 pb-3">
+        <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: isDark ? '#1C1C1E' : '#FFFFFF' }}>
+          <Icons.search />
+          <span className="text-sm" style={{ color: '#8E8E93' }}>{useCaseData.searchPlaceholder}</span>
+        </div>
+      </div>
+
+      {/* Task Card */}
+      <div className="px-4 py-2">
+        <div className="rounded-2xl p-4" style={{ background: isDark ? '#1C1C1E' : '#FFFFFF' }}>
+          {/* Card Header */}
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-xs font-medium uppercase" style={{ color: '#8E8E93', letterSpacing: '0.5px' }}>{useCaseData.taskLabel}</span>
+            <span className="text-xs font-semibold px-2 py-1 rounded-lg" style={{ background: '#007AFF20', color: '#007AFF' }}>{useCaseData.progress}%</span>
+          </div>
+
+          {/* Task List */}
+          <div className="space-y-3">
+            {useCaseData.tasks.map((task, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                  task.done ? '' : task.pending ? 'border-2' : ''
+                }`} style={{
+                  background: task.done ? '#34C759' : 'transparent',
+                  borderColor: task.pending ? '#007AFF' : 'transparent'
+                }}>
+                  {task.done && <Icons.check />}
+                  {task.pending && <Icons.pending />}
+                </div>
+                <span className="text-sm" style={{ color: task.done ? (isDark ? '#FFFFFF' : '#000000') : '#8E8E93' }}>
+                  {task.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Progress Bar */}
+          <div className="mt-4">
+            <div className="h-1 rounded-full" style={{ background: isDark ? '#38383A' : '#E5E5EA' }}>
+              <div className="h-full rounded-full transition-all duration-500" style={{ width: `${useCaseData.progress}%`, background: '#007AFF' }} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Actions */}
+      <div className="px-4 py-3">
+        <span className="text-xs font-medium uppercase px-2" style={{ color: '#8E8E93', letterSpacing: '0.5px' }}>Quick Actions</span>
+        <div className="grid grid-cols-4 gap-2 mt-2">
+          {useCaseData.quickActions.map((action, i) => (
+            <div key={i} className="flex flex-col items-center gap-1 py-2 rounded-xl" style={{ background: isDark ? '#1C1C1E' : '#FFFFFF' }}>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: isDark ? '#2C2C2E' : '#F2F2F7' }}>
+                {renderIcon(action.icon)}
+              </div>
+              <span className="text-[10px]" style={{ color: isDark ? '#FFFFFF' : '#000000' }}>{action.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    );
+  };
 
   return (
     <div className="relative h-full flex flex-col">
       {/* Phone Container */}
       <div className="relative w-full" style={{ aspectRatio: '9 / 19.5' }}>
-        {/* Screen content - iOS App UI */}
+        {/* Screen container - clips screens to phone area */}
         <div
-          className="absolute overflow-hidden"
+          className="absolute"
           style={{
             top: '14.5%',
             left: '15%',
             width: '70%',
             height: '71%',
             borderRadius: '2rem',
-            background: isDark ? '#000000' : '#F2F2F7',
-            transform: isTransitioning ? 'translateX(100%)' : 'translateX(0)',
-            opacity: isTransitioning ? 0 : 1,
-            transition: 'transform 1s ease-in-out, opacity 1s ease-in-out',
+            overflow: 'hidden',
           }}
         >
-          {/* Status bar area */}
-          <div className="flex items-center justify-between px-4 pt-3 pb-2" style={{ background: isDark ? '#000000' : '#F2F2F7' }}>
-            <span className="text-xs font-semibold" style={{ color: isDark ? '#FFFFFF' : '#000000' }}>9:41</span>
-            <div className="flex items-center gap-1">
-              <div className="w-4 h-2.5 rounded-sm" style={{ background: isDark ? '#FFFFFF' : '#000000', opacity: 0.3 }} />
-            </div>
-          </div>
+          {/* Current screen (exiting to left) */}
+          {renderScreen(currentUse, true)}
 
-          {/* App Header */}
-          <div className="px-4 py-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: '#007AFF' }}>
-                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                  </svg>
-                </div>
-                <span className="text-sm font-semibold" style={{ color: isDark ? '#FFFFFF' : '#000000' }}>{useCase.appName}</span>
-              </div>
-              <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: isDark ? '#1C1C1E' : '#E5E5EA' }}>
-                <div className="w-3 h-3 rounded-full" style={{ background: isDark ? '#FFFFFF' : '#000000', opacity: 0.2 }} />
-              </div>
-            </div>
-          </div>
-
-          {/* Search Bar */}
-          <div className="px-4 pb-3">
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: isDark ? '#1C1C1E' : '#FFFFFF' }}>
-              <Icons.search />
-              <span className="text-sm" style={{ color: '#8E8E93' }}>{useCase.searchPlaceholder}</span>
-            </div>
-          </div>
-
-          {/* Task Card */}
-          <div className="px-4 py-2">
-            <div className="rounded-2xl p-4" style={{ background: isDark ? '#1C1C1E' : '#FFFFFF' }}>
-              {/* Card Header */}
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-medium uppercase" style={{ color: '#8E8E93', letterSpacing: '0.5px' }}>{useCase.taskLabel}</span>
-                <span className="text-xs font-semibold px-2 py-1 rounded-lg" style={{ background: '#007AFF20', color: '#007AFF' }}>{useCase.progress}%</span>
-              </div>
-
-              {/* Task List */}
-              <div className="space-y-3">
-                {useCase.tasks.map((task, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                      task.done ? '' : task.pending ? 'border-2' : ''
-                    }`} style={{
-                      background: task.done ? '#34C759' : 'transparent',
-                      borderColor: task.pending ? '#007AFF' : 'transparent'
-                    }}>
-                      {task.done && <Icons.check />}
-                      {task.pending && <Icons.pending />}
-                    </div>
-                    <span className="text-sm" style={{ color: task.done ? (isDark ? '#FFFFFF' : '#000000') : '#8E8E93' }}>
-                      {task.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Progress Bar */}
-              <div className="mt-4">
-                <div className="h-1 rounded-full" style={{ background: isDark ? '#38383A' : '#E5E5EA' }}>
-                  <div className="h-full rounded-full transition-all duration-500" style={{ width: `${useCase.progress}%`, background: '#007AFF' }} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Actions */}
-          <div className="px-4 py-3">
-            <span className="text-xs font-medium uppercase px-2" style={{ color: '#8E8E93', letterSpacing: '0.5px' }}>Quick Actions</span>
-            <div className="grid grid-cols-4 gap-2 mt-2">
-              {useCase.quickActions.map((action, i) => (
-                <div key={i} className="flex flex-col items-center gap-1 py-2 rounded-xl" style={{ background: isDark ? '#1C1C1E' : '#FFFFFF' }}>
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: isDark ? '#2C2C2E' : '#F2F2F7' }}>
-                    {renderIcon(action.icon)}
-                  </div>
-                  <span className="text-[10px]" style={{ color: isDark ? '#FFFFFF' : '#000000' }}>{action.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Next screen (entering from right) - always rendered but only visible during transition */}
+          {renderScreen(nextUse, false)}
         </div>
 
         {/* PNG Phone Frame Overlay */}
