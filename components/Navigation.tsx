@@ -10,6 +10,7 @@ interface NavigationProps {
 export default function Navigation({ minimal = false }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(minimal);
+  const [mouseNearTop, setMouseNearTop] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -25,12 +26,28 @@ export default function Navigation({ minimal = false }: NavigationProps) {
   }, [minimal]);
 
   useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Show nav when mouse is within 80px of top of viewport
+      if (minimal && e.clientY < 80) {
+        setMouseNearTop(true);
+      } else {
+        setMouseNearTop(false);
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [minimal]);
+
+  useEffect(() => {
     // Initially hide for minimal mode to trigger animation
     if (minimal) {
       const timer = setTimeout(() => setIsHidden(true), 100);
       return () => clearTimeout(timer);
     }
   }, [minimal]);
+
+  // Show nav when mouse is near top
+  const shouldShow = minimal ? !isHidden || mouseNearTop : true;
 
   const navItems = [
     { label: 'Overview', href: '#hero' },
@@ -43,7 +60,7 @@ export default function Navigation({ minimal = false }: NavigationProps) {
   return (
     <nav
       className={`fixed top-6 left-0 right-0 z-50 px-6 transition-all duration-500 ${
-        minimal ? (isHidden ? '-translate-y-24 opacity-0' : 'translate-y-0 opacity-100') : ''
+        minimal ? (shouldShow ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0') : ''
       }`}
       style={{
         transitionProperty: 'transform, opacity',

@@ -28,8 +28,11 @@ export default function Services() {
         </div>
 
         <GlassCard className="p-16" variant="subtle">
-          {/* Connected icon layout with HiOS in center */}
-          <div className="relative">
+          {/* Connected icon layout with HiOS in center - circular arrangement */}
+          <div className="relative w-full max-w-lg mx-auto" style={{ aspectRatio: '1 / 1' }}>
+            {/* Circular ring */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 rounded-full border border-dashed" style={{ borderColor: 'var(--text-muted)', opacity: 0.3 }} />
+
             {/* Central HiOS logo */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
@@ -37,74 +40,60 @@ export default function Services() {
               </div>
             </div>
 
-            {/* Connected services in a brainstorm pattern */}
-            <div className="grid grid-cols-4 gap-8">
-              {/* Row 1 - top */}
-              <div className="flex justify-end items-start pt-12">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-16 h-16 rounded-xl glass-subtle flex items-center justify-center">
-                    {services[0].logo}
-                  </div>
-                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{services[0].name}</span>
-                </div>
+            {/* Circular arrangement of 8 icons */}
+            {/* Top - Amazon */}
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1 flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full glass-subtle flex items-center justify-center" style={{ color: 'var(--text-primary)' }}>
+                {services[0].logo}
               </div>
-              <div className="flex justify-start items-start pt-12">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-16 h-16 rounded-xl glass-subtle flex items-center justify-center">
-                    {services[1].logo}
-                  </div>
-                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{services[1].name}</span>
-                </div>
-              </div>
-              <div className="flex justify-end items-start pt-12">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-16 h-16 rounded-xl glass-subtle flex items-center justify-center">
-                    {services[2].logo}
-                  </div>
-                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{services[2].name}</span>
-                </div>
-              </div>
-              <div className="flex justify-start items-start pt-8">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-16 h-16 rounded-xl glass-subtle flex items-center justify-center">
-                    {services[3].logo}
-                  </div>
-                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{services[3].name}</span>
-                </div>
-              </div>
+            </div>
 
-              {/* Row 2 - bottom */}
-              <div className="flex justify-end items-end pb-12">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-16 h-16 rounded-xl glass-subtle flex items-center justify-center">
-                    {services[4].logo}
-                  </div>
-                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{services[4].name}</span>
-                </div>
+            {/* Top Right - DoorDash */}
+            <div className="absolute right-0 top-[15%] -translate-y-1 flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full glass-subtle flex items-center justify-center" style={{ color: 'var(--text-primary)' }}>
+                {services[1].logo}
               </div>
-              <div className="flex justify-start items-end pb-12">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-16 h-16 rounded-xl glass-subtle flex items-center justify-center">
-                    {services[5].logo}
-                  </div>
-                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{services[5].name}</span>
-                </div>
+            </div>
+
+            {/* Right - Uber */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full glass-subtle flex items-center justify-center" style={{ color: 'var(--text-primary)' }}>
+                {services[2].logo}
               </div>
-              <div className="flex justify-end items-end pb-12">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-16 h-16 rounded-xl glass-subtle flex items-center justify-center">
-                    {services[6].logo}
-                  </div>
-                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{services[6].name}</span>
-                </div>
+            </div>
+
+            {/* Bottom Right - Gmail */}
+            <div className="absolute right-0 bottom-[15%] -translate-y-1 flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full glass-subtle flex items-center justify-center" style={{ color: 'var(--text-primary)' }}>
+                {services[3].logo}
               </div>
-              <div className="flex justify-start items-end pb-8">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-16 h-16 rounded-xl glass-subtle flex items-center justify-center">
-                    {services[7].logo}
-                  </div>
-                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{services[7].name}</span>
-                </div>
+            </div>
+
+            {/* Bottom - Spotify */}
+            <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1 flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full glass-subtle flex items-center justify-center" style={{ color: 'var(--text-primary)' }}>
+                {services[4].logo}
+              </div>
+            </div>
+
+            {/* Bottom Left - WhatsApp */}
+            <div className="absolute left-0 bottom-[15%] -translate-y-1 flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full glass-subtle flex items-center justify-center" style={{ color: 'var(--text-primary)' }}>
+                {services[5].logo}
+              </div>
+            </div>
+
+            {/* Left - Netflix */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full glass-subtle flex items-center justify-center" style={{ color: 'var(--text-primary)' }}>
+                {services[6].logo}
+              </div>
+            </div>
+
+            {/* Top Left - LinkedIn */}
+            <div className="absolute left-0 top-[15%] -translate-y-1 flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full glass-subtle flex items-center justify-center" style={{ color: 'var(--text-primary)' }}>
+                {services[7].logo}
               </div>
             </div>
 
