@@ -74,8 +74,7 @@ export default function Problem() {
           {/* Right: Text */}
           <div className="space-y-6 order-1 lg:order-2">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Phones follow commands.<br />
-              <span style={{ color: 'var(--text-muted)' }}>But you still do the work.</span>
+              Sit back and let your phone do the magic
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               Other AI agents chat. HiOS does the work for you.

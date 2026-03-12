@@ -76,8 +76,7 @@ export default function Architecture() {
           {/* Text */}
           <div className="space-y-6 text-center lg:text-left">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Powered by<br />
-              <span style={{ color: 'var(--text-muted)' }}>OpenClaw.</span>
+              Supports OpenClaw & More
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               HiOS runs autonomous agents that plan tasks and execute them across your device.
