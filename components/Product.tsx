@@ -63,7 +63,7 @@ export default function Product() {
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text */}
-          <div className="space-y-6 order-2 lg:order-1">
+          <div className="space-y-6 order-1 lg:order-1">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
               Built to get<br />
               <span style={{ color: 'var(--text-muted)' }}>things done.</span>
@@ -74,7 +74,7 @@ export default function Product() {
           </div>
 
           {/* Right: Architecture stack */}
-          <div className="relative order-1 lg:order-2">
+          <div className="relative order-2 lg:order-2">
             <div className="space-y-3">
               {layers.map((layer, i) => (
                 <div
