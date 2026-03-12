@@ -1284,11 +1284,11 @@ body::before {
 
 /* Hero text shift - desktop only */
 .hero-text-shift {
-  margin-left: 0;
+  margin-left: 0 !important;
 }
 @media (min-width: 1024px) {
   .hero-text-shift {
-    margin-left: 50px;
+    margin-left: 50px !important;
   }
 }
 

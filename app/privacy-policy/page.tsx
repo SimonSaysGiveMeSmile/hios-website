@@ -115,10 +115,10 @@ export default function PrivacyPolicyPage() {
   return (
     <ThemeProvider>
       <div className="min-h-screen" style={{ background: '#f5f5f5' }}>
-        <Navigation />
+        <Navigation minimal />
 
-        {/* Main Content */}
-        <div className="pt-24 pb-16" style={{ padding: '0 24px' }}>
+        {/* Main Content - shifted down by 150px */}
+        <div className="pt-24 pb-16" style={{ padding: '174px 24px 64px' }}>
           <div className="max-w-3xl mx-auto">
             {/* Header */}
             <div className="text-center mb-12">
