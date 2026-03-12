@@ -1285,10 +1285,21 @@ body::before {
 /* Hero text shift - desktop only */
 .hero-text-shift {
   margin-left: 0 !important;
+  transform: translateX(0);
 }
 @media (min-width: 1024px) {
   .hero-text-shift {
-    margin-left: 50px !important;
+    transform: translateX(0px) !important;
+  }
+}
+
+/* Hero container shift - desktop only */
+.hero-container-shift {
+  transform: translateX(0);
+}
+@media (min-width: 1024px) {
+  .hero-container-shift {
+    transform: translateX(140px) !important;
   }
 }
 

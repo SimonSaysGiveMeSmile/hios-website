@@ -96,16 +96,16 @@ function PhoneShowcase() {
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center px-4 md:px-6 overflow-hidden pt-[200px] md:pt-20 pb-8">
+    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center px-4 md:px-6 overflow-visible pt-[120px] md:pt-16 pb-4">
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-blue)' }} />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-purple)' }} />
 
-      <div className="relative max-w-5xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-2 lg:gap-4 items-center">
+      <div className="relative max-w-5xl mx-auto" style={{ transform: 'translateX(80px)' }}>
+        <div className="grid lg:grid-cols-2 gap-0 lg:gap-2 items-center">
           {/* Left: Text content */}
-          <div className="space-y-8 text-center lg:text-left hero-text-shift">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
+          <div className="space-y-4 text-center lg:text-left hero-text-shift">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight" style={{ color: 'var(--text-primary)' }}>
               Your iPhone.<br />
               <span style={{ color: 'var(--text-secondary)' }}>Now it gets things done.</span>
             </h1>
@@ -134,7 +134,7 @@ export default function Hero() {
           </div>
 
           {/* Right: Visual illustration */}
-          <div className="relative w-full max-w-xs mx-auto mt-8 md:mt-0 lg:ml-auto lg:mr-0">
+          <div className="relative w-full max-w-sm mt-0">
             <PhoneShowcase />
           </div>
         </div>
