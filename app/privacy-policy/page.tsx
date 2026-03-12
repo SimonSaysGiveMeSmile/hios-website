@@ -87,20 +87,20 @@ function renderListItem(item: string | ListItem, itemIdx: number) {
   const isObject = typeof item === 'object' && item !== null && 'strong' in item;
 
   return (
-    <li key={itemIdx} className="flex items-start gap-2" style={{ color: '#333333' }}>
+    <li key={itemIdx} className="flex items-start gap-2" style={{ color: 'var(--color-subtext)' }}>
       <span
         className="mt-2 flex-shrink-0"
         style={{
           width: '6px',
           height: '6px',
-          background: '#000000',
+          background: 'var(--color-text)',
           borderRadius: '50%',
         }}
       ></span>
       <span>
         {isObject ? (
           <>
-            <strong style={{ color: '#000000' }}>{(item as ListItem).strong}</strong>
+            <strong style={{ color: 'var(--color-text)' }}>{(item as ListItem).strong}</strong>
             {' '}{(item as ListItem).desc}
           </>
         ) : (
@@ -114,7 +114,7 @@ function renderListItem(item: string | ListItem, itemIdx: number) {
 export default function PrivacyPolicyPage() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen" style={{ background: '#f5f5f5' }}>
+      <div className="min-h-screen" style={{ background: 'var(--color-bg)' }}>
         <Navigation minimal />
 
         {/* Main Content - shifted down by 150px */}
@@ -125,24 +125,24 @@ export default function PrivacyPolicyPage() {
               <div
                 className="inline-flex items-center gap-2 px-4 py-2 mb-4"
                 style={{
-                  background: '#ffffff',
-                  border: '2px solid #000000',
+                  background: 'var(--color-card)',
+                  border: '2px solid var(--color-text)',
                   borderRadius: '12px',
                 }}
               >
                 <span
                   className="w-2 h-2 rounded-full"
-                  style={{ background: '#000000' }}
+                  style={{ background: 'var(--color-text)' }}
                 ></span>
-                <span className="text-xs font-semibold" style={{ color: '#000000' }}>Legal</span>
+                <span className="text-xs font-semibold" style={{ color: 'var(--color-text)' }}>Legal</span>
               </div>
               <h1
                 className="text-4xl md:text-5xl font-bold mb-4"
-                style={{ color: '#000000', letterSpacing: '-0.02em' }}
+                style={{ color: 'var(--color-text)', letterSpacing: '-0.02em' }}
               >
                 Privacy Policy
               </h1>
-              <p className="text-base" style={{ color: '#666666' }}>
+              <p className="text-base" style={{ color: 'var(--color-subtext)' }}>
                 Last updated: March 11, 2026
               </p>
             </div>
@@ -151,7 +151,8 @@ export default function PrivacyPolicyPage() {
             <div
               className="bg-white"
               style={{
-                border: '2px solid #000000',
+                background: 'var(--color-card)',
+                border: '2px solid var(--color-text)',
                 borderRadius: '16px',
                 padding: '32px',
               }}
@@ -161,14 +162,14 @@ export default function PrivacyPolicyPage() {
                   {section.title && (
                     <h2
                       className="text-xl font-bold mb-4"
-                      style={{ color: '#000000' }}
+                      style={{ color: 'var(--color-text)' }}
                     >
                       {section.title}
                     </h2>
                   )}
 
                   {section.content && (
-                    <p className="mb-4 leading-relaxed" style={{ color: '#333333' }}>
+                    <p className="mb-4 leading-relaxed" style={{ color: 'var(--color-subtext)' }}>
                       {section.content}
                     </p>
                   )}
@@ -180,7 +181,7 @@ export default function PrivacyPolicyPage() {
                   )}
 
                   {section.note && (
-                    <p className="mb-4 leading-relaxed" style={{ color: '#333333' }}>
+                    <p className="mb-4 leading-relaxed" style={{ color: 'var(--color-subtext)' }}>
                       {section.note}{' '}
                       {section.links?.map((link, linkIdx) => (
                         <span key={linkIdx}>
@@ -189,7 +190,7 @@ export default function PrivacyPolicyPage() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="underline hover:no-underline"
-                            style={{ color: '#000000' }}
+                            style={{ color: 'var(--color-text)' }}
                           >
                             {link.text}
                           </a>
@@ -201,11 +202,11 @@ export default function PrivacyPolicyPage() {
                   )}
 
                   {section.email && (
-                    <p className="mb-4 leading-relaxed" style={{ color: '#333333' }}>
+                    <p className="mb-4 leading-relaxed" style={{ color: 'var(--color-subtext)' }}>
                       <a
                         href={`mailto:${section.email}`}
                         className="underline hover:no-underline"
-                        style={{ color: '#000000' }}
+                        style={{ color: 'var(--color-text)' }}
                       >
                         {section.email}
                       </a>

@@ -102,7 +102,7 @@ export default function Hero() {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--glow-purple)' }} />
 
       <div className="relative max-w-5xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-4 lg:gap-6 items-center">
+        <div className="grid lg:grid-cols-2 gap-2 lg:gap-4 items-center">
           {/* Left: Text content */}
           <div className="space-y-8 text-center lg:text-left hero-text-shift">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
@@ -116,7 +116,7 @@ export default function Hero() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <div className="flex flex-row items-center justify-center lg:justify-start gap-4">
               <InteractiveButton primary>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
@@ -134,7 +134,7 @@ export default function Hero() {
           </div>
 
           {/* Right: Visual illustration */}
-          <div className="relative w-full max-w-xs mx-auto mt-8 md:mt-0">
+          <div className="relative w-full max-w-xs mx-auto mt-8 md:mt-0 lg:ml-auto lg:mr-0">
             <PhoneShowcase />
           </div>
         </div>
