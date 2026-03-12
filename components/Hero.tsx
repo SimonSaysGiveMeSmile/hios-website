@@ -27,15 +27,15 @@ function PhoneShowcase() {
     <div className="relative h-full flex flex-col">
       {/* Phone Container - maintains 9:19.5 aspect ratio from PNG */}
       <div className="relative w-full" style={{ aspectRatio: '9 / 19.5' }}>
-        {/* Screen content - fills available height */}
+        {/* Screen content - scaled to fit within 80% sized PNG */}
         <div
           className="absolute inset-0 overflow-hidden"
           style={{
-            top: '5.8%',
-            left: '6.5%',
-            width: '87%',
-            height: '88.5%',
-            borderRadius: '2.5rem',
+            top: '14.5%',
+            left: '15%',
+            width: '70%',
+            height: '71%',
+            borderRadius: '2rem',
             background: 'linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)',
           }}
         >
@@ -75,11 +75,18 @@ function PhoneShowcase() {
           </div>
         </div>
 
-        {/* PNG Phone Frame Overlay */}
+        {/* PNG Phone Frame Overlay - 20% smaller, centered */}
         <img
           src="/ip16-gold-front.png"
           alt="iPhone Frame"
-          className="absolute inset-0 w-full h-full pointer-events-none"
+          className="absolute pointer-events-none"
+          style={{
+            top: '50%',
+            left: '50%',
+            width: '80%',
+            height: 'auto',
+            transform: 'translate(-50%, -50%)',
+          }}
         />
       </div>
 
