@@ -5,14 +5,28 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
-const sections = [
+interface ListItem {
+  strong?: string;
+  desc?: string;
+}
+
+interface Section {
+  title?: string;
+  content?: string;
+  list?: (string | ListItem)[];
+  note?: string;
+  links?: { text: string; url: string }[];
+  email?: string;
+}
+
+const sections: Section[] = [
   {
     title: 'Overview',
-    content: `HiOS ("the App") is an AI-powered personal assistant for iOS. We are committed to protecting your privacy. This policy explains what data the App accesses, how it is used, and your choices.`,
+    content: 'HiOS ("the App") is an AI-powered personal assistant for iOS. We are committed to protecting your privacy. This policy explains what data the App accesses, how it is used, and your choices.',
   },
   {
     title: 'Data We Access',
-    content: `HiOS may request access to the following on your device, only when you use features that require them:`,
+    content: 'HiOS may request access to the following on your device, only when you use features that require them:',
     list: [
       { strong: 'Microphone & Speech Recognition', desc: 'to process voice commands. Audio is processed in real time and is not stored.' },
       { strong: 'Contacts', desc: 'to look up people when sending messages. Contact data stays on your device.' },
@@ -22,12 +36,12 @@ const sections = [
   },
   {
     title: 'Data Sent to Third-Party Services',
-    content: `When you use HiOS to complete tasks, your text commands and conversation history may be sent to the following AI services for processing:`,
+    content: 'When you use HiOS to complete tasks, your text commands and conversation history may be sent to the following AI services for processing:',
     list: [
       { strong: 'Anthropic', desc: '(Claude API) — to generate task plans and responses' },
       { strong: 'OpenAI', desc: '(GPT API) — to generate task plans and responses' },
     ],
-    note: `These services process your requests and return results. Please refer to Anthropic's Privacy Policy and OpenAI's Privacy Policy for details on how they handle data.`,
+    note: 'These services process your requests and return results. Please refer to',
     links: [
       { text: "Anthropic's Privacy Policy", url: 'https://www.anthropic.com/privacy' },
       { text: "OpenAI's Privacy Policy", url: 'https://openai.com/privacy' },
@@ -35,11 +49,11 @@ const sections = [
   },
   {
     title: 'Web Browsing',
-    content: `HiOS includes a built-in browser to help automate web-based tasks. Web page content is processed locally on your device to understand page structure. We do not collect or store your browsing history.`,
+    content: 'HiOS includes a built-in browser to help automate web-based tasks. Web page content is processed locally on your device to understand page structure. We do not collect or store your browsing history.',
   },
   {
     title: 'API Keys',
-    content: `HiOS allows you to enter your own API keys for AI services. These keys are stored locally on your device and are never shared with us or any third party.`,
+    content: 'HiOS allows you to enter your own API keys for AI services. These keys are stored locally on your device and are never shared with us or any third party.',
   },
   {
     title: 'Data We Do Not Collect',
@@ -52,22 +66,50 @@ const sections = [
   },
   {
     title: 'Data Storage',
-    content: `All app data (settings, conversation history, API keys) is stored locally on your device. We do not operate servers that store your personal data.`,
+    content: 'All app data (settings, conversation history, API keys) is stored locally on your device. We do not operate servers that store your personal data.',
   },
   {
     title: "Children's Privacy",
-    content: `HiOS is not directed at children under 13. We do not knowingly collect data from children.`,
+    content: 'HiOS is not directed at children under 13. We do not knowingly collect data from children.',
   },
   {
     title: 'Changes to This Policy',
-    content: `We may update this policy from time to time. Changes will be posted on this page with an updated date.`,
+    content: 'We may update this policy from time to time. Changes will be posted on this page with an updated date.',
   },
   {
     title: 'Contact',
-    content: `If you have questions about this privacy policy, contact us at:`,
+    content: 'If you have questions about this privacy policy, contact us at:',
     email: 'realsimontian@gmail.com',
   },
 ];
+
+function renderListItem(item: string | ListItem, itemIdx: number) {
+  const isObject = typeof item === 'object' && item !== null && 'strong' in item;
+
+  return (
+    <li key={itemIdx} className="flex items-start gap-2" style={{ color: '#333333' }}>
+      <span
+        className="mt-2 flex-shrink-0"
+        style={{
+          width: '6px',
+          height: '6px',
+          background: '#000000',
+          borderRadius: '50%',
+        }}
+      ></span>
+      <span>
+        {isObject ? (
+          <>
+            <strong style={{ color: '#000000' }}>{(item as ListItem).strong}</strong>
+            {' '}{(item as ListItem).desc}
+          </>
+        ) : (
+          String(item)
+        )}
+      </span>
+    </li>
+  );
+}
 
 export default function PrivacyPolicyPage() {
   return (
@@ -116,12 +158,14 @@ export default function PrivacyPolicyPage() {
             >
               {sections.map((section, idx) => (
                 <div key={idx} className={idx > 0 ? 'mt-10' : ''}>
-                  <h2
-                    className="text-xl font-bold mb-4"
-                    style={{ color: '#000000' }}
-                  >
-                    {section.title}
-                  </h2>
+                  {section.title && (
+                    <h2
+                      className="text-xl font-bold mb-4"
+                      style={{ color: '#000000' }}
+                    >
+                      {section.title}
+                    </h2>
+                  )}
 
                   {section.content && (
                     <p className="mb-4 leading-relaxed" style={{ color: '#333333' }}>
@@ -131,29 +175,7 @@ export default function PrivacyPolicyPage() {
 
                   {section.list && (
                     <ul className="mb-4 space-y-3">
-                      {section.list.map((item, itemIdx) => (
-                        <li key={itemIdx} className="flex items-start gap-2" style={{ color: '#333333' }}>
-                          <span
-                            className="mt-2 flex-shrink-0"
-                            style={{
-                              width: '6px',
-                              height: '6px',
-                              background: '#000000',
-                              borderRadius: '50%',
-                            }}
-                          ></span>
-                          <span>
-                            {'strong' in item ? (
-                              <>
-                                <strong style={{ color: '#000000' }}>{(item as { strong: string }).strong}</strong>
-                                {' '}{(item as { desc: string }).desc}
-                              </>
-                            ) : (
-                              item
-                            )}
-                          </span>
-                        </li>
-                      ))}
+                      {section.list.map((item, itemIdx) => renderListItem(item, itemIdx))}
                     </ul>
                   )}
 
@@ -171,9 +193,10 @@ export default function PrivacyPolicyPage() {
                           >
                             {link.text}
                           </a>
-                          {linkIdx < section.links.length - 1 ? ', ' : ''}
+                          {linkIdx < (section.links?.length || 0) - 1 ? ', ' : ''}
                         </span>
                       ))}
+                      {' for details on how they handle data.'}
                     </p>
                   )}
 
