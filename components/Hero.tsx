@@ -330,17 +330,17 @@ function PhoneShowcase() {
     return () => observer.disconnect();
   }, []);
 
-  // Randomly cycle through use cases
+  // Cycle through use cases every 5 seconds with sliding animation
   useEffect(() => {
     const cycleUseCase = () => {
       setIsTransitioning(true);
       setTimeout(() => {
         setCurrentUseCase((prev) => (prev + 1) % useCases.length);
         setIsTransitioning(false);
-      }, 300);
+      }, 1000);
     };
 
-    const interval = setInterval(cycleUseCase, 4000);
+    const interval = setInterval(cycleUseCase, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -352,7 +352,7 @@ function PhoneShowcase() {
       <div className="relative w-full" style={{ aspectRatio: '9 / 19.5' }}>
         {/* Screen content - iOS App UI */}
         <div
-          className={`absolute overflow-hidden transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+          className="absolute overflow-hidden"
           style={{
             top: '14.5%',
             left: '15%',
@@ -360,6 +360,9 @@ function PhoneShowcase() {
             height: '71%',
             borderRadius: '2rem',
             background: isDark ? '#000000' : '#F2F2F7',
+            transform: isTransitioning ? 'translateX(100%)' : 'translateX(0)',
+            opacity: isTransitioning ? 0 : 1,
+            transition: 'transform 1s ease-in-out, opacity 1s ease-in-out',
           }}
         >
           {/* Status bar area */}
