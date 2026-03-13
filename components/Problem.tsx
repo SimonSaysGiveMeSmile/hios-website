@@ -57,7 +57,7 @@ export default function Problem() {
               <div className="grid grid-cols-[1fr_1px_1fr] gap-4 items-stretch">
                 {/* Manual iPhone Workflow */}
                 <div className="flex flex-col">
-                  <h3 className="text-xs font-semibold uppercase tracking-wider mb-4 text-center" style={{ color: 'var(--text-subtle)' }}>
+                  <h3 className="text-xs font-semibold uppercase tracking-wider mb-4 text-center" style={{ color: 'var(--text-secondary)' }}>
                     Manual iPhone
                   </h3>
 
