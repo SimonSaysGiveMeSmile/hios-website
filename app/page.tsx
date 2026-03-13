@@ -15,7 +15,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 export default function Home() {
   return (
     <ThemeProvider>
-      <main className="min-h-screen">
+      <main className="min-h-screen overflow-x-hidden max-w-full">
         <Navigation />
         <Hero />
         <Problem />
