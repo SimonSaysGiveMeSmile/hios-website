@@ -166,7 +166,7 @@ export default function Problem() {
           {/* Right: Text */}
           <div className="space-y-6 order-1 lg:order-2">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Sit back and watch<br />your phone cook.
+              Sit back and <span className="gradient-text">watch</span><br />your phone <span className="gradient-text">cook.</span>
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               HiOS allows you to book restaurants, order food, and call Uber with your voice while you continue using your device.

@@ -520,11 +520,10 @@ export default function CTA() {
           {/* Right: CTA content */}
           <div className="space-y-8 text-center lg:text-left order-1 lg:order-2">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Meet your new<br />iPhone.
+              Meet your <span className="gradient-text">new</span><br />iPhone.
             </h2>
             <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
-              HiOS turns simple requests into completed tasks.<br />
-              Experience the future of iPhone automation.
+              Download HiOS today and experience the future of iPhone automation.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">

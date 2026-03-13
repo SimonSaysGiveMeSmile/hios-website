@@ -76,16 +76,7 @@ export default function Architecture() {
           {/* Text */}
           <div className="space-y-6 text-center lg:text-left">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              <span className="inline-flex items-center gap-3">
-                Supports OpenClaw & More
-                <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2C10.5 2 9 3 9 4.5C9 5.5 9.5 6.5 10.5 7L12 9L13.5 7C14.5 6.5 15 5.5 15 4.5C15 3 13.5 2 12 2Z" fill="#FF6B6B"/>
-                  <path d="M8 10C6.5 10 5 11.5 5 13C5 14 5.5 15 6.5 15.5L8 17L9.5 15.5C10.5 15 11 14 11 13C11 11.5 9.5 10 8 10Z" fill="#FF6B6B"/>
-                  <path d="M16 10C14.5 10 13 11.5 13 13C13 14 13.5 15 14.5 15.5L16 17L17.5 15.5C18.5 15 19 14 19 13C19 11.5 17.5 10 16 10Z" fill="#FF6B6B"/>
-                  <path d="M12 18C10.5 18 9 19.5 9 21C9 22 9.5 22.5 10.5 22.5L12 23L13.5 22.5C14.5 22.5 15 22 15 21C15 19.5 13.5 18 12 18Z" fill="#FF6B6B"/>
-                  <ellipse cx="12" cy="7" rx="3" ry="2" fill="#FF8E8E"/>
-                </svg>
-              </span>
+              Supports <span className="gradient-text">OpenClaw</span> & More 🦞
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               HiOS is an iOS native agent runtime that runs autonomous agents within a secure sandbox, supporting any available agent framework including OpenClaw.

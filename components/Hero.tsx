@@ -543,7 +543,7 @@ export default function Hero() {
           {/* Left: Text content */}
           <div className="space-y-4 text-center lg:text-left hero-text-shift">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Unlock the Full Potential of Your iPhone
+              Unlock the<br /><span className="gradient-text" style={{ fontSize: '1.15em' }}>Full Potential</span><br />of Your iPhone
             </h1>
 
             <p className="text-xl max-w-lg mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>

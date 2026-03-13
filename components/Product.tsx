@@ -66,7 +66,7 @@ export default function Product() {
           <div className="space-y-6 order-1 lg:order-1 flex flex-col justify-center">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
               Built to get<br />
-              <span style={{ color: 'var(--text-muted)' }}>things done.</span>
+              <span className="gradient-text">things done.</span>
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               HiOS turns your request into a plan and completes it across apps, websites, and device tools.

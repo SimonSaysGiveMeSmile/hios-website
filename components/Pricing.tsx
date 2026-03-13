@@ -50,7 +50,7 @@ export default function Pricing() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-            Automation for everyone.
+            Automation for <span className="gradient-text">everyone</span>.
           </h2>
         </div>
 
