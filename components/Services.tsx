@@ -160,17 +160,7 @@ export default function Services() {
               viewBox="0 0 100 100"
               style={{ overflow: 'visible' }}
             >
-              {/* Orbit track */}
-              <circle
-                cx={cx}
-                cy={cy}
-                r={40}
-                fill="none"
-                stroke={isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)'}
-                strokeWidth={0.5}
-              />
-
-              {/* Connection lines */}
+              {/* Connection lines — visible only on hover */}
               {positions.map((pos, i) => {
                 const isHovered = hoveredIndex === i;
                 const svc = services[i];
@@ -181,13 +171,7 @@ export default function Services() {
                     y1={cy}
                     x2={pos.x}
                     y2={pos.y}
-                    stroke={
-                      isHovered
-                        ? svc.color
-                        : isDark
-                          ? 'rgba(255,255,255,0.08)'
-                          : 'rgba(0,0,0,0.06)'
-                    }
+                    stroke={isHovered ? svc.color : 'transparent'}
                     strokeWidth={isHovered ? 0.8 : 0.4}
                     style={{
                       transition: 'stroke 0.4s ease, stroke-width 0.4s ease',
