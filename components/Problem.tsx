@@ -71,10 +71,10 @@ export default function Problem() {
                           border: '1px solid rgba(142, 142, 147, 0.2)',
                         }}
                       >
-                        <div className="w-6 h-6 flex items-center justify-center" style={{ color: 'var(--text-muted)' }}>
+                        <div className="w-6 h-6 flex items-center justify-center" style={{ color: 'var(--text-secondary)' }}>
                           {step.icon}
                         </div>
-                        <span className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
+                        <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
                           {step.label}
                         </span>
                       </div>
@@ -83,10 +83,10 @@ export default function Problem() {
 
                   {/* Step count - prominent */}
                   <div className="pt-4 text-center">
-                    <div className="text-3xl font-bold" style={{ color: 'var(--text-muted)' }}>
+                    <div className="text-3xl font-bold" style={{ color: 'var(--text-secondary)' }}>
                       5
                     </div>
-                    <div className="text-xs font-medium mt-1" style={{ color: 'var(--text-muted)', opacity: 0.7 }}>
+                    <div className="text-xs font-medium mt-1" style={{ color: 'var(--text-secondary)', opacity: 0.8 }}>
                       steps
                     </div>
                   </div>
