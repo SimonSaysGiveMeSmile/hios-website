@@ -197,7 +197,7 @@ const GlassContainer = forwardRef<
         <GlassFilter mode={mode} id={filterId} displacementScale={displacementScale} aberrationIntensity={aberrationIntensity} width={glassSize.width} height={glassSize.height} shaderMapUrl={shaderMapUrl} />
 
         <div
-          className="glass"
+          className="lg-glass"
           style={{
             borderRadius: `${cornerRadius}px`,
             position: "relative",
@@ -216,7 +216,7 @@ const GlassContainer = forwardRef<
         >
           {/* backdrop layer that gets wiggly */}
           <span
-            className="glass__warp"
+            className="lg-glass__warp"
             style={
               {
                 ...backdropStyle,

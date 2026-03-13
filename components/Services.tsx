@@ -284,7 +284,7 @@ export default function Services() {
             >
               Works with all
               <br />
-              <span className="gradient-text" style={{ fontWeight: 600 }}>
+              <span className="gradient-text">
                 your favorite apps.
               </span>
             </h2>

@@ -541,9 +541,9 @@ export default function Hero() {
       <div className="relative max-w-5xl mx-auto lg:translate-x-20">
         <div className="grid lg:grid-cols-2 gap-0 lg:gap-2 items-center">
           {/* Left: Text content */}
-          <div className="space-y-4 text-center lg:text-left hero-text-shift">
+          <div className="space-y-4 text-center lg:text-left lg:-translate-x-5 hero-text-shift">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Unlock the<br /><span className="gradient-text" style={{ fontSize: '1.15em' }}>Full Potential</span><br />of Your iPhone
+              Unlock the<br /><span className="gradient-text-hero">Full Potential</span><br />of Your iPhone
             </h1>
 
             <p className="text-xl max-w-lg mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>

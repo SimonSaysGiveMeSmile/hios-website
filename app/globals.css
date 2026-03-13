@@ -26,12 +26,12 @@
   --spacing-sm: 12px;
 
   /* Glass Controls - These can be adjusted via the control panel */
-  --glass-blur: 3px;
-  --glass-saturation: 120%;
+  --glass-blur: 1px;
+  --glass-saturation: 130%;
   --glass-brightness: 1;
-  --glass-bg-opacity: 0.12;
-  --glass-border-opacity: 0.1;
-  --glass-border-radius: 40px;
+  --glass-bg-opacity: 0.06;
+  --glass-border-opacity: 0.08;
+  --glass-border-radius: 30px;
 
   /* Glass component variables */
   --glass-bg: rgba(255, 255, 255, var(--glass-bg-opacity));
@@ -334,51 +334,86 @@ body.saaS-style::before {
   color: #111;
 }
 
-/* --- 5. Gradient Text (Gliver: Gold + Silver) --- */
+/* --- 5. Gradient Text (Accent — faint metallic) --- */
 .gradient-text {
   background: linear-gradient(
-    105deg,
-    #e8dcc8 0%,
-    #f7f0e3 15%,
-    #f0ead8 28%,
-    #ffffff 42%,
-    #f2ecdf 55%,
-    #faf6ee 68%,
-    #ede5d4 82%,
-    #f8f3e8 100%
+    120deg,
+    #e0cfc0 0%,
+    #ecddd4 25%,
+    #e2d0d8 50%,
+    #d8cce0 75%,
+    #d0c8dc 100%
   ) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   color: transparent !important;
   display: inline;
-  filter: brightness(1.1);
-  animation: shimmer 8s ease-in-out infinite;
-  background-size: 200% 100%;
-}
-
-@keyframes shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
 }
 
 [data-theme="light"] .gradient-text {
   background: linear-gradient(
-    105deg,
-    #a89878 0%,
-    #c4b494 15%,
-    #b8a888 28%,
-    #d4c8a8 42%,
-    #bfb090 55%,
-    #ccbc9c 68%,
-    #a89878 82%,
-    #c0b090 100%
+    120deg,
+    #9a8878 0%,
+    #a08880 25%,
+    #987e8c 50%,
+    #8e7e98 75%,
+    #847894 100%
   ) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   color: transparent !important;
-  background-size: 200% 100%;
+}
+
+/* --- 5b. Hero Accent — gold-silver sandblasted metallic --- */
+.gradient-text-hero {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.14'/%3E%3C/svg%3E"),
+    linear-gradient(
+      125deg,
+      #c9a84c 0%,
+      #e0c872 12%,
+      #f0dfa0 22%,
+      #f5ebb8 32%,
+      #ede0b0 42%,
+      #d8cca0 52%,
+      #c8c0b0 62%,
+      #d0ccc8 72%,
+      #e0dcd8 82%,
+      #c8c4c0 92%,
+      #b8b4b0 100%
+    ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  display: inline;
+  filter: contrast(1.1) brightness(1.05);
+}
+
+[data-theme="light"] .gradient-text-hero {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.14'/%3E%3C/svg%3E"),
+    linear-gradient(
+      125deg,
+      #8a7028 0%,
+      #a08838 12%,
+      #b89c48 22%,
+      #c4a850 32%,
+      #b89c48 42%,
+      #a89040 52%,
+      #988868 62%,
+      #8a8478 72%,
+      #989490 82%,
+      #888480 92%,
+      #787470 100%
+    ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: contrast(1.15);
 }
 
 /* --- 6. Device Showcase --- */
@@ -660,9 +695,9 @@ body::before {
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
   box-shadow:
     0 1px 2px var(--color-shadow),
-    0 6px 20px rgba(0, 0, 0, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    0 4px 12px rgba(0, 0, 0, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
   border: 1px solid var(--glass-border);
   border-radius: var(--glass-border-radius);
   will-change: backdrop-filter, transform;
@@ -673,10 +708,10 @@ body::before {
 .liquidGlass-wrapper:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.06),
-    0 30px 60px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    0 6px 18px rgba(0, 0, 0, 0.04),
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* Enhanced edge highlight with refraction simulation */
@@ -685,22 +720,22 @@ body::before {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  padding: 1.5px;
+  padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.1) 15%,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.08) 15%,
     transparent 35%,
     transparent 65%,
-    rgba(255, 255, 255, 0.1) 85%,
-    rgba(255, 255, 255, 0.35) 100%
+    rgba(255, 255, 255, 0.08) 85%,
+    rgba(255, 255, 255, 0.25) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.8;
+  opacity: 0.6;
   transition: opacity 0.3s ease;
 }
 
@@ -717,15 +752,15 @@ body::before {
   background:
     radial-gradient(
       ellipse 100% 100% at 50% 0%,
-      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.08) 0%,
       transparent 50%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.05) 0%,
       transparent 30%,
       transparent 80%,
-      rgba(255, 255, 255, 0.04) 100%
+      rgba(255, 255, 255, 0.02) 100%
     );
   pointer-events: none;
   z-index: 0;
@@ -734,63 +769,63 @@ body::before {
 
 /* Dark mode adjustments with enhanced depth */
 [data-theme="dark"] .liquidGlass-wrapper {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.3),
-    0 6px 20px rgba(0, 0, 0, 0.2),
-    0 30px 60px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
 }
 
 [data-theme="dark"] .liquidGlass-wrapper:hover {
   box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.4),
-    0 30px 60px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    0 6px 18px rgba(0, 0, 0, 0.3),
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 }
 
 [data-theme="dark"] .liquidGlass-wrapper::before {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.08) 15%,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.06) 15%,
     transparent 35%,
     transparent 65%,
-    rgba(255, 255, 255, 0.08) 85%,
-    rgba(255, 255, 255, 0.22) 100%
+    rgba(255, 255, 255, 0.06) 85%,
+    rgba(255, 255, 255, 0.15) 100%
   );
-  padding: 1.5px;
+  padding: 1px;
 }
 
 [data-theme="dark"] .liquidGlass-wrapper::after {
   background:
     radial-gradient(
       ellipse 100% 100% at 50% 0%,
-      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.06) 0%,
       transparent 50%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.04) 0%,
       transparent 30%,
       transparent 80%,
-      rgba(255, 255, 255, 0.03) 100%
+      rgba(255, 255, 255, 0.02) 100%
     );
   mix-blend-mode: screen;
 }
 
 /* Variant classes for GlassCard */
 .glass-card-strong {
-  background: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(calc(var(--glass-blur, 3px) * 1.5)) saturate(calc(var(--glass-saturation, 100%) * 1.2)) brightness(calc(var(--glass-brightness, 1) * 1.15)) contrast(1.05) !important;
-  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 3px) * 1.5)) saturate(calc(var(--glass-saturation, 100%) * 1.2)) brightness(calc(var(--glass-brightness, 1) * 1.15)) contrast(1.05) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(calc(var(--glass-blur, 1px) * 1.5)) saturate(var(--glass-saturation, 130%)) brightness(var(--glass-brightness, 1)) contrast(1.02) !important;
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 1px) * 1.5)) saturate(var(--glass-saturation, 130%)) brightness(var(--glass-brightness, 1)) contrast(1.02) !important;
   box-shadow:
-    0 8px 32px rgba(31, 38, 135, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    0 4px 16px rgba(31, 38, 135, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .glass-card-strong::before {
@@ -798,15 +833,15 @@ body::before {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  padding: 2px;
+  padding: 1.5px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0.2) 15%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.12) 15%,
     transparent 35%,
     transparent 65%,
-    rgba(255, 255, 255, 0.2) 85%,
-    rgba(255, 255, 255, 0.55) 100%
+    rgba(255, 255, 255, 0.12) 85%,
+    rgba(255, 255, 255, 0.35) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -823,15 +858,15 @@ body::before {
   background:
     radial-gradient(
       ellipse 100% 100% at 50% 0%,
-      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.15) 0%,
       transparent 50%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.1) 0%,
       transparent 30%,
       transparent 70%,
-      rgba(255, 255, 255, 0.1) 100%
+      rgba(255, 255, 255, 0.05) 100%
     );
   pointer-events: none;
   z-index: 0;
@@ -839,9 +874,9 @@ body::before {
 }
 
 .glass-card-subtle {
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(calc(var(--glass-blur, 3px) * 1.2)) saturate(calc(var(--glass-saturation, 100%) * 1.1)) brightness(calc(var(--glass-brightness, 1) * 1.08)) contrast(1.02) !important;
-  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 3px) * 1.2)) saturate(calc(var(--glass-saturation, 100%) * 1.1)) brightness(calc(var(--glass-brightness, 1) * 1.08)) contrast(1.02) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(calc(var(--glass-blur, 1px) * 0.8)) saturate(var(--glass-saturation, 130%)) brightness(var(--glass-brightness, 1)) contrast(1.01) !important;
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 1px) * 0.8)) saturate(var(--glass-saturation, 130%)) brightness(var(--glass-brightness, 1)) contrast(1.01) !important;
   box-shadow:
     0 4px 16px rgba(31, 38, 135, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
@@ -1073,15 +1108,15 @@ body::before {
 .glass {
   position: relative;
   background: var(--glass-bg);
-  backdrop-filter: blur(12px) saturate(180%) brightness(1.1) contrast(1.05);
-  -webkit-backdrop-filter: blur(12px) saturate(180%) brightness(1.1) contrast(1.05);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) contrast(1.02);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) contrast(1.02);
   border: none;
   border-radius: 2rem;
   box-shadow:
-    0 8px 32px rgba(31, 38, 135, 0.2),
-    0 30px 60px rgba(31, 38, 135, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    0 4px 16px rgba(31, 38, 135, 0.1),
+    0 16px 32px rgba(31, 38, 135, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
   overflow: hidden;
   isolation: isolate;
   will-change: transform;
@@ -1091,10 +1126,10 @@ body::before {
 .glass:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 12px 40px rgba(31, 38, 135, 0.25),
-    0 40px 80px rgba(31, 38, 135, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    0 8px 24px rgba(31, 38, 135, 0.15),
+    0 24px 48px rgba(31, 38, 135, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* Edge refraction - bright gradient border shimmer */
@@ -1103,22 +1138,22 @@ body::before {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1.5px;
+  padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.1) 20%,
     transparent 40%,
     transparent 60%,
-    rgba(255, 255, 255, 0.15) 80%,
-    rgba(255, 255, 255, 0.45) 100%
+    rgba(255, 255, 255, 0.1) 80%,
+    rgba(255, 255, 255, 0.3) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.9;
+  opacity: 0.7;
   transition: opacity 0.3s ease;
 }
 
@@ -1135,15 +1170,15 @@ body::before {
   background:
     radial-gradient(
       ellipse 100% 100% at 50% 0%,
-      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.1) 0%,
       transparent 50%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.06) 0%,
       transparent 40%,
       transparent 80%,
-      rgba(255, 255, 255, 0.04) 100%
+      rgba(255, 255, 255, 0.02) 100%
     );
   pointer-events: none;
   z-index: 0;
@@ -1151,34 +1186,34 @@ body::before {
 }
 
 [data-theme="light"] .glass {
-  backdrop-filter: blur(14px) saturate(200%) brightness(1.08) contrast(1.02);
-  -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(1.08) contrast(1.02);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation)) brightness(1.02) contrast(1.01);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation)) brightness(1.02) contrast(1.01);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    0 30px 60px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    0 16px 32px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="light"] .glass:hover {
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.12),
-    0 40px 80px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 24px 48px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
 }
 
 [data-theme="light"] .glass::before {
-  padding: 1.5px;
+  padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.4) 20%,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.3) 20%,
     transparent 40%,
     transparent 60%,
-    rgba(255, 255, 255, 0.4) 80%,
-    rgba(255, 255, 255, 0.95) 100%
+    rgba(255, 255, 255, 0.3) 80%,
+    rgba(255, 255, 255, 0.75) 100%
   );
 }
 
@@ -1186,15 +1221,15 @@ body::before {
   background:
     radial-gradient(
       ellipse 100% 100% at 50% 0%,
-      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.4) 0%,
       transparent 50%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.3) 0%,
       transparent 35%,
       transparent 85%,
-      rgba(255, 255, 255, 0.15) 100%
+      rgba(255, 255, 255, 0.1) 100%
     );
   mix-blend-mode: overlay;
 }
@@ -1202,15 +1237,15 @@ body::before {
 .glass-strong {
   position: relative;
   background: var(--glass-bg-strong);
-  backdrop-filter: blur(16px) saturate(200%) brightness(1.15) contrast(1.08);
-  -webkit-backdrop-filter: blur(16px) saturate(200%) brightness(1.15) contrast(1.08);
+  backdrop-filter: blur(calc(var(--glass-blur) * 1.5)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) contrast(1.04);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 1.5)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) contrast(1.04);
   border: none;
   border-radius: 2rem;
   box-shadow:
-    0 12px 48px rgba(31, 38, 135, 0.25),
-    0 40px 80px rgba(31, 38, 135, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    0 8px 32px rgba(31, 38, 135, 0.15),
+    0 24px 48px rgba(31, 38, 135, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
   overflow: hidden;
   isolation: isolate;
   will-change: transform;
@@ -1220,10 +1255,10 @@ body::before {
 .glass-strong:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 16px 56px rgba(31, 38, 135, 0.3),
-    0 50px 100px rgba(31, 38, 135, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    0 12px 40px rgba(31, 38, 135, 0.2),
+    0 32px 64px rgba(31, 38, 135, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
 }
 
 /* Edge refraction - stronger variant */
@@ -1232,22 +1267,22 @@ body::before {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 2px;
+  padding: 1.5px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0.2) 15%,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 15%,
     transparent 35%,
     transparent 65%,
-    rgba(255, 255, 255, 0.2) 85%,
-    rgba(255, 255, 255, 0.55) 100%
+    rgba(255, 255, 255, 0.15) 85%,
+    rgba(255, 255, 255, 0.4) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.9;
+  opacity: 0.7;
   transition: opacity 0.3s ease;
 }
 
@@ -1263,15 +1298,15 @@ body::before {
   background:
     radial-gradient(
       ellipse 100% 100% at 50% 0%,
-      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.15) 0%,
       transparent 50%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.1) 0%,
       transparent 35%,
       transparent 75%,
-      rgba(255, 255, 255, 0.06) 100%
+      rgba(255, 255, 255, 0.04) 100%
     );
   pointer-events: none;
   z-index: 0;
@@ -1279,34 +1314,34 @@ body::before {
 }
 
 [data-theme="light"] .glass-strong {
-  backdrop-filter: blur(18px) saturate(220%) brightness(1.1) contrast(1.04);
-  -webkit-backdrop-filter: blur(18px) saturate(220%) brightness(1.1) contrast(1.04);
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(calc(var(--glass-blur) * 1.5)) saturate(var(--glass-saturation)) brightness(1.04) contrast(1.02);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 1.5)) saturate(var(--glass-saturation)) brightness(1.04) contrast(1.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow:
-    0 12px 48px rgba(0, 0, 0, 0.12),
-    0 40px 80px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 24px 48px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
 }
 
 [data-theme="light"] .glass-strong:hover {
   box-shadow:
-    0 16px 56px rgba(0, 0, 0, 0.15),
-    0 50px 100px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+    0 12px 40px rgba(0, 0, 0, 0.1),
+    0 32px 64px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.4);
 }
 
 [data-theme="light"] .glass-strong::before {
-  padding: 2px;
+  padding: 1.5px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.5) 15%,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.35) 15%,
     transparent 35%,
     transparent 65%,
-    rgba(255, 255, 255, 0.5) 85%,
-    rgba(255, 255, 255, 0.95) 100%
+    rgba(255, 255, 255, 0.35) 85%,
+    rgba(255, 255, 255, 0.8) 100%
   );
 }
 
@@ -1314,15 +1349,15 @@ body::before {
   background:
     radial-gradient(
       ellipse 100% 100% at 50% 0%,
-      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.5) 0%,
       transparent 50%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.4) 0%,
       transparent 30%,
       transparent 80%,
-      rgba(255, 255, 255, 0.2) 100%
+      rgba(255, 255, 255, 0.15) 100%
     );
   mix-blend-mode: overlay;
 }
@@ -1330,15 +1365,15 @@ body::before {
 .glass-subtle {
   position: relative;
   background: var(--glass-bg-subtle);
-  backdrop-filter: blur(10px) saturate(160%) brightness(1.08) contrast(1.03);
-  -webkit-backdrop-filter: blur(10px) saturate(160%) brightness(1.08) contrast(1.03);
+  backdrop-filter: blur(calc(var(--glass-blur) * 0.8)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) contrast(1.01);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 0.8)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) contrast(1.01);
   border: none;
   border-radius: 2rem;
   box-shadow:
-    0 4px 16px rgba(31, 38, 135, 0.12),
-    0 20px 40px rgba(31, 38, 135, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+    0 2px 8px rgba(31, 38, 135, 0.06),
+    0 12px 24px rgba(31, 38, 135, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.02);
   overflow: hidden;
   isolation: isolate;
   will-change: transform;
@@ -1348,10 +1383,10 @@ body::before {
 .glass-subtle:hover {
   transform: translateY(-1px);
   box-shadow:
-    0 6px 20px rgba(31, 38, 135, 0.15),
-    0 25px 50px rgba(31, 38, 135, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    0 4px 12px rgba(31, 38, 135, 0.08),
+    0 16px 32px rgba(31, 38, 135, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /* Edge refraction - subtle variant */
@@ -1363,24 +1398,24 @@ body::before {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.06) 25%,
     transparent 45%,
     transparent 55%,
-    rgba(255, 255, 255, 0.08) 75%,
-    rgba(255, 255, 255, 0.3) 100%
+    rgba(255, 255, 255, 0.06) 75%,
+    rgba(255, 255, 255, 0.2) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.85;
+  opacity: 0.5;
   transition: opacity 0.3s ease;
 }
 
 .glass-subtle:hover::before {
-  opacity: 1;
+  opacity: 0.7;
 }
 
 .glass-subtle::after {
@@ -1391,15 +1426,15 @@ body::before {
   background:
     radial-gradient(
       ellipse 100% 100% at 50% 0%,
-      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.06) 0%,
       transparent 50%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.04) 0%,
       transparent 40%,
       transparent 85%,
-      rgba(255, 255, 255, 0.03) 100%
+      rgba(255, 255, 255, 0.02) 100%
     );
   pointer-events: none;
   z-index: 0;
@@ -1407,33 +1442,33 @@ body::before {
 }
 
 [data-theme="light"] .glass-subtle {
-  backdrop-filter: blur(12px) saturate(180%) brightness(1.06) contrast(1.02);
-  -webkit-backdrop-filter: blur(12px) saturate(180%) brightness(1.06) contrast(1.02);
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(calc(var(--glass-blur) * 0.8)) saturate(var(--glass-saturation)) brightness(1.01) contrast(1.01);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 0.8)) saturate(var(--glass-saturation)) brightness(1.01) contrast(1.01);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.08),
-    0 20px 40px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 12px 24px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
 }
 
 [data-theme="light"] .glass-subtle:hover {
   box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.1),
-    0 25px 50px rgba(0, 0, 0, 0.07),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 16px 32px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="light"] .glass-subtle::before {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 255, 255, 0.25) 25%,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.2) 25%,
     transparent 45%,
     transparent 55%,
-    rgba(255, 255, 255, 0.25) 75%,
-    rgba(255, 255, 255, 0.7) 100%
+    rgba(255, 255, 255, 0.2) 75%,
+    rgba(255, 255, 255, 0.5) 100%
   );
 }
 
@@ -1441,15 +1476,15 @@ body::before {
   background:
     radial-gradient(
       ellipse 100% 100% at 50% 0%,
-      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.3) 0%,
       transparent 50%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.25) 0%,
       transparent 35%,
       transparent 85%,
-      rgba(255, 255, 255, 0.12) 100%
+      rgba(255, 255, 255, 0.08) 100%
     );
   mix-blend-mode: overlay;
 }
@@ -1458,15 +1493,15 @@ body::before {
 .glass-nav {
   position: relative;
   background: var(--glass-bg-strong);
-  backdrop-filter: blur(20px) saturate(200%) brightness(1.12) contrast(1.06);
-  -webkit-backdrop-filter: blur(20px) saturate(200%) brightness(1.12) contrast(1.06);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) contrast(1.02);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) contrast(1.02);
   border: none;
   border-radius: 9999px;
   box-shadow:
-    0 4px 30px rgba(31, 38, 135, 0.2),
-    0 20px 50px rgba(31, 38, 135, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    0 2px 16px rgba(31, 38, 135, 0.1),
+    0 12px 30px rgba(31, 38, 135, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
   overflow: hidden;
   isolation: isolate;
   will-change: transform;
@@ -1476,10 +1511,10 @@ body::before {
 .glass-nav:hover {
   transform: translateY(-1px);
   box-shadow:
-    0 6px 35px rgba(31, 38, 135, 0.25),
-    0 25px 60px rgba(31, 38, 135, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    0 4px 20px rgba(31, 38, 135, 0.15),
+    0 16px 40px rgba(31, 38, 135, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .glass-nav::before {
@@ -1487,22 +1522,22 @@ body::before {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1.5px;
+  padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.12) 20%,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.08) 20%,
     transparent 40%,
     transparent 60%,
-    rgba(255, 255, 255, 0.12) 80%,
-    rgba(255, 255, 255, 0.4) 100%
+    rgba(255, 255, 255, 0.08) 80%,
+    rgba(255, 255, 255, 0.25) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.9;
+  opacity: 0.6;
   transition: opacity 0.3s ease;
 }
 
