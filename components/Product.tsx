@@ -1,107 +1,109 @@
 'use client';
 
 import React from 'react';
-import GlassCard from './GlassCard';
 
 export default function Product() {
   const layers = [
     {
       icon: (
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.7}>
+          <rect x="9" y="3" width="6" height="11" rx="3" />
+          <path d="M5 11c0 3.5 3 6 7 6s7-2.5 7-6" />
+          <path d="M12 17v3" />
         </svg>
       ),
-      title: 'Voice Interface',
-      description: 'Understands your request',
-      color: 'from-blue-500 to-cyan-600'
+      title: 'Just say the words',
+      description: 'Speak naturally. HiOS understands and executes the task.',
+      detail: 'Voice commands, natural language, smart intent detection.'
     },
     {
       icon: (
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.7}>
+          <rect x="3" y="5" width="18" height="14" rx="3" />
+          <circle cx="12" cy="12" r="3" />
         </svg>
       ),
-      title: 'Intent Parsing',
-      description: 'Extracts meaning and context',
-      color: 'from-purple-500 to-pink-600'
+      title: 'See what\'s on screen',
+      description: 'Extract text from documents, screenshots, and photos.',
+      detail: 'OCR, image recognition, document parsing.'
     },
     {
       icon: (
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.7}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />
         </svg>
       ),
-      title: 'Agent Planner',
-      description: 'Creates execution strategy',
-      color: 'from-orange-500 to-red-600'
+      title: 'Works across the web',
+      description: 'Navigate websites and complete tasks automatically.',
+      detail: 'Browser automation, form filling, web scraping.'
     },
     {
       icon: (
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.7}>
+          <path d="M9 18h6M10 21h4" />
+          <path d="M6 10a6 6 0 1112 0c0 2-1 3-2 4-1 1-1 2-1 3h-6c0-1 0-2-1-3-1-1-2-2-2-4z" />
         </svg>
       ),
-      title: 'Shortcut Execution',
-      description: 'Runs iOS automations',
-      color: 'from-emerald-500 to-green-600'
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-        </svg>
-      ),
-      title: 'Apps + Web',
-      description: 'Interacts with services',
-      color: 'from-indigo-500 to-blue-600'
+      title: 'Remembers what matters',
+      description: 'Learns your contacts, habits, and preferences.',
+      detail: 'Contextual memory, preference learning, smart suggestions.'
     },
   ];
 
   return (
     <section id="product" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
       <div className="max-w-5xl mx-auto">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 items-center">
-          {/* Left: Text */}
-          <div className="space-y-6 order-1 lg:order-1 flex flex-col justify-center">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Built to get<br />
-              <span style={{ color: 'var(--text-muted)' }}>things done.</span>
-            </h2>
-            <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              HiOS turns your request into a plan and completes it across apps, websites, and device tools.
-            </p>
-          </div>
+        {/* Section Header */}
+        <div className="mb-16 max-w-2xl">
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-4" style={{ color: 'var(--text-primary)' }}>
+            Just say the words.
+          </h2>
+          <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
+            HiOS takes care of the steps.
+          </p>
+        </div>
 
-          {/* Right: Architecture stack */}
-          <div className="relative order-2 lg:order-2 flex flex-col justify-center">
-            <div className="space-y-2">
-              {layers.map((layer, i) => (
-                <div
-                  key={i}
-                  className="animate-fadeInUp"
-                  style={{ animationDelay: `${i * 100}ms` }}
-                >
-                  <GlassCard className="p-5" variant="subtle">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${layer.color} flex items-center justify-center flex-shrink-0`}>
-                        {layer.icon}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-base font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{layer.title}</h3>
-                        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{layer.description}</p>
-                      </div>
-                      {i < layers.length - 1 && (
-                        <svg className="w-5 h-5" style={{ color: 'var(--text-subtle)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                      )}
-                    </div>
-                  </GlassCard>
-                </div>
-              ))}
+        {/* Cards Grid */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {layers.map((layer, i) => (
+            <div
+              key={i}
+              className="group p-7 rounded-2xl transition-all duration-300 hover:translate-y-[-2px]"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                border: '1px solid var(--border-color)',
+                boxShadow: 'var(--card-shadow)'
+              }}
+            >
+              {/* Icon Container */}
+              <div
+                className="w-11 h-11 rounded-lg flex items-center justify-center mb-4 transition-colors"
+                style={{
+                  backgroundColor: 'rgba(142, 142, 147, 0.08)',
+                  border: '1px solid rgba(142, 142, 147, 0.12)',
+                  color: 'var(--text-primary)'
+                }}
+              >
+                {layer.icon}
+              </div>
+
+              {/* Title */}
+              <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                {layer.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-muted)' }}>
+                {layer.description}
+              </p>
+
+              {/* Detail */}
+              <p className="text-xs" style={{ color: 'var(--text-subtle)' }}>
+                {layer.detail}
+              </p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
