@@ -3,23 +3,13 @@
 import { Suspense, useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, useEnvironment, useGLTF, Preload } from '@react-three/drei';
-import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';
 import * as THREE from 'three';
 
 function IPhoneModel() {
   const groupRef = useRef<THREE.Group>(null);
   const { gl } = useThree();
 
-  const { scene } = useGLTF(
-    '/3d/iphone17pro/kbeEpEkAZVEQIzQ.gltf',
-    true,
-    (loader) => {
-      const ktx2Loader = new KTX2Loader();
-      ktx2Loader.setTranscoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/basis/');
-      ktx2Loader.detectSupport(gl);
-      loader.setKTX2Loader(ktx2Loader);
-    }
-  );
+  const { scene } = useGLTF('/3d/iphone17pro/kbeEpEkAZVEQIzQ.gltf');
 
   useEffect(() => {
     if (scene) {
