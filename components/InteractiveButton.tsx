@@ -36,7 +36,7 @@ export default function InteractiveButton({
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`relative w-full sm:w-auto px-8 py-4 rounded-[20px] cursor-pointer overflow-hidden transition-transform duration-300 hover:scale-[1.02] bg-gradient-to-br from-white to-gray-200 text-black font-semibold shadow-[0_10px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.9)] ${className}`}
+        className={`relative w-full sm:w-auto px-8 py-4 rounded-full cursor-pointer overflow-hidden transition-transform duration-300 hover:scale-[1.02] bg-gradient-to-br from-white to-gray-200 text-black font-semibold shadow-[0_10px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.9)] ${className}`}
         style={{
           background: 'linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%)',
         }}
@@ -62,7 +62,7 @@ export default function InteractiveButton({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`glass relative w-full sm:w-auto px-8 py-4 rounded-[20px] cursor-pointer overflow-hidden transition-all duration-300 hover:scale-[1.02] ${className}`}
+      className={`glass relative w-full sm:w-auto px-8 py-4 rounded-full cursor-pointer overflow-hidden transition-all duration-300 hover:scale-[1.02] ${className}`}
     >
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-300 ease-out"
