@@ -569,7 +569,7 @@ export default function Hero() {
           </div>
 
           {/* Right: Visual illustration */}
-          <div className="relative w-full max-w-sm" style={{ marginTop: '100px' }}>
+          <div className="relative w-full max-w-sm mt-24 md:mt-[100px]">
             <PhoneShowcase />
           </div>
         </div>

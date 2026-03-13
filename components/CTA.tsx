@@ -508,7 +508,7 @@ export default function CTA() {
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Device mockup */}
-          <div className="relative w-full max-w-xs mx-auto mt-8 md:mt-0 order-2 lg:order-1">
+          <div className="relative w-full max-w-xs mx-auto mt-24 md:mt-12 order-2 lg:order-1">
             <PhoneShowcase />
           </div>
 

@@ -16,7 +16,7 @@ export default function Capabilities() {
       title: 'Just say the words',
       description: 'HiOS understands natural language and executes the task.',
       details: 'Voice commands, natural language processing, smart intent detection.',
-      color: 'from-blue-500 to-cyan-600',
+      color: 'from-slate-600 to-slate-700',
     },
     {
       icon: (
@@ -28,7 +28,7 @@ export default function Capabilities() {
       title: "See what's on screen",
       description: 'Extract text from documents, screenshots, and photos.',
       details: 'OCR, screenshot analysis, document parsing, visual recognition.',
-      color: 'from-purple-500 to-pink-600',
+      color: 'from-slate-600 to-slate-700',
     },
     {
       icon: (
@@ -39,7 +39,7 @@ export default function Capabilities() {
       title: 'Works across the web',
       description: 'Navigate websites and complete tasks automatically.',
       details: 'Browser automation, form filling, web scraping, API integration.',
-      color: 'from-orange-500 to-red-600',
+      color: 'from-slate-600 to-slate-700',
     },
     {
       icon: (
@@ -50,7 +50,7 @@ export default function Capabilities() {
       title: 'Remembers what matters',
       description: 'Learns your contacts, habits, and preferences.',
       details: 'Contact memory, preference learning, context awareness.',
-      color: 'from-emerald-500 to-green-600',
+      color: 'from-slate-600 to-slate-700',
     },
   ];
 
