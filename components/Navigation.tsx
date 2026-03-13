@@ -59,7 +59,7 @@ export default function Navigation({ minimal = false }: NavigationProps) {
 
   return (
     <nav
-      className={`fixed top-6 left-0 right-0 z-50 px-6 transition-all duration-500 ${
+      className={`fixed top-6 left-0 right-0 z-[60] px-6 transition-all duration-500 ${
         minimal ? (shouldShow ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0') : ''
       }`}
       style={{

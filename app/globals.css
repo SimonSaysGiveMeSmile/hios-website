@@ -460,6 +460,8 @@ body.saaS-style::before {
   --color-shadow: rgba(0, 0, 0, 0.04);
   --color-text: #111111;
   --color-subtext: #666666;
+  --primary-button-bg: #000000;
+  --primary-button-text: #ffffff;
 
   /* Glass Effects - Subtle for light mode */
   --glass-bg: rgba(255, 255, 255, 0.8);
@@ -497,6 +499,8 @@ body.saaS-style::before {
   --color-shadow: rgba(0, 0, 0, 0.3);
   --color-text: #ffffff;
   --color-subtext: #999999;
+  --primary-button-bg: #ffffff;
+  --primary-button-text: #000000;
 
   /* Glass Effects - Subtle for dark mode */
   --glass-bg: rgba(0, 0, 0, 0.6);

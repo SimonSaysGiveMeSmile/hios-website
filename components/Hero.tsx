@@ -547,8 +547,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-xl max-w-lg mx-auto lg:mx-0" style={{ color: 'var(--text-muted)' }}>
-              Tell your phone what you want.<br />
-              Let HiOS handle the rest.
+              While Other Agents Talk, HiOS Does the Work
             </p>
 
             {/* CTA Buttons */}
@@ -557,7 +556,7 @@ export default function Hero() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                 </svg>
-                Join TestFlight
+                Join Waitlist
               </InteractiveButton>
 
               <InteractiveButton>
@@ -570,7 +569,7 @@ export default function Hero() {
           </div>
 
           {/* Right: Visual illustration */}
-          <div className="relative w-full max-w-sm mt-0">
+          <div className="relative w-full max-w-sm" style={{ marginTop: '100px' }}>
             <PhoneShowcase />
           </div>
         </div>
