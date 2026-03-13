@@ -3,12 +3,46 @@
 import React from 'react';
 import GlassCard from './GlassCard';
 
-const currentUxSteps = [
-  { label: 'Open App', icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z' },
-  { label: 'Search', icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' },
-  { label: 'Copy', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
-  { label: 'Paste', icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z' },
-  { label: 'Send', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+// Consistent monoline icons (SF Symbols style)
+const icons = {
+  openApp: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+      <line x1="12" y1="18" x2="12" y2="18" />
+    </svg>
+  ),
+  search: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="8" />
+      <path d="M21 21l-4.35-4.35" />
+    </svg>
+  ),
+  copy: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+      <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+    </svg>
+  ),
+  paste: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2" />
+      <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+    </svg>
+  ),
+  send: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 2L11 13" />
+      <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+    </svg>
+  ),
+};
+
+const manualSteps = [
+  { label: 'Open App', icon: icons.openApp },
+  { label: 'Search', icon: icons.search },
+  { label: 'Copy', icon: icons.copy },
+  { label: 'Paste', icon: icons.paste },
+  { label: 'Send', icon: icons.send },
 ];
 
 export default function Problem() {
@@ -19,52 +53,110 @@ export default function Problem() {
           {/* Left: Comparison diagram */}
           <div className="relative order-2 lg:order-1">
             <GlassCard className="p-8" variant="subtle">
-              <div className="grid grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h3 className="text-sm font-semibold mb-6" style={{ color: 'var(--text-primary)' }}>Current UX</h3>
-                  <div className="space-y-3">
-                    {currentUxSteps.map((step, i) => (
-                      <div key={i} className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-500 to-gray-600 flex items-center justify-center">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={step.icon} />
-                          </svg>
+              {/* Two-column comparison with center divider */}
+              <div className="grid grid-cols-[1fr_1px_1fr] gap-4 items-stretch">
+                {/* Manual iPhone Workflow */}
+                <div className="flex flex-col">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider mb-4 text-center" style={{ color: 'var(--text-subtle)' }}>
+                    Manual iPhone
+                  </h3>
+
+                  <div className="flex-1 flex flex-col justify-center space-y-2">
+                    {manualSteps.map((step, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
+                        style={{
+                          background: 'rgba(142, 142, 147, 0.1)',
+                          border: '1px solid rgba(142, 142, 147, 0.2)',
+                        }}
+                      >
+                        <div className="w-6 h-6 flex items-center justify-center" style={{ color: 'var(--text-muted)' }}>
+                          {step.icon}
                         </div>
-                        <span className="text-sm" style={{ color: 'var(--text-muted)' }}>{step.label}</span>
+                        <span className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
+                          {step.label}
+                        </span>
                       </div>
                     ))}
                   </div>
+
+                  {/* Step count - prominent */}
                   <div className="pt-4 text-center">
-                    <div className="text-2xl font-bold" style={{ color: 'var(--text-subtle)' }}>5 steps</div>
+                    <div className="text-3xl font-bold" style={{ color: 'var(--text-muted)' }}>
+                      5
+                    </div>
+                    <div className="text-xs font-medium mt-1" style={{ color: 'var(--text-muted)', opacity: 0.7 }}>
+                      steps
+                    </div>
                   </div>
                 </div>
 
+                {/* Center Divider */}
+                <div className="w-px" style={{ background: 'var(--text-subtle)', opacity: 0.2 }} />
+
                 {/* With HiOS */}
-                <div className="space-y-4">
-                  <h3 className="text-sm font-semibold text-emerald-400 mb-6">With HiOS</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 transform rotate-180">
-                        <img src="/logo.svg" alt="HiOS" className="w-full h-full" />
-                      </div>
-                      <span className="text-sm" style={{ color: 'var(--text-primary)' }}>Voice</span>
-                    </div>
-                    <div className="flex items-center justify-center py-8">
-                      <svg className="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <div className="flex flex-col">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider mb-4 text-center text-emerald-400">
+                    HiOS
+                  </h3>
+
+                  <div className="flex-1 flex flex-col justify-center space-y-1">
+                    {/* Voice */}
+                    <div
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
+                      style={{
+                        background: 'rgba(22, 199, 132, 0.08)',
+                        border: '1px solid rgba(22, 199, 132, 0.2)',
+                      }}
+                    >
+                      <div className="w-6 h-6 flex items-center justify-center text-emerald-400">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+                          <path d="M19 10v2a7 7 0 01-14 0v-2" />
+                          <line x1="12" y1="19" x2="12" y2="23" />
+                          <line x1="8" y1="23" x2="16" y2="23" />
                         </svg>
                       </div>
-                      <span className="text-sm text-emerald-400">Done</span>
+                      <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                        Voice
+                      </span>
+                    </div>
+
+                    {/* Arrow */}
+                    <div className="flex justify-center py-1">
+                      <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </div>
+
+                    {/* Done */}
+                    <div
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
+                      style={{
+                        background: 'rgba(22, 199, 132, 0.15)',
+                        border: '1px solid rgba(22, 199, 132, 0.3)',
+                      }}
+                    >
+                      <div className="w-6 h-6 flex items-center justify-center rounded-full bg-emerald-500">
+                        <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </div>
+                      <span className="text-sm font-semibold text-emerald-400">
+                        Done
+                      </span>
                     </div>
                   </div>
+
+                  {/* Step count - prominent */}
                   <div className="pt-4 text-center">
-                    <div className="text-2xl font-bold text-emerald-400">1 step</div>
+                    <div className="text-3xl font-bold text-emerald-400">
+                      1
+                    </div>
+                    <div className="text-xs font-medium mt-1 text-emerald-400" style={{ opacity: 0.8 }}>
+                      step
+                    </div>
                   </div>
                 </div>
               </div>
@@ -74,13 +166,10 @@ export default function Problem() {
           {/* Right: Text */}
           <div className="space-y-6 order-1 lg:order-2">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Sit back and let your phone do the magic
+              Sit back and watch<br />your phone cook.
             </h2>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              Other AI agents chat. HiOS does the work for you.
-            </p>
-            <p className="text-base" style={{ color: 'var(--text-muted)' }}>
-              A truly agent-native runtime on your phone—not cloud code running remotely.
+              HiOS allows you to book restaurants, order food, and call Uber with your voice while you continue using your device.
             </p>
           </div>
         </div>
