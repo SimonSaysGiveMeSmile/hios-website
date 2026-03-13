@@ -61,14 +61,14 @@ export default function Product() {
   return (
     <section id="product" className="relative min-h-[66vh] flex items-center justify-center px-6 py-24">
       <div className="max-w-5xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 items-start">
           {/* Left: Text */}
-          <div className="space-y-6 order-1 lg:order-1">
+          <div className="space-y-3 order-1 lg:order-1 max-w-md pt-2">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
               Built to get<br />
               <span style={{ color: 'var(--text-muted)' }}>things done.</span>
             </h2>
-            <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+            <p className="text-lg leading-relaxed max-w-sm" style={{ color: 'var(--text-muted)' }}>
               HiOS turns your request into a plan and completes it across apps, websites, and device tools.
             </p>
           </div>
