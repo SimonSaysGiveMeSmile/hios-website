@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 type Mode = 'standard' | 'polar' | 'prominent' | 'shader';
 
@@ -105,11 +106,18 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
     { value: 'shader', label: 'Shader (Experimental)' },
   ];
 
-  return (
+  return createPortal(
     <div
       ref={panelRef}
-      className="fixed z-[201] w-96 max-h-[85vh] overflow-hidden glass-strong"
-      style={{ left: `${position.x}px`, top: `${position.y}px`, cursor: isDragging ? 'grabbing' : 'default' }}
+      className="fixed z-[201] w-96 max-h-[85vh] overflow-hidden"
+      style={{
+        left: `${position.x}px`, top: `${position.y}px`,
+        cursor: isDragging ? 'grabbing' : 'default',
+        background: 'rgba(30, 30, 30, 0.92)',
+        borderRadius: '24px',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)',
+      }}
       onMouseDown={handleMouseDown}
     >
       <div className="drag-handle flex items-center justify-between p-6 pb-4 cursor-grab active:cursor-grabbing">
@@ -183,7 +191,8 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
           Reset to Defaults
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
