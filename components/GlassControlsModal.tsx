@@ -20,11 +20,11 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
   const [activeTab, setActiveTab] = useState<'css' | 'webgl'>('css');
   const [webglInstanceCount, setWebglInstanceCount] = useState(0);
   const [settings, setSettings] = useState<GlassSettings>({
-    blur: 3,
-    saturation: 100,
-    brightness: 120,
+    blur: 7,
+    saturation: 130,
+    brightness: 100,
     tintOpacity: 0,
-    borderRadius: 40,
+    borderRadius: 30,
   });
 
   const [webglSettings, setWebglSettings] = useState<WebGLGlassSettings>({
@@ -69,7 +69,7 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
     root.style.setProperty('--glass-border-radius', `${settings.borderRadius}px`);
 
     // Force reflow and directly apply backdrop-filter to all glass elements
-    const backdropFilterValue = `blur(${settings.blur}px) saturate(${settings.saturation}%) brightness(${settings.brightness / 100})`;
+    const backdropFilterValue = `blur(${settings.blur}px) saturate(${settings.saturation}%)`;
 
     document.querySelectorAll('.liquidGlass-wrapper, .glass, .glass-strong, .glass-subtle, .glass-nav').forEach((el) => {
       const element = el as HTMLElement;
@@ -171,11 +171,11 @@ export default function GlassControlsModal({ isOpen, onClose }: GlassControlsPro
   const resetDefaults = () => {
     if (activeTab === 'css') {
       setSettings({
-        blur: 40,
-        saturation: 100,
-        brightness: 120,
+        blur: 7,
+        saturation: 130,
+        brightness: 100,
         tintOpacity: 0,
-        borderRadius: 40,
+        borderRadius: 30,
       });
     } else {
       setWebglSettings({

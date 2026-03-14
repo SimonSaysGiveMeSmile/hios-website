@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTheme } from './ThemeProvider';
+import GlassControlsModal from './GlassControlsModal';
 
 interface NavigationProps {
   minimal?: boolean;
@@ -11,7 +12,11 @@ export default function Navigation({ minimal = false }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(minimal);
   const [mouseNearTop, setMouseNearTop] = useState(false);
+  const [showControls, setShowControls] = useState(false);
   const { theme, toggleTheme } = useTheme();
+
+  const pressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isLongPressRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,6 +54,33 @@ export default function Navigation({ minimal = false }: NavigationProps) {
   // Show nav when mouse is near top
   const shouldShow = minimal ? !isHidden || mouseNearTop : true;
 
+  // Long-press handlers for theme toggle
+  const handlePressStart = useCallback(() => {
+    isLongPressRef.current = false;
+    pressTimerRef.current = setTimeout(() => {
+      isLongPressRef.current = true;
+      setShowControls(true);
+    }, 3000);
+  }, []);
+
+  const handlePressEnd = useCallback(() => {
+    if (pressTimerRef.current) {
+      clearTimeout(pressTimerRef.current);
+      pressTimerRef.current = null;
+    }
+    // Only toggle theme if it wasn't a long press
+    if (!isLongPressRef.current) {
+      toggleTheme();
+    }
+  }, [toggleTheme]);
+
+  const handlePressCancel = useCallback(() => {
+    if (pressTimerRef.current) {
+      clearTimeout(pressTimerRef.current);
+      pressTimerRef.current = null;
+    }
+  }, []);
+
   const navItems = [
     { label: 'Overview', href: '#hero' },
     { label: 'Capabilities', href: '#capabilities' },
@@ -58,6 +90,7 @@ export default function Navigation({ minimal = false }: NavigationProps) {
   ];
 
   return (
+    <>
     <nav
       className={`fixed top-6 left-0 right-0 z-[60] px-6 transition-all duration-500 ${
         minimal ? (shouldShow ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0') : ''
@@ -98,15 +131,20 @@ export default function Navigation({ minimal = false }: NavigationProps) {
 
           {/* Theme Toggle Only */}
           <div className="flex items-center gap-3">
-            {/* Theme Toggle - Circular */}
+            {/* Theme Toggle - Circular (hold 3s for glass controls) */}
             <button
-              onClick={toggleTheme}
-              className="w-9 h-9 flex items-center justify-center rounded-full hover:scale-105 transition-transform"
+              onMouseDown={handlePressStart}
+              onMouseUp={handlePressEnd}
+              onMouseLeave={handlePressCancel}
+              onTouchStart={handlePressStart}
+              onTouchEnd={handlePressEnd}
+              onTouchCancel={handlePressCancel}
+              className="w-9 h-9 flex items-center justify-center rounded-full hover:scale-105 transition-transform select-none"
               style={{
                 background: 'rgba(255, 255, 255, 0.1)',
                 boxShadow: '0 0 12px rgba(255, 255, 255, 0.1)',
               }}
-              aria-label="Toggle theme"
+              aria-label="Toggle theme (hold 3s for glass controls)"
             >
               {theme === 'dark' ? (
                 <svg
@@ -134,5 +172,7 @@ export default function Navigation({ minimal = false }: NavigationProps) {
         </div>
       </div>
     </nav>
+    <GlassControlsModal isOpen={showControls} onClose={() => setShowControls(false)} />
+    </>
   );
 }
