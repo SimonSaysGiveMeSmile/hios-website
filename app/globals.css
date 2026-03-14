@@ -26,12 +26,12 @@
   --spacing-sm: 12px;
 
   /* Glass Controls - These can be adjusted via the control panel */
-  --glass-blur: 7px;
-  --glass-saturation: 130%;
+  --glass-blur: 20px;
+  --glass-saturation: 140%;
   --glass-brightness: 1;
   --glass-bg-opacity: 0.03;
   --glass-border-opacity: 0.08;
-  --glass-border-radius: 30px;
+  --glass-border-radius: 32px;
 
   /* Glass component variables */
   --glass-bg: rgba(255, 255, 255, var(--glass-bg-opacity));
