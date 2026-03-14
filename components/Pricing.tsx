@@ -9,6 +9,11 @@ export default function Pricing() {
       name: 'Free',
       price: 'Free',
       period: '',
+      icon: (
+        <svg className="w-6 h-6" style={{ color: 'var(--text-primary)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+        </svg>
+      ),
       features: [
         'Test HiOS',
         'Limited usage',
@@ -21,6 +26,11 @@ export default function Pricing() {
       name: 'Basic',
       price: '$9',
       period: '/month',
+      icon: (
+        <svg className="w-6 h-6" style={{ color: 'var(--text-primary)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
       features: [
         'Browser automation',
         'Simple workflows',
@@ -33,6 +43,11 @@ export default function Pricing() {
       name: 'Pro',
       price: '$29-49',
       period: '/month',
+      icon: (
+        <svg className="w-6 h-6" style={{ color: 'var(--text-primary)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+      ),
       features: [
         'Device automation',
         'Shortcuts integration',
@@ -46,7 +61,7 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="relative min-h-screen flex items-center justify-center px-6 py-24">
+    <section id="pricing" className="relative flex items-center justify-center px-6 py-4">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
@@ -61,14 +76,10 @@ export default function Pricing() {
               className="animate-fadeInUp"
               style={{ animationDelay: `${i * 100}ms` }}
             >
-              <GlassCard className={`p-6 h-full ${plan.popular ? 'ring-2 ring-emerald-500' : ''}`} variant={plan.popular ? 'strong' : 'subtle'}>
+              <GlassCard className={`p-6 h-full ${plan.popular ? 'ring-2 ring-zinc-400' : ''}`} variant={plan.popular ? 'strong' : 'subtle'}>
                 <div className="space-y-4">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${plan.color} flex items-center justify-center`}>
-                    {plan.popular && (
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                      </svg>
-                    )}
+                  <div className={`w-12 h-12 rounded-xl icon-metallic flex items-center justify-center`}>
+                    {plan.icon}
                   </div>
 
                   <div>

@@ -55,7 +55,9 @@ export default function Navigation({ minimal = false }: NavigationProps) {
   const shouldShow = minimal ? !isHidden || mouseNearTop : true;
 
   // Long-press handlers for theme toggle
-  const handlePressStart = useCallback(() => {
+  const handlePressStart = useCallback((e: React.TouchEvent | React.MouseEvent) => {
+    // Prevent mouse events from firing after touch events
+    if ('touches' in e) e.preventDefault();
     isLongPressRef.current = false;
     pressTimerRef.current = setTimeout(() => {
       isLongPressRef.current = true;
@@ -63,18 +65,18 @@ export default function Navigation({ minimal = false }: NavigationProps) {
     }, 3000);
   }, []);
 
-  const handlePressEnd = useCallback(() => {
+  const handlePressEnd = useCallback((e: React.TouchEvent | React.MouseEvent) => {
+    if ('touches' in e) e.preventDefault();
     if (pressTimerRef.current) {
       clearTimeout(pressTimerRef.current);
       pressTimerRef.current = null;
     }
-    // Only toggle theme if it wasn't a long press
     if (!isLongPressRef.current) {
       toggleTheme();
     }
   }, [toggleTheme]);
 
-  const handlePressCancel = useCallback(() => {
+  const handlePressCancel = useCallback((e: React.TouchEvent | React.MouseEvent) => {
     if (pressTimerRef.current) {
       clearTimeout(pressTimerRef.current);
       pressTimerRef.current = null;
@@ -99,7 +101,9 @@ export default function Navigation({ minimal = false }: NavigationProps) {
         transitionProperty: 'transform, opacity',
       }}
     >
-      <div className={`max-w-5xl mx-auto liquidGlass-wrapper px-8 py-4 ${minimal ? 'py-2' : ''}`} style={{ borderRadius: '9999px' }}>
+      <div className={`max-w-5xl mx-auto liquidGlass-wrapper font-semibold relative overflow-hidden ${minimal ? 'py-2' : ''}`} style={{ borderRadius: '9999px' }}>
+        <span style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(1px) saturate(140%)', WebkitBackdropFilter: 'blur(1px) saturate(140%)', background: 'rgba(255, 255, 255, 0.06)', pointerEvents: 'none', zIndex: 0 }} />
+        <div className={`flex px-8 py-4 relative z-10 ${minimal ? 'py-2' : ''}`}>
         <div className="flex items-center justify-between w-full"
           style={{ color: 'var(--text-primary)' }}
         >
@@ -139,10 +143,11 @@ export default function Navigation({ minimal = false }: NavigationProps) {
               onTouchStart={handlePressStart}
               onTouchEnd={handlePressEnd}
               onTouchCancel={handlePressCancel}
-              className="w-9 h-9 flex items-center justify-center rounded-full hover:scale-105 transition-transform select-none"
+              className="w-11 h-11 flex items-center justify-center rounded-full hover:scale-105 active:scale-95 transition-transform select-none touch-manipulation"
               style={{
                 background: 'rgba(255, 255, 255, 0.1)',
                 boxShadow: '0 0 12px rgba(255, 255, 255, 0.1)',
+                WebkitTapHighlightColor: 'transparent',
               }}
               aria-label="Toggle theme (hold 3s for glass controls)"
             >
@@ -169,6 +174,7 @@ export default function Navigation({ minimal = false }: NavigationProps) {
               )}
             </button>
           </div>
+        </div>
         </div>
       </div>
     </nav>

@@ -58,7 +58,7 @@ export default function Problem() {
                 {/* Manual iPhone Workflow */}
                 <div className="flex flex-col">
                   <h3 className="text-xs font-semibold uppercase tracking-wider mb-4 text-center" style={{ color: 'var(--text-secondary)' }}>
-                    Manual iPhone
+                    Current
                   </h3>
 
                   <div className="flex-1 flex flex-col justify-center space-y-2">
@@ -67,8 +67,7 @@ export default function Problem() {
                         key={i}
                         className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
                         style={{
-                          background: 'rgba(142, 142, 147, 0.1)',
-                          border: '1px solid rgba(142, 142, 147, 0.2)',
+                          background: 'transparent',
                         }}
                       >
                         <div className="w-6 h-6 flex items-center justify-center" style={{ color: 'var(--text-secondary)' }}>
@@ -104,12 +103,13 @@ export default function Problem() {
                   <div className="flex-1 flex flex-col justify-center space-y-1">
                     {/* Voice */}
                     <div
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
+                      className="relative overflow-hidden rounded-lg liquidGlass-wrapper"
                       style={{
-                        background: 'rgba(22, 199, 132, 0.08)',
                         border: '1px solid rgba(22, 199, 132, 0.2)',
                       }}
                     >
+                      <span style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(1px) saturate(140%)', WebkitBackdropFilter: 'blur(1px) saturate(140%)', background: 'transparent', pointerEvents: 'none', zIndex: 0 }} />
+                      <div className="flex items-center gap-3 px-3 py-2.5 relative z-10">
                       <div className="w-6 h-6 flex items-center justify-center text-emerald-400">
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
                           <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
@@ -121,6 +121,7 @@ export default function Problem() {
                       <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
                         Voice
                       </span>
+                      </div>
                     </div>
 
                     {/* Arrow */}
@@ -132,12 +133,13 @@ export default function Problem() {
 
                     {/* Done */}
                     <div
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
+                      className="relative overflow-hidden rounded-lg liquidGlass-wrapper"
                       style={{
-                        background: 'rgba(22, 199, 132, 0.15)',
                         border: '1px solid rgba(22, 199, 132, 0.3)',
                       }}
                     >
+                      <span style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(1px) saturate(140%)', WebkitBackdropFilter: 'blur(1px) saturate(140%)', background: 'transparent', pointerEvents: 'none', zIndex: 0 }} />
+                      <div className="flex items-center gap-3 px-3 py-2.5 relative z-10">
                       <div className="w-6 h-6 flex items-center justify-center rounded-full bg-emerald-500">
                         <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12" />
@@ -146,6 +148,7 @@ export default function Problem() {
                       <span className="text-sm font-semibold text-emerald-400">
                         Done
                       </span>
+                      </div>
                     </div>
                   </div>
 

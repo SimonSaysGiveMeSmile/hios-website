@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import GlassCard from './GlassCard';
 
 const services = [
   {
@@ -140,12 +141,8 @@ export default function Services() {
       <div className="max-w-5xl mx-auto w-full">
         <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 items-center">
           {/* Left: Visualization */}
-          <div
-            className="rounded-3xl p-8 md:p-10 order-2 lg:order-1 liquid-glass"
-            style={{
-              background: isDark ? 'rgba(17, 17, 17, 0.6)' : 'rgba(249, 250, 251, 0.6)',
-            }}
-          >
+          <div className="order-2 lg:order-1">
+            <GlassCard className="p-8 md:p-10" variant="subtle">
             <div
               className="relative w-full mx-auto"
               style={{ aspectRatio: '1 / 1' }}
@@ -196,14 +193,14 @@ export default function Services() {
             {/* Center hub */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
               <div
-                className="w-16 h-16 md:w-[72px] md:h-[72px] rounded-[18px] flex items-center justify-center"
+                className="w-16 h-16 md:w-[72px] md:h-[72px] rounded-[18px] flex items-center justify-center icon-metallic"
                 style={{
                   background: isDark
-                    ? 'linear-gradient(135deg, #5B58FF, #7B6FFF)'
-                    : 'linear-gradient(135deg, #6E6BFF, #8F7CFF)',
+                    ? 'linear-gradient(135deg, #8B8B8F, #A1A1AA)'
+                    : 'linear-gradient(135deg, #A1A1AA, #B4B4BD)',
                   boxShadow: isDark
-                    ? '0 8px 24px rgba(91,88,255,0.3), 0 0 0 1px rgba(255,255,255,0.08)'
-                    : '0 12px 30px rgba(110,107,255,0.2), 0 0 0 1px rgba(110,107,255,0.1)',
+                    ? '0 8px 24px rgba(161,161,170,0.2), 0 0 0 1px rgba(255,255,255,0.08)'
+                    : '0 12px 30px rgba(161,161,170,0.15), 0 0 0 1px rgba(161,161,170,0.1)',
                 }}
               >
                 <img
@@ -270,6 +267,7 @@ export default function Services() {
               );
             })}
           </div>
+          </GlassCard>
           </div>
 
           {/* Right: Text */}
@@ -288,7 +286,7 @@ export default function Services() {
               className="text-lg leading-relaxed"
               style={{ color: 'var(--text-muted)' }}
             >
-              HiOS coordinates actions across the apps you already use.
+              HiOS can connect to and operate applications with your permission.
               One request can trigger tasks across multiple services.
             </p>
           </div>

@@ -3,7 +3,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 
-// Use LiquidGlass for enhanced glass effect
 const LiquidGlass = dynamic(
   () => import('@/lib/liquid-glass-react'),
   { ssr: false }
@@ -16,19 +15,35 @@ interface GlassCardProps {
   useLiquidGlass?: boolean;
 }
 
+const containerStyle: React.CSSProperties = {
+  position: 'relative',
+  overflow: 'hidden',
+  border: 'none',
+  borderRadius: 'var(--glass-border-radius)',
+  isolation: 'isolate' as const,
+};
+
+const blurSpanStyle: React.CSSProperties = {
+  position: 'absolute',
+  inset: 0,
+  backdropFilter: 'blur(1px) saturate(140%)',
+  WebkitBackdropFilter: 'blur(1px) saturate(140%)',
+  background: 'transparent',
+  pointerEvents: 'none',
+  zIndex: 0,
+};
+
+const contentStyle: React.CSSProperties = {
+  position: 'relative',
+  zIndex: 1,
+};
+
 export default function GlassCard({
   children,
   className = '',
   variant = 'default',
   useLiquidGlass = false
 }: GlassCardProps) {
-  const variantClass = {
-    default: 'liquid-glass',
-    strong: 'liquid-glass liquid-glass--strong',
-    subtle: 'liquid-glass liquid-glass--subtle',
-  }[variant];
-
-  // Use LiquidGlass component for the enhanced effect
   if (useLiquidGlass) {
     return (
       <LiquidGlass
@@ -47,8 +62,14 @@ export default function GlassCard({
   }
 
   return (
-    <div className={`${variantClass} ${className}`}>
-      {children}
+    <div
+      className={`liquidGlass-wrapper ${className}`}
+      style={containerStyle}
+    >
+      <span style={blurSpanStyle} />
+      <div style={contentStyle}>
+        {children}
+      </div>
     </div>
   );
 }

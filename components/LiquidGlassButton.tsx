@@ -12,8 +12,8 @@ const LiquidGlass = dynamic(
       <div
         className="animate-pulse bg-white/10 rounded-3xl h-14 flex items-center justify-center"
         style={{
-          backdropFilter: 'blur(20px)',
-          background: 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(1px) saturate(140%)',
+          background: 'rgba(255, 255, 255, 0.06)',
           border: '1px solid rgba(255, 255, 255, 0.2)',
         }}
       >
