@@ -33,6 +33,23 @@
   --glass-border-opacity: 0.08;
   --glass-border-radius: 32px;
 
+  /* Liquid Glass Controls (default 1px, min 1px, max 10px) */
+  --lg-blur: 1px;
+  --lg-saturation: 140%;
+  --lg-corner-radius: 32px;
+  --lg-bg-opacity: 0;
+  --lg-bg-opacity-strong: 0.03;
+  --lg-bg-opacity-subtle: 0;
+  --lg-border-screen-opacity: 0.2;
+  --lg-border-overlay-opacity: 1;
+  --lg-border-padding: 1.5px;
+  --lg-shadow: 0px 12px 40px rgba(0, 0, 0, 0.25);
+  --lg-shadow-hover: 0px 16px 50px rgba(0, 0, 0, 0.3);
+  --lg-shadow-inset: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12),
+                     inset 0 1px 3px rgba(255, 255, 255, 0.08);
+  --lg-shadow-inset-hover: inset 0 0 0 0.5px rgba(255, 255, 255, 0.15),
+                           inset 0 1px 3px rgba(255, 255, 255, 0.1);
+
   /* Glass component variables */
   --glass-bg: rgba(255, 255, 255, var(--glass-bg-opacity));
   --glass-bg-strong: rgba(255, 255, 255, 0.05);
@@ -334,86 +351,102 @@ body.saaS-style::before {
   color: #111;
 }
 
-/* --- 5. Gradient Text (Accent — faint metallic) --- */
+/* --- 5. Gradient Text (Accent — cool platinum metallic) --- */
 .gradient-text {
-  background: linear-gradient(
-    120deg,
-    #e0cfc0 0%,
-    #ecddd4 25%,
-    #e2d0d8 50%,
-    #d8cce0 75%,
-    #d0c8dc 100%
-  ) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  color: transparent !important;
-  display: inline;
-}
-
-[data-theme="light"] .gradient-text {
-  background: linear-gradient(
-    120deg,
-    #9a8878 0%,
-    #a08880 25%,
-    #987e8c 50%,
-    #8e7e98 75%,
-    #847894 100%
-  ) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  color: transparent !important;
-}
-
-/* --- 5b. Hero Accent — gold-silver sandblasted metallic --- */
-.gradient-text-hero {
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.14'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E"),
     linear-gradient(
-      125deg,
-      #c9a84c 0%,
-      #e0c872 12%,
-      #f0dfa0 22%,
-      #f5ebb8 32%,
-      #ede0b0 42%,
-      #d8cca0 52%,
-      #c8c0b0 62%,
-      #d0ccc8 72%,
-      #e0dcd8 82%,
-      #c8c4c0 92%,
-      #b8b4b0 100%
+      120deg,
+      #e8e0d8 0%,
+      #f0ece6 15%,
+      #f4f0ec 30%,
+      #f8f6f4 42%,
+      #f4f2f0 52%,
+      #eeecea 62%,
+      #e8e6e4 72%,
+      #f0eeec 82%,
+      #f4f2f0 90%,
+      #eae8e6 100%
     ) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   color: transparent !important;
   display: inline;
-  filter: contrast(1.1) brightness(1.05);
+  filter: contrast(1.05) brightness(1.05);
 }
 
-[data-theme="light"] .gradient-text-hero {
+[data-theme="light"] .gradient-text {
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.14'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
     linear-gradient(
-      125deg,
-      #8a7028 0%,
-      #a08838 12%,
-      #b89c48 22%,
-      #c4a850 32%,
-      #b89c48 42%,
-      #a89040 52%,
-      #988868 62%,
-      #8a8478 72%,
-      #989490 82%,
-      #888480 92%,
-      #787470 100%
+      120deg,
+      #a89c90 0%,
+      #b8b0a8 15%,
+      #c4beb8 30%,
+      #ccc8c4 42%,
+      #c4c0bc 52%,
+      #b8b4b0 62%,
+      #b0acaa 72%,
+      #bab8b4 82%,
+      #c4c0be 90%,
+      #b0aca8 100%
     ) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   color: transparent !important;
   filter: contrast(1.15);
+}
+
+/* --- 5b. Hero Accent — cool platinum sandblasted metallic --- */
+.gradient-text-hero {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E"),
+    linear-gradient(
+      125deg,
+      #d8ccb8 0%,
+      #e4dcd0 12%,
+      #f0ece4 22%,
+      #f6f4f0 32%,
+      #f2f0ec 42%,
+      #eae8e4 52%,
+      #e4e2de 62%,
+      #eceae8 72%,
+      #f2f0ee 82%,
+      #e8e6e4 92%,
+      #e0deda 100%
+    ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  display: inline;
+  filter: contrast(1.08) brightness(1.08);
+}
+
+[data-theme="light"] .gradient-text-hero {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E"),
+    linear-gradient(
+      125deg,
+      #a89888 0%,
+      #b8aca0 12%,
+      #c8c0b8 22%,
+      #d0cac4 32%,
+      #c8c2bc 42%,
+      #bcb8b2 52%,
+      #b4b0ac 62%,
+      #bcb8b6 72%,
+      #c8c4c2 82%,
+      #bab8b4 92%,
+      #b0aca8 100%
+    ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: contrast(1.2) brightness(1.0);
 }
 
 /* --- 6. Device Showcase --- */
@@ -599,89 +632,81 @@ body.saaS-style::before {
 }
 body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: var(--color-bg);
+  background: transparent;
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
 }
 
 html {
-  background: var(--color-bg);
+  /* Textured background — noise + dot grid + lines for glass blur showcase */
+  background:
+    /* Noise grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E"),
+    /* Top-left light source */
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+    /* Top-right glow */
+    radial-gradient(ellipse 60% 40% at 80% 5%, rgba(120, 120, 255, 0.06) 0%, transparent 50%),
+    /* Bottom-right accent */
+    radial-gradient(ellipse 70% 50% at 90% 90%, rgba(255, 120, 200, 0.04) 0%, transparent 50%),
+    /* Bottom-left warmth */
+    radial-gradient(ellipse 60% 40% at 10% 85%, rgba(255, 180, 100, 0.03) 0%, transparent 50%),
+    /* Center fill */
+    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(30, 30, 40, 0.5) 0%, transparent 70%),
+    /* Grid lines */
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255, 255, 255, 0.06) 40px, rgba(255, 255, 255, 0.06) 41px),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255, 255, 255, 0.06) 40px, rgba(255, 255, 255, 0.06) 41px),
+    /* Base */
+    #050508;
+  background-size:
+    200px 200px,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    41px 100%, 100% 41px,
+    100% 100%;
+  background-attachment: fixed;
   scroll-behavior: smooth;
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
 }
 
-/* Abstract grid and light texture background */
-body::before {
+html::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-
-  /* Dark base background */
+  opacity: 0;
+  transition: opacity 2s ease;
   background:
-    /* Top-left light source */
-    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-    /* Top-right subtle glow */
-    radial-gradient(ellipse 60% 40% at 80% 5%, rgba(120, 120, 255, 0.06) 0%, transparent 50%),
-    /* Bottom-right accent */
-    radial-gradient(ellipse 70% 50% at 90% 90%, rgba(255, 120, 200, 0.04) 0%, transparent 50%),
-    /* Bottom-left subtle warmth */
-    radial-gradient(ellipse 60% 40% at 10% 85%, rgba(255, 180, 100, 0.03) 0%, transparent 50%),
-    /* Center fill */
-    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(30, 30, 40, 0.5) 0%, transparent 70%),
-    /* Abstract grid pattern */
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 100px,
-      rgba(255, 255, 255, 0.015) 100px,
-      rgba(255, 255, 255, 0.015) 101px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 100px,
-      rgba(255, 255, 255, 0.015) 100px,
-      rgba(255, 255, 255, 0.015) 101px
-    ),
-    /* Final dark base */
-    #050508;
-}
-
-/* Light theme background */
-[data-theme="light"] body::before {
-  background:
-    /* Soft ambient light from top */
+    /* Noise grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E"),
+    /* Ambient light */
     radial-gradient(ellipse 100% 60% at 50% -10%, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
-    /* Subtle grid texture */
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 80px,
-      rgba(0, 0, 0, 0.02) 80px,
-      rgba(0, 0, 0, 0.02) 81px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 80px,
-      rgba(0, 0, 0, 0.02) 80px,
-      rgba(0, 0, 0, 0.02) 81px
-    ),
-    /* Light base */
+    /* Grid lines */
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0, 0, 0, 0.045) 40px, rgba(0, 0, 0, 0.045) 41px),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0, 0, 0, 0.045) 40px, rgba(0, 0, 0, 0.045) 41px),
+    /* Base */
     #f8f9fa;
+  background-size:
+    200px 200px,
+    100% 100%,
+    41px 100%, 100% 41px,
+    100% 100%;
 }
+
+html[data-theme="light"]::after {
+  opacity: 1;
+}
+
+
 
 /* MINIMAL LIQUID GLASS STYLES — matched to liquid-glass-react experiment */
 .liquidGlass-wrapper {
@@ -1635,4 +1660,242 @@ body::before {
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.2),
     0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   LIQUID GLASS — Standalone CSS Component
+   Default blur: 3px | Min: 1px | Max: 10px
+   ============================================================ */
+
+.liquid-glass {
+  position: relative;
+  background: rgba(255, 255, 255, var(--lg-bg-opacity));
+  backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturation));
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturation));
+  border: none;
+  border-radius: var(--lg-corner-radius);
+  box-shadow: var(--lg-shadow), var(--lg-shadow-inset);
+  overflow: hidden;
+  isolation: isolate;
+  will-change: transform;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.liquid-glass:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--lg-shadow-hover), var(--lg-shadow-inset-hover);
+}
+
+/* Border Layer 1: Screen blend shimmer */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--lg-border-padding);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.12) 33%,
+    rgba(255, 255, 255, 0.4) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+  opacity: var(--lg-border-screen-opacity);
+  transition: opacity 0.2s ease;
+}
+
+.liquid-glass:hover::before {
+  opacity: 0.3;
+}
+
+/* Border Layer 2: Overlay blend shimmer */
+.liquid-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--lg-border-padding);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.32) 33%,
+    rgba(255, 255, 255, 0.6) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+  opacity: var(--lg-border-overlay-opacity);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.25),
+    0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* VARIANT: STRONG */
+.liquid-glass--strong {
+  background: rgba(255, 255, 255, var(--lg-bg-opacity-strong));
+  backdrop-filter: blur(calc(var(--lg-blur) * 1.5)) saturate(calc(var(--lg-saturation) * 1.1));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 1.5)) saturate(calc(var(--lg-saturation) * 1.1));
+  box-shadow:
+    0px 16px 50px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+.liquid-glass--strong:hover {
+  box-shadow:
+    0px 20px 60px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.18),
+    inset 0 1px 3px rgba(255, 255, 255, 0.12);
+}
+
+.liquid-glass--strong::before {
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.15) 33%,
+    rgba(255, 255, 255, 0.5) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  opacity: 0.25;
+}
+
+.liquid-glass--strong:hover::before {
+  opacity: 0.35;
+}
+
+.liquid-glass--strong::after {
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.4) 33%,
+    rgba(255, 255, 255, 0.7) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3),
+    0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* VARIANT: SUBTLE */
+.liquid-glass--subtle {
+  background: rgba(255, 255, 255, var(--lg-bg-opacity-subtle));
+  backdrop-filter: blur(calc(var(--lg-blur) * 0.8)) saturate(calc(var(--lg-saturation) * 0.9));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 0.8)) saturate(calc(var(--lg-saturation) * 0.9));
+  box-shadow:
+    0px 8px 30px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05);
+}
+
+.liquid-glass--subtle:hover {
+  box-shadow:
+    0px 12px 40px rgba(0, 0, 0, 0.22),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.06);
+}
+
+.liquid-glass--subtle::before {
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.08) 33%,
+    rgba(255, 255, 255, 0.25) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  opacity: 0.15;
+}
+
+.liquid-glass--subtle:hover::before {
+  opacity: 0.25;
+}
+
+.liquid-glass--subtle::after {
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.2) 33%,
+    rgba(255, 255, 255, 0.4) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* VARIANT: NAV (Pill shape) */
+.liquid-glass--nav {
+  border-radius: 9999px;
+  backdrop-filter: blur(calc(var(--lg-blur) * 2)) saturate(calc(var(--lg-saturation) * 1.1));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 2)) saturate(calc(var(--lg-saturation) * 1.1));
+}
+
+/* LIGHT THEME OVERRIDES */
+[data-theme="light"] .liquid-glass {
+  backdrop-filter: blur(calc(var(--lg-blur) * 1.2)) saturate(calc(var(--lg-saturation) * 1.1));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 1.2)) saturate(calc(var(--lg-saturation) * 1.1));
+  box-shadow:
+    0px 12px 40px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="light"] .liquid-glass:hover {
+  box-shadow:
+    0px 16px 50px rgba(0, 0, 0, 0.14),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .liquid-glass::before {
+  opacity: 0.5;
+}
+
+[data-theme="light"] .liquid-glass--strong {
+  backdrop-filter: blur(calc(var(--lg-blur) * 1.8)) saturate(calc(var(--lg-saturation) * 1.2));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 1.8)) saturate(calc(var(--lg-saturation) * 1.2));
+  box-shadow:
+    0px 16px 50px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .liquid-glass--subtle {
+  backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturation));
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturation));
+  box-shadow:
+    0px 8px 30px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .liquid-glass--nav {
+  backdrop-filter: blur(calc(var(--lg-blur) * 2.5)) saturate(calc(var(--lg-saturation) * 1.2));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 2.5)) saturate(calc(var(--lg-saturation) * 1.2));
+  box-shadow:
+    0px 12px 40px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.25);
+}
+
+/* GLASS CONTENT LAYER */
+.liquid-glass__content {
+  position: relative;
+  z-index: 1;
 }

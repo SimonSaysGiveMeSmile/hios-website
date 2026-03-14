@@ -4,54 +4,75 @@ import React, { useState } from 'react';
 import GlassCard from './GlassCard';
 
 export default function Capabilities() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const capabilities = [
     {
       icon: (
         <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 1a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V5a4 4 0 0 0-4-4Z" />
-          <path d="M6.5 11a.75.75 0 0 0-1.5 0 7 7 0 0 0 6.25 6.963V21H8.5a.75.75 0 0 0 0 1.5h7a.75.75 0 0 0 0-1.5h-2.75v-3.037A7 7 0 0 0 19 11a.75.75 0 0 0-1.5 0 5.5 5.5 0 0 1-11 0Z" />
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z" />
         </svg>
       ),
-      title: 'Just say the words',
-      description: 'HiOS understands natural language and executes the task.',
-      details: 'Voice commands, natural language processing, smart intent detection.',
+      title: 'Book a reservation',
+      description: '"Find a sushi place near me tonight for two."',
+      steps: [
+        'Open Google Maps',
+        'Search "sushi restaurants nearby"',
+        'Filter by rating & availability',
+        'Select best match → tap Reserve',
+        'Fill in party size, time, confirm',
+      ],
       color: 'from-slate-600 to-slate-700',
     },
     {
       icon: (
         <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 4.5C7.305 4.5 3.135 7.61 1.13 12c2.005 4.39 6.175 7.5 10.87 7.5s8.865-3.11 10.87-7.5C20.865 7.61 16.695 4.5 12 4.5Zm0 12.75a5.25 5.25 0 1 1 0-10.5 5.25 5.25 0 0 1 0 10.5Z" />
-          <circle cx="12" cy="12" r="3" />
+          <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99ZM6.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm11 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM5 11l1.5-4.5h11L19 11H5Z" />
         </svg>
       ),
-      title: "See what's on screen",
-      description: 'Extract text from documents, screenshots, and photos.',
-      details: 'OCR, screenshot analysis, document parsing, visual recognition.',
+      title: 'Call an Uber',
+      description: '"Get me an Uber to the airport."',
+      steps: [
+        'Open Uber app',
+        'Set destination to nearest airport',
+        'Compare ride options & prices',
+        'Select UberX → confirm pickup',
+        'Track driver arrival in real-time',
+      ],
       color: 'from-slate-600 to-slate-700',
     },
     {
       icon: (
         <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
-          <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM8.547 4.505a8.25 8.25 0 1 0 6.906 0 9.584 9.584 0 0 0-1.7-.225h-.006a9.584 9.584 0 0 0-1.7.225 8.25 8.25 0 0 0-3.5 0ZM12 6a.75.75 0 0 1 .75.75v.316a4.5 4.5 0 0 1 3.184 3.184h.316a.75.75 0 0 1 0 1.5h-.316a4.5 4.5 0 0 1-3.184 3.184v.316a.75.75 0 0 1-1.5 0v-.316a4.5 4.5 0 0 1-3.184-3.184H7.75a.75.75 0 0 1 0-1.5h.316A4.5 4.5 0 0 1 11.25 7.066V6.75A.75.75 0 0 1 12 6Zm-2.25 6a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0Z" clipRule="evenodd" />
+          <path d="M8.1 13.34l2.83-2.83L3.91 3.5a4.008 4.008 0 0 0 0 5.66l4.19 4.18Zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47Z" />
         </svg>
       ),
-      title: 'Works across the web',
-      description: 'Navigate websites and complete tasks automatically.',
-      details: 'Browser automation, form filling, web scraping, API integration.',
+      title: 'Order DoorDash',
+      description: '"Order my usual from Chipotle."',
+      steps: [
+        'Open DoorDash app',
+        'Navigate to Chipotle → past orders',
+        'Reorder saved favorite',
+        'Apply best available promo',
+        'Confirm order & track delivery',
+      ],
       color: 'from-slate-600 to-slate-700',
     },
     {
       icon: (
         <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-          <path d="M5.25 5.25a3 3 0 0 0-3 3v8.5a3 3 0 0 0 3 3h8.5a3 3 0 0 0 3-3v-3.25a.75.75 0 0 0-1.5 0v3.25a1.5 1.5 0 0 1-1.5 1.5h-8.5a1.5 1.5 0 0 1-1.5-1.5v-8.5a1.5 1.5 0 0 1 1.5-1.5h3.25a.75.75 0 0 0 0-1.5H5.25Z" />
+          <path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33a2.5 2.5 0 0 0 2.5 2.5c.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5a2.5 2.5 0 0 0 5 0V9c0-.69-.28-1.32-.73-1.77ZM12 10H6V5h6v5Z" />
         </svg>
       ),
-      title: 'Remembers what matters',
-      description: 'Learns your contacts, habits, and preferences.',
-      details: 'Contact memory, preference learning, context awareness.',
+      title: 'Find cheapest gas',
+      description: '"Where\'s the cheapest gas near me?"',
+      steps: [
+        'Query gas price APIs for location',
+        'Compare prices within 5-mile radius',
+        'Rank by price per gallon',
+        'Select cheapest station',
+        'Open Maps → start navigation',
+      ],
       color: 'from-slate-600 to-slate-700',
     },
   ];
@@ -64,7 +85,7 @@ export default function Capabilities() {
             Just say the words.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
-            HiOS handles everyday tasks across your device.
+            See how HiOS plans and executes real tasks, step by step.
           </p>
         </div>
 
@@ -76,7 +97,7 @@ export default function Capabilities() {
               style={{ animationDelay: `${i * 100}ms` }}
             >
               <div
-                className="p-6 h-full hover:scale-[1.02] transition-transform cursor-pointer glass-subtle rounded-2xl"
+                className="p-6 h-full hover:scale-[1.02] transition-transform cursor-pointer liquid-glass liquid-glass--subtle rounded-2xl"
                 onClick={() => setExpandedIndex(expandedIndex === i ? null : i)}
               >
                 <div className="space-y-4">
@@ -104,10 +125,17 @@ export default function Capabilities() {
                     </svg>
                   </div>
 
-                  {/* Expanded details */}
+                  {/* Expanded steps */}
                   {expandedIndex === i && (
                     <div className="pt-3 mt-3 border-t border-white/10">
-                      <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{cap.details}</p>
+                      <div className="space-y-2">
+                        {cap.steps.map((step, j) => (
+                          <div key={j} className="flex items-start gap-2">
+                            <span className="text-xs font-mono mt-0.5 shrink-0" style={{ color: 'var(--text-subtle)' }}>{j + 1}.</span>
+                            <span className="text-sm" style={{ color: 'var(--text-muted)' }}>{step}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>

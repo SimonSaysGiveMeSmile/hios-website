@@ -13,7 +13,7 @@ export default function Architecture() {
       ),
       title: 'Voice Interface',
       description: 'Natural language input',
-      color: 'from-blue-500 to-cyan-600'
+      color: 'from-zinc-400 to-slate-500'
     },
     {
       icon: (
@@ -23,7 +23,7 @@ export default function Architecture() {
       ),
       title: 'Intent Parser',
       description: 'Understands user goals',
-      color: 'from-purple-500 to-pink-600'
+      color: 'from-zinc-400 to-slate-500'
     },
     {
       icon: (
@@ -33,7 +33,7 @@ export default function Architecture() {
       ),
       title: 'OpenClaw Planner',
       description: 'Generates task graphs',
-      color: 'from-violet-500 to-purple-600'
+      color: 'from-zinc-400 to-slate-500'
     },
     {
       icon: (
@@ -43,7 +43,7 @@ export default function Architecture() {
       ),
       title: 'Task Graph',
       description: 'Execution plan',
-      color: 'from-indigo-500 to-blue-600'
+      color: 'from-zinc-400 to-slate-500'
     },
     {
       icon: (
@@ -53,7 +53,7 @@ export default function Architecture() {
       ),
       title: 'HiOS Tool Bus',
       description: 'Connects to iOS APIs',
-      color: 'from-cyan-500 to-teal-600'
+      color: 'from-zinc-400 to-slate-500'
     },
     {
       icon: (
@@ -64,7 +64,7 @@ export default function Architecture() {
       ),
       title: 'Execution Layer',
       description: 'Browser • Shortcuts • OCR • Contacts',
-      color: 'from-emerald-500 to-green-600',
+      color: 'from-zinc-400 to-slate-500',
       expanded: true
     },
   ];
@@ -90,7 +90,7 @@ export default function Architecture() {
               <div className="flex items-center gap-2 flex-wrap justify-center">
                 {layers.map((layer, i) => (
                   <React.Fragment key={i}>
-                    <div className="flex-shrink-0 p-3 rounded-xl glass-subtle hover:scale-[1.02] transition-transform cursor-pointer">
+                    <div className="flex-shrink-0 p-3 rounded-xl liquid-glass liquid-glass--subtle hover:scale-[1.02] transition-transform cursor-pointer">
                       <div className="flex flex-col items-center gap-2 min-w-[80px]">
                         <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${layer.color} flex items-center justify-center flex-shrink-0`}>
                           {layer.icon}
@@ -106,7 +106,7 @@ export default function Architecture() {
                       </div>
                     </div>
                     {i < layers.length - 1 && (
-                      <svg className="w-4 h-4 text-emerald-400 flex-shrink-0 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-zinc-500 flex-shrink-0 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     )}

@@ -141,13 +141,9 @@ export default function Services() {
         <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 items-center">
           {/* Left: Visualization */}
           <div
-            className="rounded-3xl p-8 md:p-10 order-2 lg:order-1"
+            className="rounded-3xl p-8 md:p-10 order-2 lg:order-1 liquid-glass"
             style={{
-              background: isDark ? '#111111' : '#F9FAFB',
-              border: `1px solid ${isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)'}`,
-              boxShadow: isDark
-                ? '0 20px 50px rgba(0,0,0,0.3)'
-                : '0 20px 50px rgba(0,0,0,0.04)',
+              background: isDark ? 'rgba(17, 17, 17, 0.6)' : 'rgba(249, 250, 251, 0.6)',
             }}
           >
             <div

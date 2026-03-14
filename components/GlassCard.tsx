@@ -23,9 +23,9 @@ export default function GlassCard({
   useLiquidGlass = false
 }: GlassCardProps) {
   const variantClass = {
-    default: 'glass',
-    strong: 'glass-strong',
-    subtle: 'glass-subtle',
+    default: 'liquid-glass',
+    strong: 'liquid-glass liquid-glass--strong',
+    subtle: 'liquid-glass liquid-glass--subtle',
   }[variant];
 
   // Use LiquidGlass component for the enhanced effect

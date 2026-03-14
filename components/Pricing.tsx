@@ -15,7 +15,7 @@ export default function Pricing() {
         'Basic features',
         'With ads',
       ],
-      color: 'from-blue-500 to-cyan-600',
+      color: 'from-zinc-400 to-slate-500',
     },
     {
       name: 'Basic',
@@ -26,7 +26,7 @@ export default function Pricing() {
         'Simple workflows',
         'More tasks',
       ],
-      color: 'from-purple-500 to-pink-600',
+      color: 'from-zinc-400 to-slate-500',
       popular: false,
     },
     {
@@ -40,7 +40,7 @@ export default function Pricing() {
         'Higher usage limits',
         'Priority support',
       ],
-      color: 'from-orange-500 to-red-600',
+      color: 'from-zinc-400 to-slate-500',
       popular: true,
     },
   ];
@@ -82,7 +82,7 @@ export default function Pricing() {
                   <ul className="space-y-2">
                     {plan.features.map((feature, j) => (
                       <li key={j} className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                        <svg className="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                         {feature}

@@ -1,0 +1,620 @@
+/*! ============================================================
+ *  LIQUID GLASS — Standalone CSS Component
+ *  ============================================================
+ *  A complete, drop-in glass morphism system extracted from
+ *  the liquid-glass-react experiment page.
+ *
+ *  USAGE:
+ *    1. Include this CSS file in your project
+ *    2. Add class="liquid-glass" to any element
+ *    3. Optionally use variants: liquid-glass--strong, liquid-glass--subtle, liquid-glass--nav
+ *    4. Override CSS custom properties on :root to tune globally
+ *
+ *  BROWSER SUPPORT:
+ *    - Chromium (Chrome, Edge, Arc, Brave): Full support including SVG filters
+ *    - Safari: backdrop-filter works, SVG feDisplacementMap does NOT
+ *    - Firefox: backdrop-filter works, SVG feDisplacementMap does NOT
+ *
+ *  NOTE: The SVG displacement/refraction effects (edge distortion,
+ *  chromatic aberration) require JavaScript + inline SVG filters.
+ *  See the "SVG FILTER REFERENCE" section at the bottom for the
+ *  JS implementation guide.
+ *  ============================================================ */
+
+/* ===========================================
+   1. CSS CUSTOM PROPERTIES (Tuning Knobs)
+   =========================================== */
+:root {
+  /* ---- Core Glass Controls ---- */
+  /* blur = 4 + blurAmount * 32  (blurAmount default: 0.5 → 20px) */
+  --lg-blur: 20px;
+  --lg-saturation: 140%;
+  --lg-corner-radius: 32px;
+
+  /* ---- Background Opacity ---- */
+  --lg-bg-opacity: 0;           /* 0 = fully transparent (true glass) */
+  --lg-bg-opacity-strong: 0.03;
+  --lg-bg-opacity-subtle: 0;
+
+  /* ---- Border Shimmer ---- */
+  --lg-border-screen-opacity: 0.2;
+  --lg-border-overlay-opacity: 1;
+  --lg-border-padding: 1.5px;
+
+  /* ---- Shadow ---- */
+  --lg-shadow: 0px 12px 40px rgba(0, 0, 0, 0.25);
+  --lg-shadow-hover: 0px 16px 50px rgba(0, 0, 0, 0.3);
+  --lg-shadow-inset: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12),
+                     inset 0 1px 3px rgba(255, 255, 255, 0.08);
+  --lg-shadow-inset-hover: inset 0 0 0 0.5px rgba(255, 255, 255, 0.15),
+                           inset 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+
+/* ===========================================
+   2. BASE GLASS CLASS
+   -------------------------------------------
+   The core liquid glass material. Transparent
+   background with backdrop blur + saturation.
+   Two pseudo-element border shimmer layers
+   matching the liquid-glass-react library.
+   =========================================== */
+.liquid-glass {
+  position: relative;
+  background: rgba(255, 255, 255, var(--lg-bg-opacity));
+  backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturation));
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturation));
+  border: none;
+  border-radius: var(--lg-corner-radius);
+  box-shadow: var(--lg-shadow), var(--lg-shadow-inset);
+  overflow: hidden;
+  isolation: isolate;
+  will-change: transform;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.liquid-glass:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--lg-shadow-hover), var(--lg-shadow-inset-hover);
+}
+
+/* ---- Border Layer 1: Screen blend shimmer ----
+   Mimics liquid-glass-react's first <span> border layer.
+   Uses mask-composite to create a border-only gradient. */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--lg-border-padding);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.12) 33%,
+    rgba(255, 255, 255, 0.4) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+  opacity: var(--lg-border-screen-opacity);
+  transition: opacity 0.2s ease;
+}
+
+.liquid-glass:hover::before {
+  opacity: 0.3;
+}
+
+/* ---- Border Layer 2: Overlay blend shimmer ----
+   Mimics liquid-glass-react's second <span> border layer.
+   Stronger gradient + inset box-shadow for depth. */
+.liquid-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--lg-border-padding);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.32) 33%,
+    rgba(255, 255, 255, 0.6) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+  opacity: var(--lg-border-overlay-opacity);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.25),
+    0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ===========================================
+   3. VARIANT: STRONG
+   -------------------------------------------
+   Higher blur multiplier, slightly opaque bg,
+   thicker border shimmer padding.
+   =========================================== */
+.liquid-glass--strong {
+  background: rgba(255, 255, 255, var(--lg-bg-opacity-strong));
+  backdrop-filter: blur(calc(var(--lg-blur) * 1.5)) saturate(calc(var(--lg-saturation) * 1.1));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 1.5)) saturate(calc(var(--lg-saturation) * 1.1));
+  box-shadow:
+    0px 16px 50px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+.liquid-glass--strong:hover {
+  box-shadow:
+    0px 20px 60px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.18),
+    inset 0 1px 3px rgba(255, 255, 255, 0.12);
+}
+
+.liquid-glass--strong::before {
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.15) 33%,
+    rgba(255, 255, 255, 0.5) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  opacity: 0.25;
+}
+
+.liquid-glass--strong:hover::before {
+  opacity: 0.35;
+}
+
+.liquid-glass--strong::after {
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.4) 33%,
+    rgba(255, 255, 255, 0.7) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3),
+    0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ===========================================
+   4. VARIANT: SUBTLE
+   -------------------------------------------
+   Lower blur multiplier, thinner border,
+   lighter shadow for secondary elements.
+   =========================================== */
+.liquid-glass--subtle {
+  background: rgba(255, 255, 255, var(--lg-bg-opacity-subtle));
+  backdrop-filter: blur(calc(var(--lg-blur) * 0.8)) saturate(calc(var(--lg-saturation) * 0.9));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 0.8)) saturate(calc(var(--lg-saturation) * 0.9));
+  box-shadow:
+    0px 8px 30px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05);
+}
+
+.liquid-glass--subtle:hover {
+  box-shadow:
+    0px 12px 40px rgba(0, 0, 0, 0.22),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.06);
+}
+
+.liquid-glass--subtle::before {
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.08) 33%,
+    rgba(255, 255, 255, 0.25) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  opacity: 0.15;
+}
+
+.liquid-glass--subtle:hover::before {
+  opacity: 0.25;
+}
+
+.liquid-glass--subtle::after {
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.2) 33%,
+    rgba(255, 255, 255, 0.4) 66%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ===========================================
+   5. VARIANT: NAV (Pill shape)
+   -------------------------------------------
+   Full pill radius, double blur for nav bars.
+   =========================================== */
+.liquid-glass--nav {
+  border-radius: 9999px;
+  backdrop-filter: blur(calc(var(--lg-blur) * 2)) saturate(calc(var(--lg-saturation) * 1.1));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 2)) saturate(calc(var(--lg-saturation) * 1.1));
+}
+
+
+/* ===========================================
+   6. OVER-LIGHT MODE
+   -------------------------------------------
+   For use on bright/white backgrounds.
+   Adds a dark tint overlay and increases blur.
+   In liquid-glass-react this is controlled by
+   the overLight prop.
+   =========================================== */
+.liquid-glass--over-light {
+  backdrop-filter: blur(calc(var(--lg-blur) + 12px)) saturate(var(--lg-saturation));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) + 12px)) saturate(var(--lg-saturation));
+  box-shadow: 0px 16px 70px rgba(0, 0, 0, 0.75),
+              var(--lg-shadow-inset);
+}
+
+/* Dark tint layer — use as a sibling div before the glass element */
+.liquid-glass-overlight-tint {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.liquid-glass-overlight-tint::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: black;
+  opacity: 0.2;
+}
+
+.liquid-glass-overlight-tint::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: black;
+  mix-blend-mode: overlay;
+}
+
+
+/* ===========================================
+   7. LIGHT THEME OVERRIDES
+   -------------------------------------------
+   When used on light backgrounds, increase
+   blur/saturation and adjust shadow opacity.
+   Apply via [data-theme="light"] or a parent
+   class like .theme-light.
+   =========================================== */
+[data-theme="light"] .liquid-glass,
+.theme-light .liquid-glass {
+  backdrop-filter: blur(calc(var(--lg-blur) * 1.2)) saturate(calc(var(--lg-saturation) * 1.1));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 1.2)) saturate(calc(var(--lg-saturation) * 1.1));
+  box-shadow:
+    0px 12px 40px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="light"] .liquid-glass:hover,
+.theme-light .liquid-glass:hover {
+  box-shadow:
+    0px 16px 50px rgba(0, 0, 0, 0.14),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .liquid-glass::before,
+.theme-light .liquid-glass::before {
+  opacity: 0.5;
+}
+
+[data-theme="light"] .liquid-glass--strong,
+.theme-light .liquid-glass--strong {
+  backdrop-filter: blur(calc(var(--lg-blur) * 1.8)) saturate(calc(var(--lg-saturation) * 1.2));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 1.8)) saturate(calc(var(--lg-saturation) * 1.2));
+  box-shadow:
+    0px 16px 50px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .liquid-glass--subtle,
+.theme-light .liquid-glass--subtle {
+  backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturation));
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturation));
+  box-shadow:
+    0px 8px 30px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .liquid-glass--nav,
+.theme-light .liquid-glass--nav {
+  backdrop-filter: blur(calc(var(--lg-blur) * 2.5)) saturate(calc(var(--lg-saturation) * 1.2));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur) * 2.5)) saturate(calc(var(--lg-saturation) * 1.2));
+  box-shadow:
+    0px 12px 40px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.25);
+}
+
+
+/* ===========================================
+   8. GLASS CONTENT LAYER
+   -------------------------------------------
+   Content inside the glass should sit above
+   the backdrop warp layer. Use this class on
+   the content wrapper inside .liquid-glass.
+   =========================================== */
+.liquid-glass__content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  font: 500 20px/1 system-ui;
+  text-shadow: 0px 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.liquid-glass--over-light .liquid-glass__content {
+  text-shadow: 0px 2px 12px rgba(0, 0, 0, 0);
+}
+
+
+/* ===========================================
+   9. SLIDER CONTROLS (Optional)
+   -------------------------------------------
+   Styled range inputs for a glass control panel.
+   =========================================== */
+.lg-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.lg-slider:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.lg-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+  cursor: pointer;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lg-slider::-webkit-slider-thumb:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+  transform: scale(1.15);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.lg-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ===========================================
+   10. SVG FILTER REFERENCE (JavaScript Required)
+   ===============================================
+   The CSS above handles backdrop blur, saturation,
+   border shimmer, and shadows. But the experiment
+   page's FULL effect also includes:
+
+     - Edge refraction (feDisplacementMap)
+     - Chromatic aberration (separate RGB channels)
+     - Refraction modes (standard/polar/prominent/shader)
+     - Elasticity (cursor-following stretch)
+
+   These require an inline SVG filter applied via
+   JavaScript. Below is the SVG filter structure
+   and the JS wiring pattern.
+
+   ARCHITECTURE:
+   ┌─────────────────────────────────────────┐
+   │  .liquid-glass (container)              │
+   │  ├── <svg> (hidden, holds <filter>)     │
+   │  ├── <span.warp> (backdrop layer)       │
+   │  │   style: filter: url(#filterId)      │
+   │  │   style: backdrop-filter: blur(...)  │
+   │  └── <div.content> (z-index: 1)         │
+   │      └── your content here              │
+   └─────────────────────────────────────────┘
+
+   The SVG filter is applied to the WARP layer only,
+   not the content. This keeps text sharp while the
+   backdrop gets the displacement effect.
+
+   =========================================== */
+
+/*
+   SVG FILTER TEMPLATE (inline in HTML):
+   ─────────────────────────────────────
+   <svg style="position:absolute; width:{W}px; height:{H}px" aria-hidden="true">
+     <defs>
+       <filter id="{FILTER_ID}" x="-35%" y="-35%" width="170%" height="170%"
+               colorInterpolationFilters="sRGB">
+
+         <!-- 1. Load displacement map -->
+         <feImage x="0" y="0" width="100%" height="100%"
+                  result="DISPLACEMENT_MAP"
+                  href="{DISPLACEMENT_MAP_DATA_URL}"
+                  preserveAspectRatio="xMidYMid slice" />
+
+         <!-- 2. Create edge mask from displacement map -->
+         <feColorMatrix in="DISPLACEMENT_MAP" type="matrix"
+           values="0.3 0.3 0.3 0 0
+                   0.3 0.3 0.3 0 0
+                   0.3 0.3 0.3 0 0
+                   0 0 0 1 0"
+           result="EDGE_INTENSITY" />
+         <feComponentTransfer in="EDGE_INTENSITY" result="EDGE_MASK">
+           <feFuncA type="discrete"
+                    tableValues="0 {aberration * 0.05} 1" />
+         </feComponentTransfer>
+
+         <!-- 3. Undisplaced center -->
+         <feOffset in="SourceGraphic" dx="0" dy="0"
+                   result="CENTER_ORIGINAL" />
+
+         <!-- 4. Red channel displacement -->
+         <feDisplacementMap in="SourceGraphic" in2="DISPLACEMENT_MAP"
+           scale="{displacementScale * -1}"
+           xChannelSelector="R" yChannelSelector="B"
+           result="RED_DISPLACED" />
+         <feColorMatrix in="RED_DISPLACED" type="matrix"
+           values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
+           result="RED_CHANNEL" />
+
+         <!-- 5. Green channel displacement -->
+         <feDisplacementMap in="SourceGraphic" in2="DISPLACEMENT_MAP"
+           scale="{displacementScale * (-1 - aberration * 0.05)}"
+           xChannelSelector="R" yChannelSelector="B"
+           result="GREEN_DISPLACED" />
+         <feColorMatrix in="GREEN_DISPLACED" type="matrix"
+           values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"
+           result="GREEN_CHANNEL" />
+
+         <!-- 6. Blue channel displacement -->
+         <feDisplacementMap in="SourceGraphic" in2="DISPLACEMENT_MAP"
+           scale="{displacementScale * (-1 - aberration * 0.1)}"
+           xChannelSelector="R" yChannelSelector="B"
+           result="BLUE_DISPLACED" />
+         <feColorMatrix in="BLUE_DISPLACED" type="matrix"
+           values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"
+           result="BLUE_CHANNEL" />
+
+         <!-- 7. Combine RGB with screen blend -->
+         <feBlend in="GREEN_CHANNEL" in2="BLUE_CHANNEL"
+                  mode="screen" result="GB_COMBINED" />
+         <feBlend in="RED_CHANNEL" in2="GB_COMBINED"
+                  mode="screen" result="RGB_COMBINED" />
+
+         <!-- 8. Soften aberration -->
+         <feGaussianBlur in="RGB_COMBINED"
+           stdDeviation="{max(0.1, 0.5 - aberration * 0.1)}"
+           result="ABERRATED_BLURRED" />
+
+         <!-- 9. Apply edge mask to aberration -->
+         <feComposite in="ABERRATED_BLURRED" in2="EDGE_MASK"
+                      operator="in" result="EDGE_ABERRATION" />
+
+         <!-- 10. Invert mask for clean center -->
+         <feComponentTransfer in="EDGE_MASK" result="INVERTED_MASK">
+           <feFuncA type="table" tableValues="1 0" />
+         </feComponentTransfer>
+         <feComposite in="CENTER_ORIGINAL" in2="INVERTED_MASK"
+                      operator="in" result="CENTER_CLEAN" />
+
+         <!-- 11. Final composite -->
+         <feComposite in="EDGE_ABERRATION" in2="CENTER_CLEAN"
+                      operator="over" />
+       </filter>
+     </defs>
+   </svg>
+
+
+   WARP LAYER CSS:
+   ─────────────────
+   .liquid-glass__warp {
+     position: absolute;
+     inset: 0;
+     filter: url(#FILTER_ID);
+     backdrop-filter: blur(20px) saturate(140%);
+     -webkit-backdrop-filter: blur(20px) saturate(140%);
+   }
+
+
+   DEFAULT PARAMETER VALUES:
+   ─────────────────────────
+   displacementScale: 100
+   blurAmount:        0.5    → computedBlur = 4 + 0.5 * 32 = 20px
+   saturation:        140%
+   aberrationIntensity: 2
+   elasticity:        0.00
+   cornerRadius:      32px
+   overLight:         false
+   mode:              'standard'
+
+
+   DISPLACEMENT MAP MODES:
+   ───────────────────────
+   'standard'  — Radial gradient displacement (base64 JPEG, ~2KB)
+   'polar'     — Polar coordinate displacement (base64 JPEG, ~3KB)
+   'prominent' — High-contrast edge displacement (base64 PNG, ~15KB)
+   'shader'    — Runtime-generated via Canvas 2D + SDF math
+
+   The displacement maps are base64-encoded data URLs embedded
+   directly in the feImage href. See the liquid-glass-react
+   source (lib/liquid-glass-react/src/utils.ts) for the full
+   base64 strings.
+
+
+   ELASTICITY (cursor-following):
+   ──────────────────────────────
+   Elasticity is a JS-only effect that:
+   1. Tracks mouse position relative to the glass element
+   2. Applies translate() offset toward the cursor
+   3. Applies scaleX/scaleY stretch in the cursor direction
+   4. Uses a 200px activation zone from element edges
+   5. Fades in/out based on distance
+
+   Formula:
+     translateX = (mouseX - centerX) * elasticity * 0.1 * fadeIn
+     translateY = (mouseY - centerY) * elasticity * 0.1 * fadeIn
+     scaleX = 1 + |normalizedX| * stretch * 0.3 - |normalizedY| * stretch * 0.15
+     scaleY = 1 + |normalizedY| * stretch * 0.3 - |normalizedX| * stretch * 0.15
+
+   This cannot be replicated in CSS alone.
+*/
